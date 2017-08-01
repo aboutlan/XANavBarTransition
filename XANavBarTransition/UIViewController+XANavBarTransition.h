@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (XANavBarTransition)
-
+/**
+ 当前控制器导航栏的透明度
+ */
+@property(nonatomic,assign)CGFloat navBarAlpha;
 @end

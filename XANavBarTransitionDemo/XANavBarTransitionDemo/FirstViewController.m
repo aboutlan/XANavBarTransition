@@ -7,7 +7,7 @@
 //
 
 #import "FirstViewController.h"
-
+#import "XANavBarTransition.h"
 @interface FirstViewController ()
 
 @end
@@ -16,12 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setup];
+    
     
 }
 
 - (void)setup{
     
-    self.title = @"3";
+    self.title = @"1";
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.navBarAlpha = 1;
 }
 
 @end

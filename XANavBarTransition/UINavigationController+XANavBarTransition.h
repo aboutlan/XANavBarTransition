@@ -10,4 +10,7 @@
 
 @interface UINavigationController (XANavBarTransition)
 
+
+
+- (void)changeNavBarAlpha:(CGFloat)navBarAlpha;
 @end

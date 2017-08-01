@@ -7,7 +7,7 @@
 //
 
 #import "ThirdViewController.h"
-
+#import "XANavBarTransition.h"
 @interface ThirdViewController ()
 
 @end
@@ -20,7 +20,8 @@
 }
 
 - (void)setup{
-    
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.navBarAlpha = 0.5;
     self.title = @"3";
 }
 
