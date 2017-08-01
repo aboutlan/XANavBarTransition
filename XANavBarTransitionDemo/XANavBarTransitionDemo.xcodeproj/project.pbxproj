@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3855DAF61F30602200628B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF51F30602200628B4D /* main.m */; };
+		3855DAF91F30602200628B4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF81F30602200628B4D /* AppDelegate.m */; };
+		3855DAFC1F30602200628B4D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAFB1F30602200628B4D /* ViewController.m */; };
+		3855DAFF1F30602200628B4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3855DAFD1F30602200628B4D /* Main.storyboard */; };
+		3855DB011F30602200628B4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3855DB001F30602200628B4D /* Assets.xcassets */; };
+		3855DB041F30602200628B4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3855DB021F30602200628B4D /* LaunchScreen.storyboard */; };
+		3855DB0F1F30602200628B4D /* XANavBarTransitionDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB0E1F30602200628B4D /* XANavBarTransitionDemoTests.m */; };
+		3855DB1A1F30602200628B4D /* XANavBarTransitionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB191F30602200628B4D /* XANavBarTransitionDemoUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3855DB0B1F30602200628B4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3855DAE91F30602200628B4D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3855DAF01F30602200628B4D;
+			remoteInfo = XANavBarTransitionDemo;
+		};
+		3855DB161F30602200628B4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3855DAE91F30602200628B4D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3855DAF01F30602200628B4D;
+			remoteInfo = XANavBarTransitionDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3855DAF11F30602200628B4D /* XANavBarTransitionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XANavBarTransitionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3855DAF51F30602200628B4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3855DAF71F30602200628B4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3855DAF81F30602200628B4D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3855DAFA1F30602200628B4D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3855DAFB1F30602200628B4D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3855DAFE1F30602200628B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3855DB001F30602200628B4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3855DB031F30602200628B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3855DB051F30602200628B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3855DB0A1F30602200628B4D /* XANavBarTransitionDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XANavBarTransitionDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3855DB0E1F30602200628B4D /* XANavBarTransitionDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionDemoTests.m; sourceTree = "<group>"; };
+		3855DB101F30602200628B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3855DB151F30602200628B4D /* XANavBarTransitionDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XANavBarTransitionDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3855DB191F30602200628B4D /* XANavBarTransitionDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionDemoUITests.m; sourceTree = "<group>"; };
+		3855DB1B1F30602200628B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3855DAEE1F30602200628B4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3855DB071F30602200628B4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3855DB121F30602200628B4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3855DAE81F30602200628B4D = {
+			isa = PBXGroup;
+			children = (
+				3855DAF31F30602200628B4D /* XANavBarTransitionDemo */,
+				3855DB0D1F30602200628B4D /* XANavBarTransitionDemoTests */,
+				3855DB181F30602200628B4D /* XANavBarTransitionDemoUITests */,
+				3855DAF21F30602200628B4D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3855DAF21F30602200628B4D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3855DAF11F30602200628B4D /* XANavBarTransitionDemo.app */,
+				3855DB0A1F30602200628B4D /* XANavBarTransitionDemoTests.xctest */,
+				3855DB151F30602200628B4D /* XANavBarTransitionDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3855DAF31F30602200628B4D /* XANavBarTransitionDemo */ = {
+			isa = PBXGroup;
+			children = (
+				3855DAF71F30602200628B4D /* AppDelegate.h */,
+				3855DAF81F30602200628B4D /* AppDelegate.m */,
+				3855DAFA1F30602200628B4D /* ViewController.h */,
+				3855DAFB1F30602200628B4D /* ViewController.m */,
+				3855DAFD1F30602200628B4D /* Main.storyboard */,
+				3855DB001F30602200628B4D /* Assets.xcassets */,
+				3855DB021F30602200628B4D /* LaunchScreen.storyboard */,
+				3855DB051F30602200628B4D /* Info.plist */,
+				3855DAF41F30602200628B4D /* Supporting Files */,
+			);
+			path = XANavBarTransitionDemo;
+			sourceTree = "<group>";
+		};
+		3855DAF41F30602200628B4D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3855DAF51F30602200628B4D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3855DB0D1F30602200628B4D /* XANavBarTransitionDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				3855DB0E1F30602200628B4D /* XANavBarTransitionDemoTests.m */,
+				3855DB101F30602200628B4D /* Info.plist */,
+			);
+			path = XANavBarTransitionDemoTests;
+			sourceTree = "<group>";
+		};
+		3855DB181F30602200628B4D /* XANavBarTransitionDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3855DB191F30602200628B4D /* XANavBarTransitionDemoUITests.m */,
+				3855DB1B1F30602200628B4D /* Info.plist */,
+			);
+			path = XANavBarTransitionDemoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3855DAF01F30602200628B4D /* XANavBarTransitionDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3855DB1E1F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemo" */;
+			buildPhases = (
+				3855DAED1F30602200628B4D /* Sources */,
+				3855DAEE1F30602200628B4D /* Frameworks */,
+				3855DAEF1F30602200628B4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XANavBarTransitionDemo;
+			productName = XANavBarTransitionDemo;
+			productReference = 3855DAF11F30602200628B4D /* XANavBarTransitionDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3855DB091F30602200628B4D /* XANavBarTransitionDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3855DB211F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemoTests" */;
+			buildPhases = (
+				3855DB061F30602200628B4D /* Sources */,
+				3855DB071F30602200628B4D /* Frameworks */,
+				3855DB081F30602200628B4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3855DB0C1F30602200628B4D /* PBXTargetDependency */,
+			);
+			name = XANavBarTransitionDemoTests;
+			productName = XANavBarTransitionDemoTests;
+			productReference = 3855DB0A1F30602200628B4D /* XANavBarTransitionDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3855DB141F30602200628B4D /* XANavBarTransitionDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3855DB241F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemoUITests" */;
+			buildPhases = (
+				3855DB111F30602200628B4D /* Sources */,
+				3855DB121F30602200628B4D /* Frameworks */,
+				3855DB131F30602200628B4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3855DB171F30602200628B4D /* PBXTargetDependency */,
+			);
+			name = XANavBarTransitionDemoUITests;
+			productName = XANavBarTransitionDemoUITests;
+			productReference = 3855DB151F30602200628B4D /* XANavBarTransitionDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3855DAE91F30602200628B4D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Lan;
+				TargetAttributes = {
+					3855DAF01F30602200628B4D = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2LN2G9AVN9;
+						ProvisioningStyle = Automatic;
+					};
+					3855DB091F30602200628B4D = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2LN2G9AVN9;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3855DAF01F30602200628B4D;
+					};
+					3855DB141F30602200628B4D = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2LN2G9AVN9;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3855DAF01F30602200628B4D;
+					};
+				};
+			};
+			buildConfigurationList = 3855DAEC1F30602200628B4D /* Build configuration list for PBXProject "XANavBarTransitionDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3855DAE81F30602200628B4D;
+			productRefGroup = 3855DAF21F30602200628B4D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3855DAF01F30602200628B4D /* XANavBarTransitionDemo */,
+				3855DB091F30602200628B4D /* XANavBarTransitionDemoTests */,
+				3855DB141F30602200628B4D /* XANavBarTransitionDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3855DAEF1F30602200628B4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3855DB041F30602200628B4D /* LaunchScreen.storyboard in Resources */,
+				3855DB011F30602200628B4D /* Assets.xcassets in Resources */,
+				3855DAFF1F30602200628B4D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3855DB081F30602200628B4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3855DB131F30602200628B4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3855DAED1F30602200628B4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3855DAFC1F30602200628B4D /* ViewController.m in Sources */,
+				3855DAF91F30602200628B4D /* AppDelegate.m in Sources */,
+				3855DAF61F30602200628B4D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3855DB061F30602200628B4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3855DB0F1F30602200628B4D /* XANavBarTransitionDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3855DB111F30602200628B4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3855DB1A1F30602200628B4D /* XANavBarTransitionDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3855DB0C1F30602200628B4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3855DAF01F30602200628B4D /* XANavBarTransitionDemo */;
+			targetProxy = 3855DB0B1F30602200628B4D /* PBXContainerItemProxy */;
+		};
+		3855DB171F30602200628B4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3855DAF01F30602200628B4D /* XANavBarTransitionDemo */;
+			targetProxy = 3855DB161F30602200628B4D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3855DAFD1F30602200628B4D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3855DAFE1F30602200628B4D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3855DB021F30602200628B4D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3855DB031F30602200628B4D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3855DB1C1F30602200628B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3855DB1D1F30602200628B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3855DB1F1F30602200628B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3855DB201F30602200628B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3855DB221F30602200628B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				INFOPLIST_FILE = XANavBarTransitionDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XANavBarTransitionDemo.app/XANavBarTransitionDemo";
+			};
+			name = Debug;
+		};
+		3855DB231F30602200628B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				INFOPLIST_FILE = XANavBarTransitionDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XANavBarTransitionDemo.app/XANavBarTransitionDemo";
+			};
+			name = Release;
+		};
+		3855DB251F30602200628B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				INFOPLIST_FILE = XANavBarTransitionDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = XANavBarTransitionDemo;
+			};
+			name = Debug;
+		};
+		3855DB261F30602200628B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				INFOPLIST_FILE = XANavBarTransitionDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = XANavBarTransitionDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3855DAEC1F30602200628B4D /* Build configuration list for PBXProject "XANavBarTransitionDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3855DB1C1F30602200628B4D /* Debug */,
+				3855DB1D1F30602200628B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3855DB1E1F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3855DB1F1F30602200628B4D /* Debug */,
+				3855DB201F30602200628B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3855DB211F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3855DB221F30602200628B4D /* Debug */,
+				3855DB231F30602200628B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3855DB241F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3855DB251F30602200628B4D /* Debug */,
+				3855DB261F30602200628B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3855DAE91F30602200628B4D /* Project object */;
+}
