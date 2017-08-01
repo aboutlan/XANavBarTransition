@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		3855DAF61F30602200628B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF51F30602200628B4D /* main.m */; };
 		3855DAF91F30602200628B4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF81F30602200628B4D /* AppDelegate.m */; };
-		3855DAFC1F30602200628B4D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAFB1F30602200628B4D /* ViewController.m */; };
 		3855DAFF1F30602200628B4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3855DAFD1F30602200628B4D /* Main.storyboard */; };
 		3855DB011F30602200628B4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3855DB001F30602200628B4D /* Assets.xcassets */; };
 		3855DB041F30602200628B4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3855DB021F30602200628B4D /* LaunchScreen.storyboard */; };
 		3855DB0F1F30602200628B4D /* XANavBarTransitionDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB0E1F30602200628B4D /* XANavBarTransitionDemoTests.m */; };
 		3855DB1A1F30602200628B4D /* XANavBarTransitionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB191F30602200628B4D /* XANavBarTransitionDemoUITests.m */; };
+		3855DB2D1F30622400628B4D /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB271F30622400628B4D /* ThirdViewController.m */; };
+		3855DB2E1F30622400628B4D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB291F30622400628B4D /* SecondViewController.m */; };
+		3855DB2F1F30622400628B4D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB2B1F30622400628B4D /* FirstViewController.m */; };
+		3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB311F30632100628B4D /* BaseNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +42,6 @@
 		3855DAF51F30602200628B4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3855DAF71F30602200628B4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3855DAF81F30602200628B4D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3855DAFA1F30602200628B4D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3855DAFB1F30602200628B4D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3855DAFE1F30602200628B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3855DB001F30602200628B4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3855DB031F30602200628B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +52,14 @@
 		3855DB151F30602200628B4D /* XANavBarTransitionDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XANavBarTransitionDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3855DB191F30602200628B4D /* XANavBarTransitionDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionDemoUITests.m; sourceTree = "<group>"; };
 		3855DB1B1F30602200628B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3855DB271F30622400628B4D /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		3855DB281F30622400628B4D /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		3855DB291F30622400628B4D /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		3855DB2A1F30622400628B4D /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		3855DB2B1F30622400628B4D /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		3855DB2C1F30622400628B4D /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		3855DB301F30632100628B4D /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		3855DB311F30632100628B4D /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +110,15 @@
 		3855DAF31F30602200628B4D /* XANavBarTransitionDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3855DAF71F30602200628B4D /* AppDelegate.h */,
-				3855DAF81F30602200628B4D /* AppDelegate.m */,
-				3855DAFA1F30602200628B4D /* ViewController.h */,
-				3855DAFB1F30602200628B4D /* ViewController.m */,
+				3855DB281F30622400628B4D /* ThirdViewController.h */,
+				3855DB271F30622400628B4D /* ThirdViewController.m */,
+				3855DB2A1F30622400628B4D /* SecondViewController.h */,
+				3855DB291F30622400628B4D /* SecondViewController.m */,
+				3855DB2C1F30622400628B4D /* FirstViewController.h */,
+				3855DB2B1F30622400628B4D /* FirstViewController.m */,
+				3855DB301F30632100628B4D /* BaseNavigationController.h */,
+				3855DB311F30632100628B4D /* BaseNavigationController.m */,
 				3855DAFD1F30602200628B4D /* Main.storyboard */,
-				3855DB001F30602200628B4D /* Assets.xcassets */,
-				3855DB021F30602200628B4D /* LaunchScreen.storyboard */,
-				3855DB051F30602200628B4D /* Info.plist */,
 				3855DAF41F30602200628B4D /* Supporting Files */,
 			);
 			path = XANavBarTransitionDemo;
@@ -117,6 +127,11 @@
 		3855DAF41F30602200628B4D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3855DAF71F30602200628B4D /* AppDelegate.h */,
+				3855DAF81F30602200628B4D /* AppDelegate.m */,
+				3855DB001F30602200628B4D /* Assets.xcassets */,
+				3855DB021F30602200628B4D /* LaunchScreen.storyboard */,
+				3855DB051F30602200628B4D /* Info.plist */,
 				3855DAF51F30602200628B4D /* main.m */,
 			);
 			name = "Supporting Files";
@@ -276,9 +291,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3855DAFC1F30602200628B4D /* ViewController.m in Sources */,
+				3855DB2E1F30622400628B4D /* SecondViewController.m in Sources */,
 				3855DAF91F30602200628B4D /* AppDelegate.m in Sources */,
+				3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */,
+				3855DB2F1F30622400628B4D /* FirstViewController.m in Sources */,
 				3855DAF61F30602200628B4D /* main.m in Sources */,
+				3855DB2D1F30622400628B4D /* ThirdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +534,7 @@
 				3855DB201F30602200628B4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3855DB211F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +543,7 @@
 				3855DB231F30602200628B4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3855DB241F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +552,7 @@
 				3855DB261F30602200628B4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
