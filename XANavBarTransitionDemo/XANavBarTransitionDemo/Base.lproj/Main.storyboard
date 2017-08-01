@@ -24,6 +24,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJi-oj-vWm">
                                 <rect key="frame" x="160" y="318.5" width="55" height="30"/>
                                 <state key="normal" title="Let's go"/>
+                                <connections>
+                                    <segue destination="dyT-7x-8gq" kind="show" id="r07-iL-Mpk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,8 +82,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Fgs-cS-CTw" kind="show" id="ZrY-tZ-Lax"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dyT-7x-8gq" id="dFd-FI-51G"/>
+                            <outlet property="delegate" destination="dyT-7x-8gq" id="ww4-6P-BbK"/>
+                        </connections>
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xF-d2-sKr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,6 +110,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ux-m9-1aK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
