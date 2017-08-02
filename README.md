@@ -5,7 +5,7 @@ smooth transition of navigation bar
 
 
 
-##Installation
+## Installation
 
 - download XANavBarTransition demo
 - import the header file：#import "XANavBarTransition.h"
@@ -20,10 +20,10 @@ smooth transition of navigation bar
 }
 ```
 
-##Article
+## Article
 - [iOS:记一次导航栏平滑过渡的实现](http://www.jianshu.com/p/454b06590cf1)
 
 
 
-##Abount Lan
+## Abount Lan
 - weibo:[@关于岚](http://weibo.com/daxiec/)
