@@ -12,5 +12,7 @@
 /**
  当前控制器导航栏的透明度
  */
-@property(nonatomic,assign)CGFloat navBarAlpha;
+@property(nonatomic,assign)CGFloat xa_navBarAlpha;
+
+
 @end

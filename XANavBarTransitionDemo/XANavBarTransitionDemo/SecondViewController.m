@@ -9,7 +9,6 @@
 #import "SecondViewController.h"
 #import "XANavBarTransition.h"
 @interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource>
-
 @end
 
 @implementation SecondViewController
@@ -22,10 +21,9 @@
 - (void)setup{
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navBarAlpha = 0;
+    self.xa_navBarAlpha = 0;
     self.title = @"2";
 }
-
 
 #pragma mark -<UITableViewDataSource>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -45,7 +43,7 @@
     
     CGFloat offsetY = scrollView.contentOffset.y;
     if(offsetY > 0){
-        self.navBarAlpha = (offsetY - 50 ) / 150;
+        self.xa_navBarAlpha = (offsetY - 50 ) / 150;
     }
 }
 

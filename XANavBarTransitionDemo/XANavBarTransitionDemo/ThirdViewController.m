@@ -21,7 +21,7 @@
 
 - (void)setup{
     self.extendedLayoutIncludesOpaqueBars = YES;
-    self.navBarAlpha = 0.5;
+    self.xa_navBarAlpha = 0.5;
     self.title = @"3";
 }
 
