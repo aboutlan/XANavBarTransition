@@ -22,7 +22,7 @@
 
 + (void)load{
     
-    SEL  originalAppearSEL  = @selector(viewWillAppear:);
+    SEL  originalAppearSEL = @selector(viewWillAppear:);
     SEL  swizzledAppearSEL = @selector(xa_viewWillAppear:);
     Method originalAppearMethod = class_getInstanceMethod(self, originalAppearSEL);
     Method swizzledAppearMethod = class_getInstanceMethod(self, swizzledAppearSEL);
@@ -37,13 +37,19 @@
 
 
 
-
 #pragma mark  - Transition
 - (void)xa_viewWillAppear:(BOOL)animated{
     [self xa_viewWillAppear:animated];
+    
+    //当前控制器父控制器是导航控制器并且不是通过手势滑动显示的
     if([self.parentViewController isKindOfClass:[UINavigationController class]] &&
-       self.xa_navBarAlpha){//只有当前控制器设置过NavAlpha才在控制器显示的时候重置
-        [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
+       (!self.navigationController.xa_isGrTransitioning)){
+        //如果在控制器初始化的时候用户设置过导航栏的值,那么我们直接设置该导航栏应有的透明度值,没有设置过的话默认透明度给1
+        if(self.xa_didSetBarAlpha){
+            [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
+        }else{
+            self.xa_navBarAlpha = 1;
+        }
     }
 }
 

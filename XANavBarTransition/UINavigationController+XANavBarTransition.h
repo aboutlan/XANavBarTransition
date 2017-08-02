@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationController (XANavBarTransition)
+@interface UINavigationController (XANavBarTransition)<UIGestureRecognizerDelegate>
 
 /**
- 当前是否正在手势滑动转场中
+ 当前手势是否正在滑动转场中
  */
-@property(nonatomic,assign,getter=xa_isTransitioning)BOOL xa_transitioning;
+@property(nonatomic,assign,getter=xa_isGrTransitioning)BOOL xa_grTransitioning;
 
 
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha;

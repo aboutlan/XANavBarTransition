@@ -29,7 +29,7 @@
 #pragma mark - Action
 + (void)swizzlingMethodWithOriginal:(SEL)originalSEL swizzled:(SEL)swizzledSEL{
     
-    Method orginMethod = class_getInstanceMethod(self, originalSEL);
+    Method orginMethod   = class_getInstanceMethod(self, originalSEL);
     Method swizzldMethod = class_getInstanceMethod(self, swizzledSEL);
     BOOL addSuccess = class_addMethod(self , originalSEL, method_getImplementation(swizzldMethod), method_getTypeEncoding(swizzldMethod));
     if(addSuccess){
@@ -40,6 +40,19 @@
     }
 }
 
+- (void)setup{
+    //接管系统的边缘手势滑动的代理
+    self.interactivePopGestureRecognizer.delegate = self;
+}
+
+#pragma mark - <UIGestureRecognizerDelegate>
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    
+    self.xa_grTransitioning = YES;
+    return YES;
+}
+
+
 #pragma mark - Alpha
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha{
     NSMutableArray *barSubviews = [NSMutableArray array];
@@ -49,9 +62,15 @@
             [barSubviews addObject:view];
         }
     }
-    UIView *barBackgroundView   = [barSubviews firstObject];
-    barBackgroundView.alpha = navBarAlpha;
+    UIView *barBackgroundView = [barSubviews firstObject];
+    barBackgroundView.alpha   = navBarAlpha;
     
+    
+    //做一些初始化操作
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self setup];
+    });
 }
 
 #pragma mark  - Transition
@@ -66,7 +85,7 @@
             CGFloat fromVCAlpha  = [coordinator viewControllerForKey:UITransitionContextFromViewControllerKey].xa_navBarAlpha;
             CGFloat toVCAlpha    = [coordinator viewControllerForKey:UITransitionContextToViewControllerKey].xa_navBarAlpha;
             //再通过源,目的控制器的导航条透明度和转场的进度(percentComplete)计算转场时导航条的透明度
-            CGFloat newAlpha  = fromVCAlpha + ((toVCAlpha - fromVCAlpha ) * percentComplete);
+            CGFloat newAlpha     = fromVCAlpha + ((toVCAlpha - fromVCAlpha ) * percentComplete);
             //这里不要直接去修改控制器navBarAlpha属性,会影响目的控制器的navBarAlpha的数值
             [self xa_changeNavBarAlpha:newAlpha];
         }
@@ -104,7 +123,7 @@
     if ([context isCancelled]) {// 取消了(还在当前页面)
         //根据剩余的进度来计算动画时长xa_changeNavBarAlpha
         CGFloat animdDuration = [context transitionDuration] * [context percentComplete];
-        CGFloat fromVCAlpha  = [context viewControllerForKey:UITransitionContextFromViewControllerKey].xa_navBarAlpha;
+        CGFloat fromVCAlpha   = [context viewControllerForKey:UITransitionContextFromViewControllerKey].xa_navBarAlpha;
         [UIView animateWithDuration:animdDuration animations:^{
             [self xa_changeNavBarAlpha:fromVCAlpha];
         }];
@@ -112,25 +131,24 @@
     } else {// 自动完成(pop到上一个界面了)
         
         CGFloat animdDuration = [context transitionDuration] * (1 -  [context percentComplete]);
-        CGFloat toVCAlpha    = [context viewControllerForKey:UITransitionContextToViewControllerKey].xa_navBarAlpha;
+        CGFloat toVCAlpha     = [context viewControllerForKey:UITransitionContextToViewControllerKey].xa_navBarAlpha;
         [UIView animateWithDuration:animdDuration animations:^{
             [self xa_changeNavBarAlpha:toVCAlpha];
         }];
     };
+    self.xa_grTransitioning = NO;
 }
 
 
 #pragma mark - Getter/Setter
-
-- (BOOL)xa_isTransitioning{
-   return [objc_getAssociatedObject(self, _cmd)boolValue];
+- (BOOL)xa_isGrTransitioning{
+    return [objc_getAssociatedObject(self, _cmd)boolValue];
     
 }
 
-- (void)setXa_transitioning:(BOOL)xa_transitioning{
-    
-    objc_setAssociatedObject(self, @selector(xa_isTransitioning), @(xa_transitioning), OBJC_ASSOCIATION_ASSIGN);
-    
+- (void)setXa_grTransitioning:(BOOL)xa_grTransitioning{
+    objc_setAssociatedObject(self, @selector(xa_isGrTransitioning), @(xa_grTransitioning), OBJC_ASSOCIATION_ASSIGN);
 }
+
 
 @end

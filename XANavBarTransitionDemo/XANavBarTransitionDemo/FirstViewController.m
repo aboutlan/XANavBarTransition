@@ -25,7 +25,6 @@
     
     self.title = @"1";
     self.extendedLayoutIncludesOpaqueBars = YES;
-    self.xa_navBarAlpha = 1;
 }
 
 
