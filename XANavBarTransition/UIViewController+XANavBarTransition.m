@@ -61,12 +61,7 @@
 }
 
 - (void)setXa_navBarAlpha:(CGFloat)xa_navBarAlpha{
-    if(xa_navBarAlpha > 1){
-        xa_navBarAlpha = 1;
-    }
-    if(xa_navBarAlpha < 0){
-        xa_navBarAlpha = 0;
-    }
+    xa_navBarAlpha = MAX(0,MIN(1, xa_navBarAlpha));
     self.xa_didSetBarAlpha = YES;
     objc_setAssociatedObject(self, @selector(xa_navBarAlpha), @(xa_navBarAlpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self.navigationController xa_changeNavBarAlpha:xa_navBarAlpha];
