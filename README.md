@@ -21,9 +21,11 @@ smooth transition of navigation bar
 ```
 
 ## Article
-- [iOS:记一次导航栏平滑过渡的实现](http://www.jianshu.com/p/454b06590cf1)
+- [iOS:记一次导航栏平滑过渡的实现](https://www.jianshu.com/p/859a1efd2bbf)
 
 
 
 ## Abount Lan
 - weibo:[@关于岚](http://weibo.com/daxiec/)
+
+
