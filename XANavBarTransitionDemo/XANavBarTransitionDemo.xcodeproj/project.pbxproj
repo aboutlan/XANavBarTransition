@@ -67,6 +67,7 @@
 		3855DB421F30692B00628B4D /* UIViewController+XANavBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XANavBarTransition.h"; sourceTree = "<group>"; };
 		3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XANavBarTransition.m"; sourceTree = "<group>"; };
 		3855DB481F30822E00628B4D /* XANavBarTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransition.h; sourceTree = "<group>"; };
+		38DE212B20A8624A0032FCC7 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +128,7 @@
 				3855DB301F30632100628B4D /* BaseNavigationController.h */,
 				3855DB311F30632100628B4D /* BaseNavigationController.m */,
 				3855DAFD1F30602200628B4D /* Main.storyboard */,
+				38DE212B20A8624A0032FCC7 /* CommonDefine.h */,
 				3855DAF41F30602200628B4D /* Supporting Files */,
 			);
 			path = XANavBarTransitionDemo;

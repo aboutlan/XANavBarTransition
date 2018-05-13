@@ -8,6 +8,7 @@
 
 #import "SecondViewController.h"
 #import "XANavBarTransition.h"
+#import "CommonDefine.h"
 @interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource>
 @end
 
@@ -19,8 +20,8 @@
 }
 
 - (void)setup{
+    XA_ADJUSTS_SCROLLVIEW_INSETS(self.tableView);
     self.extendedLayoutIncludesOpaqueBars = YES;
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.xa_navBarAlpha = 0;
     self.title = @"2";
 }
