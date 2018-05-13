@@ -68,20 +68,6 @@
     }
     UIView *barBackgroundView  = [barSubviews firstObject];
     barBackgroundView.alpha    = navBarAlpha;
-
-    //改变了纪录该类属性的个数
-    unsigned int count = 0;
-    //var相当于是一个数组
-    Ivar *var1 =  class_copyIvarList([UINavigationBar class], &count);
-    //遍历该数组
-    for(int i= 0 ;i < count;i++){
-        //获取成员变量
-        Ivar subVar = var1[i];
-        //获取成员变量名
-        NSString *varName = @(ivar_getName(subVar));
-        NSLog(@"%@",varName);
-    }
-
     
     //做一些初始化操作
     static dispatch_once_t onceToken;
