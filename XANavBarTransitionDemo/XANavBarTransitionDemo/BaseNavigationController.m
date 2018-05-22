@@ -9,7 +9,7 @@
 #import "BaseNavigationController.h"
 
 @interface BaseNavigationController ()
-
+@property (nonatomic, strong) UIPanGestureRecognizer *pan;
 @end
 
 @implementation BaseNavigationController
@@ -28,6 +28,7 @@
                                                  NSForegroundColorAttributeName:[UIColor whiteColor],
                                                  NSFontAttributeName : [UIFont systemFontOfSize:16]
                                                  }];
+  
     
     
 }

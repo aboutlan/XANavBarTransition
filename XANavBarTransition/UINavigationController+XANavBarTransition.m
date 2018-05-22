@@ -8,9 +8,13 @@
 
 #import "UINavigationController+XANavBarTransition.h"
 #import "UIViewController+XANavBarTransition.h"
+#import "XATransitionManager.h"
 #import <objc/message.h>
 
+
 @implementation UINavigationController (XANavBarTransition)
+
+#pragma mark - Settup
 + (void)load{
     //交换导航控制器的手势进度转场方法,来监听手势滑动的进度
     SEL originalSEL =  NSSelectorFromString(@"_updateInteractiveTransition:");
@@ -23,6 +27,13 @@
     SEL popSwizzledSEL =  NSSelectorFromString(@"xa_popViewControllerAnimated:");
     [UINavigationController swizzlingMethodWithOriginal:popOriginalSEL swizzled:popSwizzledSEL];
     
+}
+
+- (void)setup{
+    //接管系统的边缘手势滑动的代理
+    self.interactivePopGestureRecognizer.delegate = self;
+    //配置转场管理者
+    [XATransitionManager.sharedManager configTransition:self];
 }
 
 
@@ -38,18 +49,6 @@
     }else{
         method_exchangeImplementations(orginMethod, swizzldMethod);
     }
-}
-
-- (void)setup{
-    //接管系统的边缘手势滑动的代理
-    self.interactivePopGestureRecognizer.delegate = self;
-}
-
-#pragma mark - <UIGestureRecognizerDelegate>
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    
-    self.xa_grTransitioning = YES;
-    return YES;
 }
 
 
@@ -143,6 +142,14 @@
 }
 
 
+#pragma mark - <UIGestureRecognizerDelegate>
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    self.xa_grTransitioning = YES;
+    return YES;
+}
+
+
+
 #pragma mark - Getter/Setter
 - (BOOL)xa_isGrTransitioning{
     return [objc_getAssociatedObject(self, _cmd)boolValue];
@@ -151,6 +158,25 @@
 
 - (void)setXa_grTransitioning:(BOOL)xa_grTransitioning{
     objc_setAssociatedObject(self, @selector(xa_isGrTransitioning), @(xa_grTransitioning), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (TransitionType)xa_transitionType{
+    return [objc_getAssociatedObject(self, _cmd)integerValue];
+}
+
+- (void)setXa_transitionType:(TransitionType)xa_transitionType{
+    objc_setAssociatedObject(self, @selector(xa_transitionType), @(xa_transitionType), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (id<XANavBarTransitionDelegate>)xa_Delegate{
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+
+- (void)setXa_Delegate:(id<XANavBarTransitionDelegate>)xa_Delegate{
+    
+    objc_setAssociatedObject(self,@selector(xa_Delegate) , xa_Delegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
 

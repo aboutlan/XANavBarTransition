@@ -20,6 +20,13 @@
 		3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB311F30632100628B4D /* BaseNavigationController.m */; };
 		3855DB411F30690700628B4D /* UINavigationController+XANavBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB3F1F30690700628B4D /* UINavigationController+XANavBarTransition.m */; };
 		3855DB441F30692B00628B4D /* UIViewController+XANavBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */; };
+		38B13C4F20B2BB02008E5096 /* XATransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C4E20B2BB02008E5096 /* XATransitionManager.m */; };
+		38B13C5320B2D03C008E5096 /* XALeftTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5220B2D03C008E5096 /* XALeftTransition.m */; };
+		38B13C5620B2D0A4008E5096 /* XABaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5520B2D0A4008E5096 /* XABaseTransition.m */; };
+		38B13C5920B2D4FC008E5096 /* XATransitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5820B2D4FC008E5096 /* XATransitionFactory.m */; };
+		38B13C5F20B2D877008E5096 /* XANavBarTransitionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5E20B2D877008E5096 /* XANavBarTransitionConst.m */; };
+		38E35A8F20B3AB0B00219C09 /* XALeftTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E35A8E20B3AB0B00219C09 /* XALeftTransitionAnimation.m */; };
+		38E35A9420B3B84700219C09 /* XABaseTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E35A9320B3B84700219C09 /* XABaseTransitionAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +74,21 @@
 		3855DB421F30692B00628B4D /* UIViewController+XANavBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XANavBarTransition.h"; sourceTree = "<group>"; };
 		3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XANavBarTransition.m"; sourceTree = "<group>"; };
 		3855DB481F30822E00628B4D /* XANavBarTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransition.h; sourceTree = "<group>"; };
+		38B13C4D20B2BB02008E5096 /* XATransitionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XATransitionManager.h; sourceTree = "<group>"; };
+		38B13C4E20B2BB02008E5096 /* XATransitionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XATransitionManager.m; sourceTree = "<group>"; };
+		38B13C5120B2D03C008E5096 /* XALeftTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XALeftTransition.h; sourceTree = "<group>"; };
+		38B13C5220B2D03C008E5096 /* XALeftTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XALeftTransition.m; sourceTree = "<group>"; };
+		38B13C5420B2D0A4008E5096 /* XABaseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XABaseTransition.h; sourceTree = "<group>"; };
+		38B13C5520B2D0A4008E5096 /* XABaseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XABaseTransition.m; sourceTree = "<group>"; };
+		38B13C5720B2D4FC008E5096 /* XATransitionFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XATransitionFactory.h; sourceTree = "<group>"; };
+		38B13C5820B2D4FC008E5096 /* XATransitionFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XATransitionFactory.m; sourceTree = "<group>"; };
+		38B13C5D20B2D877008E5096 /* XANavBarTransitionConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransitionConst.h; sourceTree = "<group>"; };
+		38B13C5E20B2D877008E5096 /* XANavBarTransitionConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionConst.m; sourceTree = "<group>"; };
 		38DE212B20A8624A0032FCC7 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
+		38E35A8D20B3AB0B00219C09 /* XALeftTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XALeftTransitionAnimation.h; sourceTree = "<group>"; };
+		38E35A8E20B3AB0B00219C09 /* XALeftTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XALeftTransitionAnimation.m; sourceTree = "<group>"; };
+		38E35A9220B3B84700219C09 /* XABaseTransitionAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XABaseTransitionAnimation.h; sourceTree = "<group>"; };
+		38E35A9320B3B84700219C09 /* XABaseTransitionAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XABaseTransitionAnimation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,14 +189,44 @@
 		3855DB3C1F30690700628B4D /* XANavBarTransition */ = {
 			isa = PBXGroup;
 			children = (
+				38E35A8C20B3A98B00219C09 /* Animation */,
+				38B13C5020B2CFEF008E5096 /* Transition */,
 				3855DB3E1F30690700628B4D /* UINavigationController+XANavBarTransition.h */,
 				3855DB3F1F30690700628B4D /* UINavigationController+XANavBarTransition.m */,
 				3855DB421F30692B00628B4D /* UIViewController+XANavBarTransition.h */,
 				3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */,
+				38B13C5D20B2D877008E5096 /* XANavBarTransitionConst.h */,
+				38B13C5E20B2D877008E5096 /* XANavBarTransitionConst.m */,
 				3855DB481F30822E00628B4D /* XANavBarTransition.h */,
 			);
 			name = XANavBarTransition;
 			path = ../../XANavBarTransition;
+			sourceTree = "<group>";
+		};
+		38B13C5020B2CFEF008E5096 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				38B13C4D20B2BB02008E5096 /* XATransitionManager.h */,
+				38B13C4E20B2BB02008E5096 /* XATransitionManager.m */,
+				38B13C5720B2D4FC008E5096 /* XATransitionFactory.h */,
+				38B13C5820B2D4FC008E5096 /* XATransitionFactory.m */,
+				38B13C5420B2D0A4008E5096 /* XABaseTransition.h */,
+				38B13C5520B2D0A4008E5096 /* XABaseTransition.m */,
+				38B13C5120B2D03C008E5096 /* XALeftTransition.h */,
+				38B13C5220B2D03C008E5096 /* XALeftTransition.m */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		38E35A8C20B3A98B00219C09 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				38E35A9220B3B84700219C09 /* XABaseTransitionAnimation.h */,
+				38E35A9320B3B84700219C09 /* XABaseTransitionAnimation.m */,
+				38E35A8D20B3AB0B00219C09 /* XALeftTransitionAnimation.h */,
+				38E35A8E20B3AB0B00219C09 /* XALeftTransitionAnimation.m */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,7 +291,7 @@
 		3855DAE91F30602200628B4D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Lan;
 				TargetAttributes = {
 					3855DAF01F30602200628B4D = {
@@ -318,10 +369,17 @@
 				3855DAF91F30602200628B4D /* AppDelegate.m in Sources */,
 				3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */,
 				3855DB2F1F30622400628B4D /* FirstViewController.m in Sources */,
+				38B13C5F20B2D877008E5096 /* XANavBarTransitionConst.m in Sources */,
+				38B13C5920B2D4FC008E5096 /* XATransitionFactory.m in Sources */,
+				38B13C5320B2D03C008E5096 /* XALeftTransition.m in Sources */,
+				38E35A8F20B3AB0B00219C09 /* XALeftTransitionAnimation.m in Sources */,
+				38E35A9420B3B84700219C09 /* XABaseTransitionAnimation.m in Sources */,
 				3855DB411F30690700628B4D /* UINavigationController+XANavBarTransition.m in Sources */,
 				3855DAF61F30602200628B4D /* main.m in Sources */,
 				3855DB441F30692B00628B4D /* UIViewController+XANavBarTransition.m in Sources */,
+				38B13C5620B2D0A4008E5096 /* XABaseTransition.m in Sources */,
 				3855DB2D1F30622400628B4D /* ThirdViewController.m in Sources */,
+				38B13C4F20B2BB02008E5096 /* XATransitionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,15 +444,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -434,15 +500,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XANavBarTransitionConst.h"
 @interface UIViewController (XANavBarTransition)
 /**
  当前控制器导航栏的透明度

@@ -8,8 +8,9 @@
 
 #import "FirstViewController.h"
 #import "XANavBarTransition.h"
-@interface FirstViewController ()
-
+#import "SecondViewController.h"
+@interface FirstViewController ()<XANavBarTransitionDelegate>
+@property (nonatomic, strong) UIViewController *desViewController;
 @end
 
 @implementation FirstViewController
@@ -22,10 +23,19 @@
 }
 
 - (void)setup{
-    
+    self.desViewController = [[UIViewController alloc]init];
+    self.desViewController.view.backgroundColor = [UIColor redColor];
     self.title = @"1";
     self.extendedLayoutIncludesOpaqueBars = YES;
 }
+
+#pragma mark - <XANavBarTransitionDelegate>
+- (UIViewController *)xa_slideToNextViewController:(UINavigationController *)nc
+                                    transitionType:(TransitionType)transitionType{
+    
+    return self.desViewController;
+}
+
 
 
 
