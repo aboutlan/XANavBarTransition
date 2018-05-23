@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, TransitionType) {
-    TransitionTypeLeft = 0,
+    TransitionTypeUnknow = 0,
+    TransitionTypeLeft,
     TransitionTypeRight
 };

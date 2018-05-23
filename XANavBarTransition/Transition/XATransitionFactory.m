@@ -8,7 +8,7 @@
 
 #import "XATransitionFactory.h"
 #import "XALeftTransition.h"
-
+#import "XARightTransition.h"
 @implementation XATransitionFactory
 
 
@@ -17,10 +17,10 @@
     XABaseTransition *transition = nil;
     switch (type) {
         case TransitionTypeLeft:
-            transition = [[XALeftTransition alloc] initWithNavigationController:nc];
+            transition  = [[XALeftTransition alloc] initWithNavigationController:nc];
             break;
         case TransitionTypeRight:
-            
+             transition = [[XARightTransition alloc] initWithNavigationController:nc];
         default:
             break;
     }

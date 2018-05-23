@@ -88,5 +88,8 @@
     return self.nc != nil;
 }
 
-
+- (void)setTransitionType:(TransitionType)transitionType{
+    _transitionType = transitionType;
+    self.transition = [XATransitionFactory handlerWithType:transitionType navigationController:self.nc];
+}
 @end

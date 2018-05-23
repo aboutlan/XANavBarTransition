@@ -13,7 +13,7 @@
 @interface XATransitionManager : NSObject
 
 @property (nonatomic, assign) TransitionType transitionType;
-@property (nonatomic,weak) id <XANavBarTransitionDelegate>  transitionDelegate;
+@property (nonatomic, weak) id <XANavBarTransitionDelegate>  transitionDelegate;
 
 + (instancetype)sharedManager;
 

@@ -1,14 +1,14 @@
 //
-//  XALeftTransitionAnimation.m
+//  XARightTransitionAnimation.m
 //  
 //
 //  Created by XangAm on 2017/9/3.
 //  Copyright © 2017年 Lan. All rights reserved.
 //
 
-#import "XALeftTransitionAnimation.h"
+#import "XARightTransitionAnimation.h"
 
-@implementation XALeftTransitionAnimation
+@implementation XARightTransitionAnimation
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
     return 0.35;
@@ -25,9 +25,9 @@
     [transitionContext.containerView addSubview:toView];
     
     //开始做动画
-    toView.transform = CGAffineTransformMakeTranslation([UIScreen mainScreen].bounds.size.width, 0);
+    toView.transform = CGAffineTransformMakeTranslation(-[UIScreen mainScreen].bounds.size.width, 0);
     [UIView animateWithDuration:[self transitionDuration:transitionContext]  animations:^{
-        fromView.transform = CGAffineTransformTranslate(fromView.transform, -50, 0);
+        fromView.transform = CGAffineTransformTranslate(fromView.transform, 50, 0);
         toView.transform   = CGAffineTransformIdentity;
     }completion:^(BOOL finished) {
         //完成转场 开启交互(completeTransition一调用会把fromView先给移除掉)

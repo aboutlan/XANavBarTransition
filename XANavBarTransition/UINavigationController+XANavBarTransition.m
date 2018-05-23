@@ -160,11 +160,11 @@
 }
 
 - (TransitionType)xa_transitionType{
-    return [objc_getAssociatedObject(self, _cmd)integerValue];
+    return [XATransitionManager sharedManager].transitionType;
 }
 
 - (void)setXa_transitionType:(TransitionType)xa_transitionType{
-    objc_setAssociatedObject(self, @selector(xa_transitionType), @(xa_transitionType), OBJC_ASSOCIATION_ASSIGN);
+   [XATransitionManager sharedManager].transitionType = xa_transitionType;
 }
 
 - (id<XANavBarTransitionDelegate>)xa_transitionDelegate{
