@@ -17,12 +17,11 @@
 
 @property (nonatomic, weak)   UINavigationController *nc;
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactive;
-@property (nonatomic, strong) XABaseTransitionAnimation *animation;
-@property (nonatomic, strong) UIPanGestureRecognizer *interactivePan;
-@property (nonatomic, assign) TransitionType transitionType;
-
+@property (nonatomic, strong, readonly) XABaseTransitionAnimation *animation;
+@property (nonatomic, strong, readonly) UIPanGestureRecognizer *interactivePan;
+@property (nonatomic, assign, readonly) TransitionType transitionType;
 
 - (instancetype)initWithNavigationController:(UINavigationController *)nc;
 
-- (CGFloat)calcTransitioningProgress:(CGPoint)translationPoint;
+- (CGFloat)calcTransitioningX:(CGPoint)translationPoint;
 @end

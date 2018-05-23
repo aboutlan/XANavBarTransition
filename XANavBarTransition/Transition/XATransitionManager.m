@@ -10,6 +10,7 @@
 #import "XABaseTransition.h"
 #import "XATransitionFactory.h"
 #import "UINavigationController+XANavBarTransition.h"
+#import "SecondViewController.h"
 @interface XATransitionManager()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, weak) UINavigationController  *nc;
 @property (nonatomic, assign) BOOL  hasConfigCompletion;
@@ -65,9 +66,12 @@
 //        };
 //        return push;
 //    }
+    //xa_slideToNextViewController的值和toView一致
     
+    
+    UIViewController *nextVc = [self.nc.xa_transitionDelegate xa_slideToNextViewController:navigationController transitionType:self.transitionType];
     if(operation == UINavigationControllerOperationPush &&
-       [self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:transitionType:)]){
+       nextVc == toVC){
         return self.transition.animation;
     }
     

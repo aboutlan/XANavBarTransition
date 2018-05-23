@@ -12,12 +12,9 @@
 
 
 #pragma mark - Deal
-- (CGFloat)calcTransitioningProgress:(CGPoint)translationPoint{
-    CGFloat x = translationPoint.x < 0 ? 0 : translationPoint.x;
-    CGFloat progress = fabs(x / [UIScreen mainScreen].bounds.size.width) * 1.2;
-    NSLog(@"progress:%lf,x:%lf",progress,x);
-    progress = MIN(1, MAX(progress, 0));
-    return progress;
+- (CGFloat)calcTransitioningX:(CGPoint)translationPoint{
+    CGFloat translationX = translationPoint.x < 0 ? 0 : translationPoint.x;
+    return translationX;
 }
 
 

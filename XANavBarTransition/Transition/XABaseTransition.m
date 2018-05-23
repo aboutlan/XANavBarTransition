@@ -7,11 +7,13 @@
 //
 
 #import "XABaseTransition.h"
-#import "UINavigationController+XANavBarTransition.h"
+#import "XANavBarTransition.h"
 #import "XABaseTransition.h"
 @interface XABaseTransition()
 @property (nonatomic, weak)   UIView *transitionView;
-
+@property (nonatomic, strong, readwrite) XABaseTransitionAnimation *animation;
+@property (nonatomic, strong, readwrite) UIPanGestureRecognizer *interactivePan;
+@property (nonatomic, assign, readwrite) TransitionType transitionType;
 @end
 
 @implementation XABaseTransition
@@ -41,12 +43,12 @@
 - (void)interactiveTransitioningEvent:(UIPanGestureRecognizer *)pan{
     static NSTimeInterval beginTouchTime,endTouchTime;//beginTouchTime和endTouchTime这两个数据量主要是用于参考是否为轻扫
     CGPoint translationPoint = [pan translationInView:self.transitionView];
-    CGFloat progress = [self calcTransitioningProgress:translationPoint];
-    
+    CGFloat translationX = [self calcTransitioningX:translationPoint];
+    CGFloat progress     = fabs(translationX / [UIScreen mainScreen].bounds.size.width) * 1.2;
+    progress = MIN(1, MAX(progress, 0));
+    UIViewController *nextViewController = [self.nc.xa_transitionDelegate xa_slideToNextViewController:self.nc transitionType:self.transitionType];
     if (pan.state == UIGestureRecognizerStateBegan) {
-        
         beginTouchTime = [[NSDate date]timeIntervalSince1970];
-        UIViewController *nextViewController =   [self.nc.xa_transitionDelegate xa_slideToNextViewController:self.nc transitionType:self.transitionType];
         [self.nc pushViewController:nextViewController animated:YES];
         [self.interactive updateInteractiveTransition:0];
         
@@ -69,10 +71,9 @@
 
 #pragma mark - Deal
 
-- (CGFloat)calcTransitioningProgress:(CGPoint)translationPoint{
+- (CGFloat)calcTransitioningX:(CGPoint)translationPoint{
     return 0;
 }
-
 
 
 #pragma mark - Getter/Setter

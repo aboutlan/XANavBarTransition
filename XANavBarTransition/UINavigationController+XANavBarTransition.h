@@ -23,12 +23,10 @@
  */
 @property (nonatomic, assign) TransitionType xa_transitionType;
 
-
 /**
  当前手势是否正在滑动转场中
  */
 @property (nonatomic, assign, getter=xa_isGrTransitioning) BOOL xa_grTransitioning;
-
 
 /**
  转场代理

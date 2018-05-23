@@ -17,11 +17,9 @@
 
 
 #pragma mark - Deal
-- (CGFloat)calcTransitioningProgress:(CGPoint)translationPoint{
-    CGFloat x = translationPoint.x > 0 ? 0 : translationPoint.x;
-    CGFloat progress = fabs(x / [UIScreen mainScreen].bounds.size.width) * 1.2;
-    progress = MIN(1, MAX(progress, 0));
-    return progress;
+- (CGFloat)calcTransitioningX:(CGPoint)translationPoint{
+    CGFloat translationX = translationPoint.x > 0 ? 0 : translationPoint.x;
+    return translationX;
 }
 
 #pragma mark - <UIGestureRecognizerDelegate>
@@ -34,7 +32,7 @@
         if(!self.transitionEnable){
             return NO;
         }
-        NSLog(@"x:%lf,y:%lf",velocity.x,velocity.y);
+        
         if (fabs(velocity.y) > fabs(velocity.x)) {//垂直方向不处理
             return NO;
         }
