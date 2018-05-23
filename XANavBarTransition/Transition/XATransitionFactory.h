@@ -12,5 +12,6 @@
 
 @interface XATransitionFactory : NSObject
 
-+ (XABaseTransition *)handlerWithType:(TransitionType)type;
++ (XABaseTransition *)handlerWithType:(TransitionType)type
+                 navigationController:(UINavigationController *)nc;
 @end

@@ -9,6 +9,7 @@
 #import "XATransitionManager.h"
 #import "XABaseTransition.h"
 #import "XATransitionFactory.h"
+#import "UINavigationController+XANavBarTransition.h"
 @interface XATransitionManager()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, weak) UINavigationController  *nc;
 @property (nonatomic, assign) BOOL  hasConfigCompletion;
@@ -46,12 +47,12 @@
 - (void)configTransition:(UINavigationController *)nc{
     self.nc = nc;
     self.nc.delegate = self;
-    self.transition  = [XATransitionFactory handlerWithType:self.transitionType];
+    self.transition  = [XATransitionFactory handlerWithType:self.transitionType navigationController:self.nc];
 }
 
 #pragma mark - <UINavigationControllerDelegate>
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    self.transition.transitionEnable = !(viewController == [self.nc.viewControllers firstObject]); //该控制器为根控制器,则不开启转场滑动功能
+    //self.transition.transitionEnable = !(viewController == [self.nc.viewControllers firstObject]); //该控制器为根控制器,则不开启转场滑动功能
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
@@ -65,12 +66,8 @@
 //        return push;
 //    }
     
-    if(operation == UINavigationControllerOperationPush){
-        
-        self.transition.transitionCompletion = ^{
-            
-        };
-        
+    if(operation == UINavigationControllerOperationPush &&
+       [self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:transitionType:)]){
         return self.transition.animation;
     }
     
@@ -78,15 +75,12 @@
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
-//    if(self.fullscreenPushGestureRecognizer &&
-//       [self.xa_fullScreenPopDelegate respondsToSelector:@selector(xa_leftSlideWithViewController:)]){
-//
-//        return self.fullscreenPushInteractiveTransition;
-//    }
-//
+    if(self.transition.transitionEnable &&
+       [self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:transitionType:)]){
+        return self.transition.interactive;
+    }
     return nil;
 }
-
 
 
 #pragma mark - Getter/Setter

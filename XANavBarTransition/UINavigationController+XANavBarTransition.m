@@ -153,7 +153,6 @@
 #pragma mark - Getter/Setter
 - (BOOL)xa_isGrTransitioning{
     return [objc_getAssociatedObject(self, _cmd)boolValue];
-    
 }
 
 - (void)setXa_grTransitioning:(BOOL)xa_grTransitioning{
@@ -168,15 +167,12 @@
     objc_setAssociatedObject(self, @selector(xa_transitionType), @(xa_transitionType), OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id<XANavBarTransitionDelegate>)xa_Delegate{
-    
-    return objc_getAssociatedObject(self, _cmd);
+- (id<XANavBarTransitionDelegate>)xa_transitionDelegate{
+    return [XATransitionManager sharedManager].transitionDelegate;
 }
 
-
-- (void)setXa_Delegate:(id<XANavBarTransitionDelegate>)xa_Delegate{
-    
-    objc_setAssociatedObject(self,@selector(xa_Delegate) , xa_Delegate, OBJC_ASSOCIATION_ASSIGN);
+- (void)setXa_transitionDelegate:(id<XANavBarTransitionDelegate>)xa_transitionDelegate{
+    [XATransitionManager sharedManager].transitionDelegate = xa_transitionDelegate;
 }
 
 

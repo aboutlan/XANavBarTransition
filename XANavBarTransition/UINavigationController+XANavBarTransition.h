@@ -33,7 +33,7 @@
 /**
  转场代理
  */
-@property (nonatomic,weak) id <XANavBarTransitionDelegate>  xa_Delegate;
+@property (nonatomic,weak) id <XANavBarTransitionDelegate>  xa_transitionDelegate;
 
 /**
  改变当前导航栏的透明度

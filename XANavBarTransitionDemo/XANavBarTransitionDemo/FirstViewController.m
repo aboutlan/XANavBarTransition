@@ -25,6 +25,8 @@
 - (void)setup{
     self.desViewController = [[UIViewController alloc]init];
     self.desViewController.view.backgroundColor = [UIColor redColor];
+    self.navigationController.xa_transitionDelegate = self;
+    
     self.title = @"1";
     self.extendedLayoutIncludesOpaqueBars = YES;
 }

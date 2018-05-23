@@ -15,11 +15,16 @@
 
 @implementation XALeftTransition
 
+- (TransitionType)transitionType{
+    return TransitionTypeLeft;
+}
 
 - (XABaseTransitionAnimation *)animation{
     if(_animation == nil){
-        _animation = [[XALeftTransitionAnimation alloc]init];
-        _animation.transitionCompletion = self.transitionCompletion;
+        _animation = ({
+            XABaseTransitionAnimation *animation =  [[XALeftTransitionAnimation alloc]init];
+            animation;
+        });
     }
     return _animation;
 }

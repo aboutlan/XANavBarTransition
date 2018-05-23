@@ -11,8 +11,7 @@
 @implementation XALeftTransitionAnimation
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
-    return 5;
-    
+    return 0.35;
 }
 
 
@@ -33,8 +32,6 @@
     }completion:^(BOOL finished) {
         //完成转场 开启交互(completeTransition一调用会把fromView先给移除掉)
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-        
-        
     }];
     
 }

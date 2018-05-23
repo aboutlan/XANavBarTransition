@@ -12,11 +12,12 @@
 @implementation XATransitionFactory
 
 
-+ (XABaseTransition *)handlerWithType:(TransitionType)type{
++ (XABaseTransition *)handlerWithType:(TransitionType)type
+                 navigationController:(UINavigationController *)nc{
     XABaseTransition *transition = nil;
     switch (type) {
         case TransitionTypeLeft:
-            transition = [[XALeftTransition alloc] init];
+            transition = [[XALeftTransition alloc] initWithNavigationController:nc];
             break;
         case TransitionTypeRight:
             

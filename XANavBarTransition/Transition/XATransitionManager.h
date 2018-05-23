@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "XANavBarTransitionConst.h"
+#import "UINavigationController+XANavBarTransition.h"
 
 @interface XATransitionManager : NSObject
+
 @property (nonatomic, assign) TransitionType transitionType;
+@property (nonatomic,weak) id <XANavBarTransitionDelegate>  transitionDelegate;
 
 + (instancetype)sharedManager;
 
