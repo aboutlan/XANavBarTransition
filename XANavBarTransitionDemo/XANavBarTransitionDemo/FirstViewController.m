@@ -25,13 +25,16 @@
 - (void)setup{
     self.desViewController = [[UIViewController alloc]init];
     self.desViewController.view.backgroundColor = [UIColor redColor];
-    self.desViewController.xa_navBarAlpha = 0.1;
+    self.desViewController.xa_navBarAlpha = 0;
     self.desViewController.title = @"HomePage";
+    self.desViewController.extendedLayoutIncludesOpaqueBars = YES;
+
     self.navigationController.xa_transitionDelegate = self;
     self.navigationController.xa_transitionType     = TransitionTypeLeft;
     
     self.title = @"1";
-    self.extendedLayoutIncludesOpaqueBars = NO;
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.xa_navBarAlpha = 1;
 }
 
 #pragma mark - <XANavBarTransitionDelegate>

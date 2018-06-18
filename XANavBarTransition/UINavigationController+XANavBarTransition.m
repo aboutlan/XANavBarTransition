@@ -21,11 +21,14 @@
     SEL swizzledSEL =  NSSelectorFromString(@"xa_updateInteractiveTransition:");
     [UINavigationController swizzlingMethodWithOriginal:originalSEL swizzled:swizzledSEL];
     
-    
     //交换导航控制器的popViewControllerAnimated:方法,来监听什么时候当前控制被back
     SEL popOriginalSEL =  @selector(popViewControllerAnimated:);
     SEL popSwizzledSEL =  NSSelectorFromString(@"xa_popViewControllerAnimated:");
     [UINavigationController swizzlingMethodWithOriginal:popOriginalSEL swizzled:popSwizzledSEL];
+    
+    SEL pushOriginalSEL =  @selector(pushViewController:animated:);
+    SEL pushSwizzledSEL =  NSSelectorFromString(@"xa_pushViewController:animated:");
+    [UINavigationController swizzlingMethodWithOriginal:pushOriginalSEL swizzled:pushSwizzledSEL];
     
 }
 
@@ -108,11 +111,11 @@
         if (coordinator != nil) {
             if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
                 [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
-                    [self dealNavBarChangeAction:context];
+                    [self dealInteractionEndAction:context];
                 }];
             }else{
                 [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                    [self dealNavBarChangeAction:context];
+                    [self dealInteractionEndAction:context];
                 }];
             }
         }
@@ -121,7 +124,28 @@
 }
 
 
-- (void)dealNavBarChangeAction:(id<UIViewControllerTransitionCoordinatorContext>)context {
+- (void)xa_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [self xa_pushViewController:viewController animated:animated];
+    if (viewController != nil) {
+        id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
+
+        //监听手势返回的交互改变,如手势滑动过程当中松手就会回调block
+        if (coordinator != nil) {
+            if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
+                [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
+                    [self dealInteractionEndAction:context];
+                }];
+            }else{
+                [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+                    [self dealInteractionEndAction:context];
+                }];
+            }
+        }
+    }
+}
+
+
+- (void)dealInteractionEndAction:(id<UIViewControllerTransitionCoordinatorContext>)context {
     if ([context isCancelled]) {// 取消了(还在当前页面)
         //根据剩余的进度来计算动画时长xa_changeNavBarAlpha
         CGFloat animdDuration = [context transitionDuration] * [context percentComplete];
