@@ -25,4 +25,12 @@
     self.title = @"3";
 }
 
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    UIViewController *vc = [[UIViewController alloc]init];
+//    vc.view.backgroundColor = [UIColor redColor];
+//    vc.extendedLayoutIncludesOpaqueBars  = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end
