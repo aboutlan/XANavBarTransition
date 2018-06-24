@@ -23,5 +23,16 @@
 
 - (instancetype)initWithNavigationController:(UINavigationController *)nc;
 
+@end
+
+
+@interface XABaseTransition (XASetup)
+
+- (void)setup;
+@end
+
+
+@interface XABaseTransition (XACalculate)
+
 - (CGFloat)calcTransitioningX:(CGPoint)translationPoint;
 @end

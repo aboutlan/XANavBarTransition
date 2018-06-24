@@ -11,47 +11,12 @@
 #import "XATransitionManager.h"
 #import <objc/message.h>
 
-
 @implementation UINavigationController (XANavBarTransition)
 
-#pragma mark - Settup
-+ (void)load{
-    //交换导航控制器的手势进度转场方法,来监听手势滑动的进度
-    SEL originalSEL =  NSSelectorFromString(@"_updateInteractiveTransition:");
-    SEL swizzledSEL =  NSSelectorFromString(@"xa_updateInteractiveTransition:");
-    [UINavigationController swizzlingMethodWithOriginal:originalSEL swizzled:swizzledSEL];
-    
-    //交换导航控制器的popViewControllerAnimated:方法,来监听什么时候当前控制被back
-    SEL popOriginalSEL =  @selector(popViewControllerAnimated:);
-    SEL popSwizzledSEL =  NSSelectorFromString(@"xa_popViewControllerAnimated:");
-    [UINavigationController swizzlingMethodWithOriginal:popOriginalSEL swizzled:popSwizzledSEL];
-    
-    SEL pushOriginalSEL =  @selector(pushViewController:animated:);
-    SEL pushSwizzledSEL =  NSSelectorFromString(@"xa_pushViewController:animated:");
-    [UINavigationController swizzlingMethodWithOriginal:pushOriginalSEL swizzled:pushSwizzledSEL];
-    
-}
+#pragma mark - Setup
 
 - (void)setup{
-    //接管系统的边缘手势滑动的代理
-    self.interactivePopGestureRecognizer.delegate = self;
-    //配置转场管理者
-    [XATransitionManager.sharedManager configTransition:self];
-}
-
-
-#pragma mark - Action
-+ (void)swizzlingMethodWithOriginal:(SEL)originalSEL swizzled:(SEL)swizzledSEL{
-    
-    Method orginMethod   = class_getInstanceMethod(self, originalSEL);
-    Method swizzldMethod = class_getInstanceMethod(self, swizzledSEL);
-    BOOL addSuccess = class_addMethod(self , originalSEL, method_getImplementation(swizzldMethod), method_getTypeEncoding(swizzldMethod));
-    if(addSuccess){
-        class_replaceMethod(self , swizzledSEL, method_getImplementation(orginMethod), method_getTypeEncoding(orginMethod));
-        
-    }else{
-        method_exchangeImplementations(orginMethod, swizzldMethod);
-    }
+    [self configTransition];
 }
 
 
@@ -78,101 +43,12 @@
     });
 }
 
-#pragma mark  - Transition
-- (void)xa_updateInteractiveTransition:(CGFloat)percentComplete{
-    [self xa_updateInteractiveTransition:percentComplete];
-    UIViewController *topVC = self.topViewController;
-    if(topVC){
-        //通过transitionCoordinator拿到转场的两个控制器上下文信息
-        id <UIViewControllerTransitionCoordinator> coordinator =  topVC.transitionCoordinator;
-        if(coordinator != nil){
-            //拿到源控制器和目的控制器的透明度(每个控制器都单独保存了一份)
-            CGFloat fromVCAlpha  = [coordinator viewControllerForKey:UITransitionContextFromViewControllerKey].xa_navBarAlpha;
-            CGFloat toVCAlpha    = [coordinator viewControllerForKey:UITransitionContextToViewControllerKey].xa_navBarAlpha;
-            //再通过源,目的控制器的导航条透明度和转场的进度(percentComplete)计算转场时导航条的透明度
-            CGFloat newAlpha     = fromVCAlpha + ((toVCAlpha - fromVCAlpha ) * percentComplete);
-            //这里不要直接去修改控制器navBarAlpha属性,会影响目的控制器的navBarAlpha的数值
-            [self xa_changeNavBarAlpha:newAlpha];
-        }
-    }
+
+#pragma mark - Transition
+- (void)configTransition{
+    //配置转场管理者
+    [XATransitionManager.sharedManager configTransition:self];
 }
-
-
-- (UIViewController *)xa_popViewControllerAnimated:(BOOL)animated{
-    UIViewController *popVc =  [self xa_popViewControllerAnimated:animated];
-    if(self.viewControllers.count <= 0){
-        return popVc;
-    }
-    UIViewController *topVC = [self.viewControllers lastObject];
-    if (topVC != nil) {
-        id<UIViewControllerTransitionCoordinator> coordinator = topVC.transitionCoordinator;
-        
-        //监听手势返回的交互改变,如手势滑动过程当中松手就会回调block
-        if (coordinator != nil) {
-            if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
-                [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
-                    [self dealInteractionEndAction:context];
-                }];
-            }else{
-                [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                    [self dealInteractionEndAction:context];
-                }];
-            }
-        }
-    }
-    return popVc;
-}
-
-
-- (void)xa_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    [self xa_pushViewController:viewController animated:animated];
-    if (viewController != nil) {
-        id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
-
-        //监听手势返回的交互改变,如手势滑动过程当中松手就会回调block
-        if (coordinator != nil) {
-            if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
-                [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
-                    [self dealInteractionEndAction:context];
-                }];
-            }else{
-                [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                    [self dealInteractionEndAction:context];
-                }];
-            }
-        }
-    }
-}
-
-
-- (void)dealInteractionEndAction:(id<UIViewControllerTransitionCoordinatorContext>)context {
-    if ([context isCancelled]) {// 取消了(还在当前页面)
-        //根据剩余的进度来计算动画时长xa_changeNavBarAlpha
-        CGFloat animdDuration = [context transitionDuration] * [context percentComplete];
-        CGFloat fromVCAlpha   = [context viewControllerForKey:UITransitionContextFromViewControllerKey].xa_navBarAlpha;
-        [UIView animateWithDuration:animdDuration animations:^{
-            [self xa_changeNavBarAlpha:fromVCAlpha];
-        }];
-        
-    } else {// 自动完成(pop到上一个界面了)
-        
-        CGFloat animdDuration = [context transitionDuration] * (1 -  [context percentComplete]);
-        CGFloat toVCAlpha     = [context viewControllerForKey:UITransitionContextToViewControllerKey].xa_navBarAlpha;
-        [UIView animateWithDuration:animdDuration animations:^{
-            [self xa_changeNavBarAlpha:toVCAlpha];
-        }];
-    };
-    self.xa_grTransitioning = NO;
-}
-
-
-#pragma mark - <UIGestureRecognizerDelegate>
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    self.xa_grTransitioning = YES;
-    return YES;
-}
-
-
 
 #pragma mark - Getter/Setter
 - (BOOL)xa_isGrTransitioning{

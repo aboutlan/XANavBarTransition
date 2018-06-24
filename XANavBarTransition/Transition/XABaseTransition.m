@@ -37,6 +37,7 @@
     self.interactivePan.delegate = self;
     self.transitionEnable = self.interactivePan.enabled;
     [transitionView addGestureRecognizer:self.interactivePan];
+    
 }
 
 #pragma mark - Action

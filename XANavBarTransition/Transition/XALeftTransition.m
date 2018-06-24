@@ -14,7 +14,15 @@
 @end
 
 @implementation XALeftTransition
+#pragma mark - Setup
 
+- (void)setup{
+    [super setup];
+    
+    //接管系统Pop的边缘手势滑动的代理
+    self.nc.interactivePopGestureRecognizer.delegate = self;
+    
+}
 
 #pragma mark - Deal
 - (CGFloat)calcTransitioningX:(CGPoint)translationPoint{
