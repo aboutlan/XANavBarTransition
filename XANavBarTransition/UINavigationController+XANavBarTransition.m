@@ -20,6 +20,12 @@
 }
 
 
+#pragma mark - Transition
+- (void)configTransition{
+    //配置转场管理者
+    [XATransitionManager.sharedManager configTransition:self];
+}
+
 #pragma mark - Alpha
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha{
     NSMutableArray *barSubviews = [NSMutableArray array];
@@ -43,12 +49,6 @@
     });
 }
 
-
-#pragma mark - Transition
-- (void)configTransition{
-    //配置转场管理者
-    [XATransitionManager.sharedManager configTransition:self];
-}
 
 #pragma mark - Getter/Setter
 - (BOOL)xa_isGrTransitioning{
