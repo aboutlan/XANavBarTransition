@@ -9,36 +9,34 @@
 #import <UIKit/UIKit.h>
 #import "XANavBarTransitionConst.h"
 
-@protocol XANavBarTransitionDelegate <NSObject>
-- (UIViewController *)xa_slideToNextViewController:(UINavigationController *)nc
-                      transitionType:(TransitionType)transitionType;
-
-
-@end
-
+@protocol XATransitionDelegate;
 @interface UINavigationController (XANavBarTransition)<UIGestureRecognizerDelegate>
-
-/**
- 转场类型
- */
-@property (nonatomic, assign) TransitionType xa_transitionType;
 
 /**
  当前手势是否正在滑动转场中
  */
 @property (nonatomic, assign, getter=xa_isGrTransitioning) BOOL xa_grTransitioning;
 
-/**
- 转场代理
- */
-@property (nonatomic,weak) id <XANavBarTransitionDelegate>  xa_transitionDelegate;
 
 /**
  改变当前导航栏的透明度
-
+ 
  @param navBarAlpha 透明度
  */
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha;
 
+/**
+ 改变当前的转场代理
 
+ @param xa_transitionDelegate 转场代理
+ */
+- (void)xa_changeTransitionDelegate:(id <XATransitionDelegate>)xa_transitionDelegate;
+
+
+/**
+ 改变当前的转场类型
+
+ @param xa_transitionType  转场类型
+ */
+- (void)xa_changeTransitionType:(XATransitionType)xa_transitionType;
 @end

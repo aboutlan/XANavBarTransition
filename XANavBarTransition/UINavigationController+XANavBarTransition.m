@@ -26,6 +26,17 @@
     [XATransitionManager.sharedManager configTransition:self];
 }
 
+
+- (void)xa_changeTransitionDelegate:(id <XATransitionDelegate>)xa_transitionDelegate{
+    XATransitionManager.sharedManager.transitionDelegate = xa_transitionDelegate;
+}
+
+
+- (void)xa_changeTransitionType:(XATransitionType)xa_transitionType{
+    XATransitionManager.sharedManager.transitionType = xa_transitionType;
+}
+
+
 #pragma mark - Alpha
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha{
     NSMutableArray *barSubviews = [NSMutableArray array];
@@ -58,22 +69,5 @@
 - (void)setXa_grTransitioning:(BOOL)xa_grTransitioning{
     objc_setAssociatedObject(self, @selector(xa_isGrTransitioning), @(xa_grTransitioning), OBJC_ASSOCIATION_ASSIGN);
 }
-
-- (TransitionType)xa_transitionType{
-    return [XATransitionManager sharedManager].transitionType;
-}
-
-- (void)setXa_transitionType:(TransitionType)xa_transitionType{
-   [XATransitionManager sharedManager].transitionType = xa_transitionType;
-}
-
-- (id<XANavBarTransitionDelegate>)xa_transitionDelegate{
-    return [XATransitionManager sharedManager].transitionDelegate;
-}
-
-- (void)setXa_transitionDelegate:(id<XANavBarTransitionDelegate>)xa_transitionDelegate{
-    [XATransitionManager sharedManager].transitionDelegate = xa_transitionDelegate;
-}
-
 
 @end

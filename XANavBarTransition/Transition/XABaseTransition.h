@@ -8,31 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "XABaseTransitionAnimation.h"
-#import "UINavigationController+XANavBarTransition.h"
+#import "UIViewController+XANavBarTransition.h"
 @interface XABaseTransition : NSObject<UIGestureRecognizerDelegate>{
     @protected
     XABaseTransitionAnimation *_animation;
 }
-@property (nonatomic, assign) BOOL transitionEnable;
-
 @property (nonatomic, weak)   UINavigationController *nc;
+@property (nonatomic, weak)   id<XATransitionDelegate> transitionDelegate;
+@property (nonatomic, assign) BOOL transitionEnable;
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactive;
 @property (nonatomic, strong, readonly) XABaseTransitionAnimation *animation;
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *interactivePan;
-@property (nonatomic, assign, readonly) TransitionType transitionType;
+@property (nonatomic, assign, readonly) XATransitionType transitionType;
 
-- (instancetype)initWithNavigationController:(UINavigationController *)nc;
+- (instancetype)initWithNavigationController:(UINavigationController *)nc
+                          transitionDelegate:(id<XATransitionDelegate>)delegate;
 
-@end
-
-
-@interface XABaseTransition (XASetup)
-
-- (void)setup;
-@end
-
-
-@interface XABaseTransition (XACalculate)
-
+#pragma mark - Subclass Rewrite
+- (void)setupWithNc:(UINavigationController *)nc
+           delegate:(id<XATransitionDelegate>)delegate;
 - (CGFloat)calcTransitioningX:(CGPoint)translationPoint;
 @end
+

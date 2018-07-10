@@ -37,7 +37,7 @@
             return NO;
         }
         
-        if(![self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:transitionType:)]){//未实现代理不处理
+        if(![self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:)]){//未实现代理不处理
             return NO;
         }
         
@@ -47,10 +47,9 @@
 }
 
 
-
 #pragma mark - Getter/Setter
-- (TransitionType)transitionType{
-    return TransitionTypeRight;
+- (XATransitionType)transitionType{
+    return XATransitionTypeRight;
 }
 
 - (XABaseTransitionAnimation *)animation{

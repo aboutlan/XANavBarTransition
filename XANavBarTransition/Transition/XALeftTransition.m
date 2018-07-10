@@ -16,11 +16,12 @@
 @implementation XALeftTransition
 #pragma mark - Setup
 
-- (void)setup{
-    [super setup];
+- (void)setupWithNc:(UINavigationController *)nc
+           delegate:(id<XATransitionDelegate>)delegate{
+    [super setupWithNc:nc delegate:delegate];
     
     //接管系统Pop的边缘手势滑动的代理
-    self.nc.interactivePopGestureRecognizer.delegate = self;
+//    self.nc.interactivePopGestureRecognizer.delegate = self;
     
 }
 
@@ -33,6 +34,7 @@
 #pragma mark - <UIGestureRecognizerDelegate>
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
     
+    NSLog(@"%@",self.transitionDelegate);
     if(gestureRecognizer == self.interactivePan){
         CGPoint point    = [gestureRecognizer translationInView:nil];
         CGPoint velocity = [gestureRecognizer velocityInView:nil];
@@ -49,52 +51,25 @@
             return NO;
         }
         
-        if(![self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:transitionType:)]){//未实现代理不处理
+        if(![self.transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:)]){//未实现代理不处理
+            return NO;
+        }
+        
+        UIViewController *nextVc = [self.transitionDelegate xa_slideToNextViewController:self.transitionType];//是否为有效的控制器
+        if(nextVc  == nil ||
+           [self.nc.childViewControllers containsObject:nextVc]){
             return NO;
         }
         
         return YES;
     }
-    
-    //    //        if (self.viewControllers.count <= 1) {
-    //    //            return NO;
-    //    //        }
-    //
-    //    //没有开启滑动不允许使用手势
-    //    if (!self.transitionEnable) {
-    //        return NO;
-    //    }
-    //
-    //
-    //    //不是右滑不允许使用手势
-    //    CGPoint point = [gestureRecognizer translationInView:nil];
-    //    if(!(point.x >= 0 && point.y == 0)){
-    //        return NO;
-    //    }
-    //
-    //    //正在做转场不允许使用手势
-    //
-    //    //        if([[self.navigationController valueForKey:@"_isTransitioning"] boolValue]){
-    //    //
-    //    //            return NO;
-    //    //        }
-    //
-    //    //        [self setPanGrPop:YES];
-    //
-    //    return YES ;
-    
-    
-    //
-    //    else{//全屏push手势
-    
-    //    }
     return NO;
 }
 
 
 #pragma mark - Getter/Setter
-- (TransitionType)transitionType{
-    return TransitionTypeLeft;
+- (XATransitionType)transitionType{
+    return XATransitionTypeLeft;
 }
 
 - (XABaseTransitionAnimation *)animation{

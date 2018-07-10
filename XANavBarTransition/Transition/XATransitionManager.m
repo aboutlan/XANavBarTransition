@@ -13,7 +13,7 @@
 #import "UINavigationController+XANavBarTransition.h"
 #import "SecondViewController.h"
 #import <objc/message.h>
-@interface XATransitionManager()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
+@interface XATransitionManager()<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, weak) UINavigationController  *nc;
 @property (nonatomic, assign) BOOL  hasConfigCompletion;
 @property (nonatomic, strong) XABaseTransition *transition;
@@ -68,17 +68,13 @@
     self.nc = nc;
     self.nc.delegate = self;
     self.nc.interactivePopGestureRecognizer.delegate = self;
-    self.transition  = [XATransitionFactory handlerWithType:self.transitionType navigationController:self.nc];
+//    self.transition  = [XATransitionFactory handlerWithType:self.transitionType
+//                                       navigationController:self.nc
+//                                         transitionDelegate:self.transitionDelegate];
 }
 
 
-#pragma mark  - Transition
 - (void)xa_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    //    if([self.childViewControllers containsObject:viewController]){
-    //        NSLog(@"被return了");
-    //        return;
-    //    }
- 
     [self xa_pushViewController:viewController animated:animated];
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
     if (nc != nil &&
@@ -137,12 +133,10 @@
             if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
                 [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
                     dealInteractionEndAction(context,nc);
-//                    [self dealInteractionEndAction:context];
                 }];
             }else{
                 [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
                     dealInteractionEndAction(context,nc);
-//                    [self dealInteractionEndAction:context];
                 }];
             }
         }
@@ -151,6 +145,29 @@
 }
 
 
+
+
+#pragma mark - Deal
+- (void)dealWillShowViewController:(UIViewController *)showVC{
+    if([showVC.parentViewController isKindOfClass:[UINavigationController class]] &&
+       (!showVC.navigationController.xa_isGrTransitioning)){
+        //如果在控制器初始化的时候用户设置过导航栏的值,那么我们直接设置该导航栏应有的透明度值,没有设置过的话默认透明度给1
+        if(showVC.xa_isSetBarAlpha){
+            [showVC.navigationController xa_changeNavBarAlpha:showVC.xa_navBarAlpha];
+        }else{
+            showVC.xa_navBarAlpha = 1;
+        }
+    }
+}
+
+
+- (void)dealDidShowViewController:(UIViewController *)showVC{
+    if([showVC.parentViewController isKindOfClass:[UINavigationController class]]){
+        //每当页面显示的时候重置代理
+        NSLog(@"showVC:%@,delegate:%@",showVC,showVC.xa_transitionDelegate);
+        [showVC.navigationController xa_changeTransitionDelegate:showVC.xa_transitionDelegate];
+    }
+}
 
 void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> context,UINavigationController *nc){
     
@@ -177,31 +194,19 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 }
 
 
-#pragma mark - <UIGestureRecognizerDelegate>
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    self.nc.xa_grTransitioning = YES;
-    return YES;
-}
 
 #pragma mark - <UINavigationControllerDelegate>
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [self dealWillShowViewController:viewController];
+}
+
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [self dealDidShowViewController:viewController];
     //self.transition.transitionEnable = !(viewController == [self.nc.viewControllers firstObject]); //该控制器为根控制器,则不开启转场滑动功能
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
-//    if(operation == UINavigationControllerOperationPush &&
-//       [self.xa_fullScreenPopDelegate respondsToSelector:@selector(xa_leftSlideWithViewController:)] ){
-//        XALeftTransitionAnimation *push = [[XALeftTransitionAnimation alloc]init];
-//        __weak typeof(self) weakSelf = self;
-//        push.transitionCompletionBlock = ^{
-//            [weakSelf destroyLeftSlidePan];
-//        };
-//        return push;
-//    }
-    //xa_slideToNextViewController的值和toView一致
-    
-    
-    UIViewController *nextVc = [self.nc.xa_transitionDelegate xa_slideToNextViewController:navigationController transitionType:self.transitionType];
+    UIViewController *nextVc = [self.transitionDelegate xa_slideToNextViewController:self.transitionType];
     if(operation == UINavigationControllerOperationPush &&
        nextVc == toVC){
         return self.transition.animation;
@@ -212,20 +217,34 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
     if(self.transition.transitionEnable &&
-       [self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:transitionType:)]){
+       [self.transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:)]){
         return self.transition.interactive;
     }
     return nil;
 }
 
 
+#pragma mark - <UIGestureRecognizerDelegate>
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    self.nc.xa_grTransitioning = YES;
+    return YES;
+}
+
 #pragma mark - Getter/Setter
 - (BOOL)hasConfigCompletion{
     return self.nc != nil;
 }
 
-- (void)setTransitionType:(TransitionType)transitionType{
+- (void)setTransitionType:(XATransitionType)transitionType{
     _transitionType = transitionType;
-    self.transition = [XATransitionFactory handlerWithType:transitionType navigationController:self.nc];
+    self.transition = [XATransitionFactory handlerWithType:transitionType
+                                      navigationController:self.nc
+                                        transitionDelegate:self.transitionDelegate];
+}
+
+- (void)setTransitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
+    _transitionDelegate = transitionDelegate;
+    self.transition.transitionDelegate = transitionDelegate;
+    
 }
 @end

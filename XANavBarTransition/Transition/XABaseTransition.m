@@ -13,22 +13,25 @@
 @property (nonatomic, weak)   UIView *transitionView;
 @property (nonatomic, strong, readwrite) XABaseTransitionAnimation *animation;
 @property (nonatomic, strong, readwrite) UIPanGestureRecognizer *interactivePan;
-@property (nonatomic, assign, readwrite) TransitionType transitionType;
+@property (nonatomic, assign, readwrite) XATransitionType transitionType;
 @end
 
 @implementation XABaseTransition
 
-- (instancetype)initWithNavigationController:(UINavigationController *)nc{
+- (instancetype)initWithNavigationController:(UINavigationController *)nc
+                          transitionDelegate:(id<XATransitionDelegate>)delegate{
     if(self = [super init]){
-        [self setup:nc];
+        [self setupWithNc:nc delegate:delegate];
     }
     return self;
 }
 
 #pragma mark - Setup
-- (void)setup:(UINavigationController *)nc{
+- (void)setupWithNc:(UINavigationController *)nc
+           delegate:(id<XATransitionDelegate>)delegate{
     self.nc = nc;
-    self.transitionView = nc.view;
+    self.transitionView     = nc.view;
+    self.transitionDelegate = delegate;
     [self setupGestureRecognize:nc.view];
 }
 
@@ -37,7 +40,6 @@
     self.interactivePan.delegate = self;
     self.transitionEnable = self.interactivePan.enabled;
     [transitionView addGestureRecognizer:self.interactivePan];
-    
 }
 
 #pragma mark - Action
@@ -47,7 +49,7 @@
     CGFloat translationX = [self calcTransitioningX:translationPoint];
     CGFloat progress     = fabs(translationX / [UIScreen mainScreen].bounds.size.width) * 1.2;
     progress = MIN(1, MAX(progress, 0));
-    UIViewController *nextViewController = [self.nc.xa_transitionDelegate xa_slideToNextViewController:self.nc transitionType:self.transitionType];
+    UIViewController *nextViewController = [self.transitionDelegate xa_slideToNextViewController:self.transitionType];
     if (pan.state == UIGestureRecognizerStateBegan) {
         beginTouchTime = [[NSDate date]timeIntervalSince1970];
         [self.nc pushViewController:nextViewController animated:YES];
@@ -70,8 +72,11 @@
     }
 }
 
-#pragma mark - Deal
 
+
+
+
+#pragma mark - Deal
 - (CGFloat)calcTransitioningX:(CGPoint)translationPoint{
     return 0;
 }

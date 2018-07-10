@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, TransitionType) {
-    TransitionTypeUnknow = 0,
-    TransitionTypeLeft,
-    TransitionTypeRight
+typedef NS_ENUM(NSInteger, XATransitionType) {
+    XATransitionTypeUnknow = 0,
+    XATransitionTypeLeft,
+    XATransitionTypeRight
 };
