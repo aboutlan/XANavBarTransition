@@ -13,29 +13,12 @@
 
 @implementation UINavigationController (XANavBarTransition)
 
-#pragma mark - Setup
-
-- (void)setup{
-    [self configTransition];
-}
-
 
 #pragma mark - Transition
 - (void)configTransition{
     //配置转场管理者
     [XATransitionManager.sharedManager configTransition:self];
 }
-
-
-- (void)xa_changeTransitionDelegate:(id <XATransitionDelegate>)xa_transitionDelegate{
-    XATransitionManager.sharedManager.transitionDelegate = xa_transitionDelegate;
-}
-
-
-- (void)xa_changeTransitionType:(XATransitionType)xa_transitionType{
-    XATransitionManager.sharedManager.transitionType = xa_transitionType;
-}
-
 
 #pragma mark - Alpha
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha{
@@ -53,13 +36,21 @@
     UIView *barBackgroundView  = [barSubviews firstObject];
     barBackgroundView.alpha    = navBarAlpha;
     
-    //做一些初始化操作
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self setup];
-    });
 }
 
+- (void)xa_changeTransitionDelegate:(id <XATransitionDelegate>)xa_transitionDelegate{
+    XATransitionManager.sharedManager.transitionDelegate = xa_transitionDelegate;
+}
+
+
+- (void)xa_changeTransitionType:(XATransitionType)xa_transitionType{
+    //转场功能初始化
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self configTransition];
+    });
+    XATransitionManager.sharedManager.transitionType = xa_transitionType;
+}
 
 #pragma mark - Getter/Setter
 - (BOOL)xa_isGrTransitioning{

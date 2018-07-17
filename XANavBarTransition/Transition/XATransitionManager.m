@@ -11,12 +11,13 @@
 #import "XATransitionFactory.h"
 #import "UIViewController+XANavBarTransition.h"
 #import "UINavigationController+XANavBarTransition.h"
-#import "SecondViewController.h"
 #import <objc/message.h>
 @interface XATransitionManager()<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, weak) UINavigationController  *nc;
 @property (nonatomic, assign) BOOL  hasConfigCompletion;
 @property (nonatomic, strong) XABaseTransition *transition;
+@property (nonatomic, strong)UIPanGestureRecognizer *popGR;
+@property (nonatomic, weak) id<UIGestureRecognizerDelegate> interactivePopDelegate;
 @end
 
 @implementation XATransitionManager
@@ -68,19 +69,37 @@
     self.nc = nc;
     self.nc.delegate = self;
     self.nc.interactivePopGestureRecognizer.delegate = self;
-//    self.transition  = [XATransitionFactory handlerWithType:self.transitionType
-//                                       navigationController:self.nc
-//                                         transitionDelegate:self.transitionDelegate];
+    [self createFullScreenPopGestureRecognizer];
+    //    self.transition  = [XATransitionFactory handlerWithType:self.transitionType
+    //                                       navigationController:self.nc
+    //                                         transitionDelegate:self.transitionDelegate];
+}
+
+- (void)createFullScreenPopGestureRecognizer{
+    if(!self.popGR){
+        //添加全屏的滑动手势
+        UIGestureRecognizer *navPanPopGr =  self.nc.interactivePopGestureRecognizer;
+        self.interactivePopDelegate = self.nc.interactivePopGestureRecognizer.delegate;
+        NSArray *targets = [navPanPopGr valueForKey:@"_targets"];
+        id desTarget     = [targets firstObject];
+        id target        = [desTarget valueForKey:@"_target"];
+        SEL transitionAction = NSSelectorFromString(@"handleNavigationTransition:");
+        self.popGR = [[UIPanGestureRecognizer alloc]initWithTarget:target action:transitionAction];
+        self.popGR.delegate = self;
+        [self.nc.view addGestureRecognizer:self.popGR];
+    }
+    self.popGR.delegate = self;
+    self.popGR.enabled  = YES;
 }
 
 
 - (void)xa_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [self xa_pushViewController:viewController animated:animated];
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
-    if (nc != nil &&
-        viewController != nil) {
-        id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
+    
+    if (nc != nil && viewController != nil) {
         
+        id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
         //监听手势返回的交互改变,如手势滑动过程当中松手就会回调block
         if (coordinator != nil) {
             if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
@@ -118,7 +137,7 @@
 
 
 - (UIViewController *)xa_popViewControllerAnimated:(BOOL)animated{
-
+    
     UIViewController *popVc    = [self xa_popViewControllerAnimated:animated];
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
     if(nc.viewControllers.count <= 0){
@@ -144,9 +163,6 @@
     return popVc;
 }
 
-
-
-
 #pragma mark - Deal
 - (void)dealWillShowViewController:(UIViewController *)showVC{
     if([showVC.parentViewController isKindOfClass:[UINavigationController class]] &&
@@ -162,10 +178,17 @@
 
 
 - (void)dealDidShowViewController:(UIViewController *)showVC{
+    //每当页面显示的时候重置代理
     if([showVC.parentViewController isKindOfClass:[UINavigationController class]]){
-        //每当页面显示的时候重置代理
-        NSLog(@"showVC:%@,delegate:%@",showVC,showVC.xa_transitionDelegate);
         [showVC.navigationController xa_changeTransitionDelegate:showVC.xa_transitionDelegate];
+    }
+    
+    //每当页面显示的时候创建转场器对象
+    if(self.nc.topViewController == showVC &&
+       [self.transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:)]){
+        self.transition = [XATransitionFactory handlerWithType:self.transitionType
+                                          navigationController:self.nc
+                                            transitionDelegate:self.transitionDelegate];
     }
 }
 
@@ -202,6 +225,8 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [self dealDidShowViewController:viewController];
+    
+    
     //self.transition.transitionEnable = !(viewController == [self.nc.viewControllers firstObject]); //该控制器为根控制器,则不开启转场滑动功能
 }
 
@@ -209,9 +234,10 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     UIViewController *nextVc = [self.transitionDelegate xa_slideToNextViewController:self.transitionType];
     if(operation == UINavigationControllerOperationPush &&
        nextVc == toVC){
-        return self.transition.animation;
+        return self.transition.pushAnimation;
+    }else if(operation == UINavigationControllerOperationPop){
+        return self.transition.popAnimation;
     }
-    
     return nil;
 }
 
@@ -237,14 +263,10 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 
 - (void)setTransitionType:(XATransitionType)transitionType{
     _transitionType = transitionType;
-    self.transition = [XATransitionFactory handlerWithType:transitionType
-                                      navigationController:self.nc
-                                        transitionDelegate:self.transitionDelegate];
 }
 
 - (void)setTransitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
     _transitionDelegate = transitionDelegate;
     self.transition.transitionDelegate = transitionDelegate;
-    
 }
 @end

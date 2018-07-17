@@ -52,7 +52,19 @@
     return XATransitionTypeRight;
 }
 
-- (XABaseTransitionAnimation *)animation{
+
+- (XABaseTransitionAnimation *)pushAnimation{
+    if(_animation == nil){
+        _animation = ({
+             XARightTransitionAnimation *animation =  [[XARightTransitionAnimation alloc]init];
+            animation;
+        });
+    }
+    return _animation;
+}
+
+
+- (XABaseTransitionAnimation *)popAnimation{
     if(_animation == nil){
         _animation = ({
             XARightTransitionAnimation *animation =  [[XARightTransitionAnimation alloc]init];

@@ -11,7 +11,8 @@
 #import "XABaseTransition.h"
 @interface XABaseTransition()
 @property (nonatomic, weak)   UIView *transitionView;
-@property (nonatomic, strong, readwrite) XABaseTransitionAnimation *animation;
+@property (nonatomic, strong, readwrite) XABaseTransitionAnimation *pushAnimation;
+@property (nonatomic, strong, readwrite) XABaseTransitionAnimation *popAnimation;
 @property (nonatomic, strong, readwrite) UIPanGestureRecognizer *interactivePan;
 @property (nonatomic, assign, readwrite) XATransitionType transitionType;
 @end

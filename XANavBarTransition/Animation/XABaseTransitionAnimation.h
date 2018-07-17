@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef NS_ENUM(NSInteger,XATransitionAnimationType){
+    XAAnimTransitionTypePush,
+    XAAnimTransitionTypePop
+};
+
 @interface XABaseTransitionAnimation : NSObject<UIViewControllerAnimatedTransitioning>
-@property (nonatomic,copy) dispatch_block_t transitionCompletion;
+@property (nonatomic,assign) XATransitionAnimationType animationType;
+@property (nonatomic,copy)   dispatch_block_t transitionCompletion;
 @end

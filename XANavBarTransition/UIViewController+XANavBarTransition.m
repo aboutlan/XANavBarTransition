@@ -24,15 +24,6 @@
     [self.navigationController xa_changeNavBarAlpha:xa_navBarAlpha];
 }
 
-- (BOOL)xa_isSetBarAlpha{
-    return [objc_getAssociatedObject(self, _cmd)boolValue];
-}
-
-- (void)setXa_isSetBarAlpha:(BOOL)xa_isSetBarAlpha{
-    objc_setAssociatedObject(self, @selector(xa_isSetBarAlpha), @(xa_isSetBarAlpha), OBJC_ASSOCIATION_ASSIGN);
-    
-}
-
 - (XATransitionType)xa_transitionType{
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
@@ -51,5 +42,13 @@
     [self.navigationController xa_changeTransitionDelegate:xa_transitionDelegate];
 }
 
+- (BOOL)xa_isSetBarAlpha{
+    return [objc_getAssociatedObject(self, _cmd)boolValue];
+}
+
+- (void)setXa_isSetBarAlpha:(BOOL)xa_isSetBarAlpha{
+    objc_setAssociatedObject(self, @selector(xa_isSetBarAlpha), @(xa_isSetBarAlpha), OBJC_ASSOCIATION_ASSIGN);
+    
+}
 
 @end

@@ -19,11 +19,11 @@
 - (void)setupWithNc:(UINavigationController *)nc
            delegate:(id<XATransitionDelegate>)delegate{
     [super setupWithNc:nc delegate:delegate];
-    
     //接管系统Pop的边缘手势滑动的代理
 //    self.nc.interactivePopGestureRecognizer.delegate = self;
     
 }
+
 
 #pragma mark - Deal
 - (CGFloat)calcTransitioningX:(CGPoint)translationPoint{
@@ -34,7 +34,6 @@
 #pragma mark - <UIGestureRecognizerDelegate>
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
     
-    NSLog(@"%@",self.transitionDelegate);
     if(gestureRecognizer == self.interactivePan){
         CGPoint point    = [gestureRecognizer translationInView:nil];
         CGPoint velocity = [gestureRecognizer velocityInView:nil];
@@ -72,7 +71,7 @@
     return XATransitionTypeLeft;
 }
 
-- (XABaseTransitionAnimation *)animation{
+- (XABaseTransitionAnimation *)pushAnimation{
     if(_animation == nil){
         _animation = ({
             XABaseTransitionAnimation *animation =  [[XALeftTransitionAnimation alloc]init];
@@ -81,4 +80,17 @@
     }
     return _animation;
 }
+
+
+- (XABaseTransitionAnimation *)popAnimation{
+    if(_animation == nil){
+        _animation = ({
+            XABaseTransitionAnimation *animation =  [[XALeftTransitionAnimation alloc]init];
+            animation;
+        });
+    }
+    return _animation;
+}
+
+
 @end

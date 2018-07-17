@@ -13,6 +13,11 @@
 + (XABaseTransition *)handlerWithType:(XATransitionType)type
                  navigationController:(UINavigationController *)nc
                    transitionDelegate:(id<XATransitionDelegate>)delegate{
+    
+    if(nc == nil || delegate == nil){
+        return nil;
+    }
+    
     XABaseTransition *transition = nil;
     switch (type) {
         case XATransitionTypeLeft:

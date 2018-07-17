@@ -17,7 +17,8 @@
 @property (nonatomic, weak)   id<XATransitionDelegate> transitionDelegate;
 @property (nonatomic, assign) BOOL transitionEnable;
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactive;
-@property (nonatomic, strong, readonly) XABaseTransitionAnimation *animation;
+@property (nonatomic, strong, readonly) XABaseTransitionAnimation *pushAnimation;
+@property (nonatomic, strong, readonly) XABaseTransitionAnimation *popAnimation;
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *interactivePan;
 @property (nonatomic, assign, readonly) XATransitionType transitionType;
 
