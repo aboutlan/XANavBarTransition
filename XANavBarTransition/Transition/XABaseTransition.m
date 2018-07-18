@@ -50,10 +50,9 @@
     CGFloat translationX = [self calcTransitioningX:translationPoint];
     CGFloat progress     = fabs(translationX / [UIScreen mainScreen].bounds.size.width) * 1.2;
     progress = MIN(1, MAX(progress, 0));
-    UIViewController *nextViewController = [self.transitionDelegate xa_slideToNextViewController:self.transitionType];
     if (pan.state == UIGestureRecognizerStateBegan) {
         beginTouchTime = [[NSDate date]timeIntervalSince1970];
-        [self.nc pushViewController:nextViewController animated:YES];
+        [self.nc pushViewController:self.nextVC animated:YES];
         [self.interactive updateInteractiveTransition:0];
         
     } else if (pan.state == UIGestureRecognizerStateChanged) {
@@ -72,10 +71,6 @@
         self.interactive = nil;
     }
 }
-
-
-
-
 
 #pragma mark - Deal
 - (CGFloat)calcTransitioningX:(CGPoint)translationPoint{

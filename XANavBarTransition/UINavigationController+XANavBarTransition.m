@@ -15,9 +15,11 @@
 
 
 #pragma mark - Transition
-- (void)configTransition{
-    //配置转场管理者
-    [XATransitionManager.sharedManager configTransition:self];
+- (void)xa_configTransitionInfoWithType:(XATransitionType)transitionType
+                           delegate:(id <XATransitionDelegate>)transitionDelegate{
+    [XATransitionManager.sharedManager configTransitionWithNc:self
+                                               transitionType:transitionType
+                                           transitionDelegate:transitionDelegate ];
 }
 
 #pragma mark - Alpha
@@ -38,27 +40,21 @@
     
 }
 
-- (void)xa_changeTransitionDelegate:(id <XATransitionDelegate>)xa_transitionDelegate{
-    XATransitionManager.sharedManager.transitionDelegate = xa_transitionDelegate;
-}
-
-
-- (void)xa_changeTransitionType:(XATransitionType)xa_transitionType{
-    //转场功能初始化
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self configTransition];
-    });
-    XATransitionManager.sharedManager.transitionType = xa_transitionType;
-}
-
 #pragma mark - Getter/Setter
 - (BOOL)xa_isGrTransitioning{
     return [objc_getAssociatedObject(self, _cmd)boolValue];
 }
 
 - (void)setXa_grTransitioning:(BOOL)xa_grTransitioning{
-    objc_setAssociatedObject(self, @selector(xa_isGrTransitioning), @(xa_grTransitioning), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(xa_isGrTransitioning), @(xa_grTransitioning), OBJC_ASSOCIATION_RETAIN);
+}
+
+- (BOOL)xa_isPopEnable{
+    return [objc_getAssociatedObject(self, _cmd)boolValue];
+}
+
+- (void)setXa_popEnable:(BOOL)xa_popEnable{
+     objc_setAssociatedObject(self, @selector(xa_isPopEnable), @(xa_popEnable), OBJC_ASSOCIATION_RETAIN);
 }
 
 @end

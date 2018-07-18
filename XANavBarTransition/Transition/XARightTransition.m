@@ -37,7 +37,7 @@
             return NO;
         }
         
-        if(![self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:)]){//未实现代理不处理
+        if(![self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_nextViewControllerInTransitionType:)]){//未实现代理不处理
             return NO;
         }
         

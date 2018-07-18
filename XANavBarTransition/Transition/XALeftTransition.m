@@ -50,13 +50,13 @@
             return NO;
         }
         
-        if(![self.transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:)]){//未实现代理不处理
+        if(![self.transitionDelegate respondsToSelector:@selector(xa_nextViewControllerInTransitionType:)]){//未实现代理不处理
             return NO;
         }
         
-        UIViewController *nextVc = [self.transitionDelegate xa_slideToNextViewController:self.transitionType];//是否为有效的控制器
-        if(nextVc  == nil ||
-           [self.nc.childViewControllers containsObject:nextVc]){
+        self.nextVC = [self.transitionDelegate xa_nextViewControllerInTransitionType:self.transitionType];//是否为有效的控制器
+        if(self.nextVC  == nil ||
+           [self.nc.childViewControllers containsObject:self.nextVC]){
             return NO;
         }
         
@@ -83,13 +83,8 @@
 
 
 - (XABaseTransitionAnimation *)popAnimation{
-    if(_animation == nil){
-        _animation = ({
-            XABaseTransitionAnimation *animation =  [[XALeftTransitionAnimation alloc]init];
-            animation;
-        });
-    }
-    return _animation;
+ 
+    return nil;
 }
 
 

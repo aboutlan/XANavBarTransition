@@ -35,7 +35,7 @@
 }
 
 #pragma mark - <XATransitionDelegate>
-- (UIViewController *)xa_slideToNextViewController:(XATransitionType)transitionType{
+- (UIViewController *)xa_nextViewControllerInTransitionType:(XATransitionType)transitionType{
      return self.desViewController;
 }
 

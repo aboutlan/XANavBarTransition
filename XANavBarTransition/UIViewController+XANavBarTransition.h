@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XANavBarTransitionConst.h"
 @protocol XATransitionDelegate <NSObject>
-- (UIViewController *)xa_slideToNextViewController:(XATransitionType)transitionType;
+- (UIViewController *)xa_nextViewControllerInTransitionType:(XATransitionType)transitionType;
 
 @end
 
@@ -30,7 +30,12 @@
 @property (nonatomic,weak) id <XATransitionDelegate>  xa_transitionDelegate;
 
 /**
- 当前控制器是否设置过导航栏透明度
+ 配置当前控制器转场信息
+
+ @param transitionType 转场类型
+ @param transitionDelegate 转场代理
  */
-@property(nonatomic,assign)BOOL xa_isSetBarAlpha;
+//- (void)configTransitionWithType:(XATransitionType)transitionType
+//                        delegate:(id <XATransitionDelegate>)transitionDelegate;
+
 @end

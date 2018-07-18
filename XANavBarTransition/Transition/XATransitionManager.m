@@ -14,10 +14,12 @@
 #import <objc/message.h>
 @interface XATransitionManager()<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, weak) UINavigationController  *nc;
-@property (nonatomic, assign) BOOL  hasConfigCompletion;
-@property (nonatomic, strong) XABaseTransition *transition;
-@property (nonatomic, strong)UIPanGestureRecognizer *popGR;
 @property (nonatomic, weak) id<UIGestureRecognizerDelegate> interactivePopDelegate;
+@property (nonatomic, strong) XABaseTransition *transition;
+@property (nonatomic, strong) UIPanGestureRecognizer *interactivPopPan;
+@property (nonatomic, assign) BOOL  hasConfigCompletion;
+@property (nonatomic, assign, readwrite) XATransitionType transitionType;
+@property (nonatomic, weak,   readwrite) id<XATransitionDelegate> transitionDelegate;
 @end
 
 @implementation XATransitionManager
@@ -48,7 +50,6 @@
 }
 
 #pragma mark - Action
-
 + (void)swizzlingMethodWithOriginal:(SEL)originalSEL swizzled:(SEL)swizzledSEL{
     
     Class orginClass     = [UINavigationController class];
@@ -62,34 +63,37 @@
     
     class_replaceMethod(orginClass, swizzledSEL, originalIMP, originalType);
     class_replaceMethod(orginClass, originalSEL, swizzldIMP, swizzldType);
-    
 }
 
-- (void)configTransition:(UINavigationController *)nc{
+- (void)configTransitionWithNc:(UINavigationController *)nc
+                transitionType:(XATransitionType)transitionType
+            transitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
     self.nc = nc;
     self.nc.delegate = self;
     self.nc.interactivePopGestureRecognizer.delegate = self;
+    self.transitionType = transitionType;
+    self.transitionDelegate = transitionDelegate;
+    self.transition = [XATransitionFactory handlerWithType:transitionType
+                                           navigationController:nc
+                                             transitionDelegate:transitionDelegate];
     [self createFullScreenPopGestureRecognizer];
-    //    self.transition  = [XATransitionFactory handlerWithType:self.transitionType
-    //                                       navigationController:self.nc
-    //                                         transitionDelegate:self.transitionDelegate];
 }
 
 - (void)createFullScreenPopGestureRecognizer{
-    if(!self.popGR){
+    if(!self.interactivPopPan){
         //添加全屏的滑动手势
         UIGestureRecognizer *navPanPopGr =  self.nc.interactivePopGestureRecognizer;
         self.interactivePopDelegate = self.nc.interactivePopGestureRecognizer.delegate;
         NSArray *targets = [navPanPopGr valueForKey:@"_targets"];
         id desTarget     = [targets firstObject];
         id target        = [desTarget valueForKey:@"_target"];
-        SEL transitionAction = NSSelectorFromString(@"handleNavigationTransition:");
-        self.popGR = [[UIPanGestureRecognizer alloc]initWithTarget:target action:transitionAction];
-        self.popGR.delegate = self;
-        [self.nc.view addGestureRecognizer:self.popGR];
+        SEL transitionAction  = NSSelectorFromString(@"handleNavigationTransition:");
+        self.interactivPopPan = [[UIPanGestureRecognizer alloc]initWithTarget:target action:transitionAction];
+        self.interactivPopPan.delegate = self;
+        [self.nc.view addGestureRecognizer:self.interactivPopPan];
     }
-    self.popGR.delegate = self;
-    self.popGR.enabled  = YES;
+    self.interactivPopPan.delegate = self;
+    self.interactivPopPan.enabled  = YES;
 }
 
 
@@ -164,34 +168,6 @@
 }
 
 #pragma mark - Deal
-- (void)dealWillShowViewController:(UIViewController *)showVC{
-    if([showVC.parentViewController isKindOfClass:[UINavigationController class]] &&
-       (!showVC.navigationController.xa_isGrTransitioning)){
-        //如果在控制器初始化的时候用户设置过导航栏的值,那么我们直接设置该导航栏应有的透明度值,没有设置过的话默认透明度给1
-        if(showVC.xa_isSetBarAlpha){
-            [showVC.navigationController xa_changeNavBarAlpha:showVC.xa_navBarAlpha];
-        }else{
-            showVC.xa_navBarAlpha = 1;
-        }
-    }
-}
-
-
-- (void)dealDidShowViewController:(UIViewController *)showVC{
-    //每当页面显示的时候重置代理
-    if([showVC.parentViewController isKindOfClass:[UINavigationController class]]){
-        [showVC.navigationController xa_changeTransitionDelegate:showVC.xa_transitionDelegate];
-    }
-    
-    //每当页面显示的时候创建转场器对象
-    if(self.nc.topViewController == showVC &&
-       [self.transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:)]){
-        self.transition = [XATransitionFactory handlerWithType:self.transitionType
-                                          navigationController:self.nc
-                                            transitionDelegate:self.transitionDelegate];
-    }
-}
-
 void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> context,UINavigationController *nc){
     
     if ([context isCancelled]) {// 取消了(还在当前页面)
@@ -216,34 +192,31 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     };
 }
 
-
+- (void)releaseResource{
+    self.transition = nil;
+    self.transitionDelegate = nil;
+}
 
 #pragma mark - <UINavigationControllerDelegate>
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    [self dealWillShowViewController:viewController];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    [self dealDidShowViewController:viewController];
-    
-    
-    //self.transition.transitionEnable = !(viewController == [self.nc.viewControllers firstObject]); //该控制器为根控制器,则不开启转场滑动功能
-}
-
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
-    UIViewController *nextVc = [self.transitionDelegate xa_slideToNextViewController:self.transitionType];
+    UIViewController *nextVc  = self.transition.nextVC;
+    XABaseTransitionAnimation *transitionAnim = nil;
     if(operation == UINavigationControllerOperationPush &&
        nextVc == toVC){
-        return self.transition.pushAnimation;
+        transitionAnim = self.transition.pushAnimation;
     }else if(operation == UINavigationControllerOperationPop){
-        return self.transition.popAnimation;
+        transitionAnim = self.transition.popAnimation;
     }
-    return nil;
+//    __weak typeof(self) weakSelf = self;
+//    transitionAnim.transitionCompletion = ^{
+//        [weakSelf releaseResource];
+//    };
+    return transitionAnim;
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
     if(self.transition.transitionEnable &&
-       [self.transitionDelegate respondsToSelector:@selector(xa_slideToNextViewController:)]){
+       [self.transitionDelegate respondsToSelector:@selector(xa_nextViewControllerInTransitionType:)]){
         return self.transition.interactive;
     }
     return nil;
@@ -253,7 +226,23 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 #pragma mark - <UIGestureRecognizerDelegate>
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     self.nc.xa_grTransitioning = YES;
-    return YES;
+    
+    if(gestureRecognizer == self.interactivPopPan){
+        UIPanGestureRecognizer * panGestureRecognizer = (UIPanGestureRecognizer *)gestureRecognizer;
+        CGPoint point     = [panGestureRecognizer translationInView:nil];
+        CGPoint velocity  = [panGestureRecognizer velocityInView:nil];
+        
+        if (fabs(velocity.y) > fabs(velocity.x)) {//垂直方向不处理
+            return NO;
+        }
+        
+        if(point.x < 0){ //向左边滑动不处理
+            return NO;
+        }
+        
+        return [self.nc xa_isPopEnable];//Pop功能开关
+    }
+    return NO;
 }
 
 #pragma mark - Getter/Setter
@@ -270,3 +259,4 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     self.transition.transitionDelegate = transitionDelegate;
 }
 @end
+

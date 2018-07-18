@@ -16,6 +16,7 @@
 @property (nonatomic, weak)   UINavigationController *nc;
 @property (nonatomic, weak)   id<XATransitionDelegate> transitionDelegate;
 @property (nonatomic, assign) BOOL transitionEnable;
+@property (nonatomic, strong) UIViewController *nextVC;
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactive;
 @property (nonatomic, strong, readonly) XABaseTransitionAnimation *pushAnimation;
 @property (nonatomic, strong, readonly) XABaseTransitionAnimation *popAnimation;
