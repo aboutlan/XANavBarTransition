@@ -20,6 +20,7 @@
 		3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB311F30632100628B4D /* BaseNavigationController.m */; };
 		3855DB411F30690700628B4D /* UINavigationController+XANavBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB3F1F30690700628B4D /* UINavigationController+XANavBarTransition.m */; };
 		3855DB441F30692B00628B4D /* UIViewController+XANavBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */; };
+		386726BC210700EF00DAABB1 /* UIView+XATransitionExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */; };
 		38A2369620B5543400189E94 /* XARightTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2369520B5543400189E94 /* XARightTransition.m */; };
 		38A2369820B5548600189E94 /* XARightTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2369720B5548600189E94 /* XARightTransitionAnimation.m */; };
 		38B13C4F20B2BB02008E5096 /* XATransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C4E20B2BB02008E5096 /* XATransitionManager.m */; };
@@ -76,6 +77,8 @@
 		3855DB421F30692B00628B4D /* UIViewController+XANavBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XANavBarTransition.h"; sourceTree = "<group>"; };
 		3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XANavBarTransition.m"; sourceTree = "<group>"; };
 		3855DB481F30822E00628B4D /* XANavBarTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransition.h; sourceTree = "<group>"; };
+		386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XATransitionExtension.m"; sourceTree = "<group>"; };
+		386726BB210700EF00DAABB1 /* UIView+XATransitionExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XATransitionExtension.h"; sourceTree = "<group>"; };
 		38A2369420B5543400189E94 /* XARightTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XARightTransition.h; sourceTree = "<group>"; };
 		38A2369520B5543400189E94 /* XARightTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XARightTransition.m; sourceTree = "<group>"; };
 		38A2369720B5548600189E94 /* XARightTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XARightTransitionAnimation.m; sourceTree = "<group>"; };
@@ -195,6 +198,7 @@
 		3855DB3C1F30690700628B4D /* XANavBarTransition */ = {
 			isa = PBXGroup;
 			children = (
+				386726B9210700EF00DAABB1 /* Extension */,
 				38E35A8C20B3A98B00219C09 /* Animation */,
 				38B13C5020B2CFEF008E5096 /* Transition */,
 				3855DB3E1F30690700628B4D /* UINavigationController+XANavBarTransition.h */,
@@ -207,6 +211,15 @@
 			);
 			name = XANavBarTransition;
 			path = ../../XANavBarTransition;
+			sourceTree = "<group>";
+		};
+		386726B9210700EF00DAABB1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */,
+				386726BB210700EF00DAABB1 /* UIView+XATransitionExtension.h */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		38B13C5020B2CFEF008E5096 /* Transition */ = {
@@ -383,6 +396,7 @@
 				38B13C5F20B2D877008E5096 /* XANavBarTransitionConst.m in Sources */,
 				38B13C5920B2D4FC008E5096 /* XATransitionFactory.m in Sources */,
 				38B13C5320B2D03C008E5096 /* XALeftTransition.m in Sources */,
+				386726BC210700EF00DAABB1 /* UIView+XATransitionExtension.m in Sources */,
 				38E35A8F20B3AB0B00219C09 /* XALeftTransitionAnimation.m in Sources */,
 				38E35A9420B3B84700219C09 /* XABaseTransitionAnimation.m in Sources */,
 				3855DB411F30690700628B4D /* UINavigationController+XANavBarTransition.m in Sources */,

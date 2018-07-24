@@ -207,10 +207,10 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     }else if(operation == UINavigationControllerOperationPop){
         transitionAnim = self.transition.popAnimation;
     }
-//    __weak typeof(self) weakSelf = self;
-//    transitionAnim.transitionCompletion = ^{
-//        [weakSelf releaseResource];
-//    };
+    __weak typeof(self) weakSelf = self;
+    transitionAnim.transitionCompletion = ^{
+        [weakSelf releaseResource];
+    };
     return transitionAnim;
 }
 

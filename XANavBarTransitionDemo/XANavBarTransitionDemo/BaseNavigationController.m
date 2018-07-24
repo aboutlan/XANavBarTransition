@@ -18,11 +18,11 @@
     [super viewDidLoad];
     
     
-    //初始化导航栏,设置导航栏颜色
+    //初始化导航栏
     self.navigationBar.translucent  = NO;
     self.navigationBar.barTintColor = [UIColor blackColor];
     self.navigationBar.shadowImage  = [UIImage new];
-    
+
     [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setTitleTextAttributes:@{
                                                  NSForegroundColorAttributeName:[UIColor whiteColor],

@@ -8,14 +8,21 @@
 
 #import "UIViewController+XANavBarTransition.h"
 #import "UINavigationController+XANavBarTransition.h"
+#import "UIView+XATransitionExtension.h"
 #import <objc/message.h>
 #import "XANavBarTransition.h"
+
 @interface UIViewController ()
 
 /**
  当前控制器是否设置过导航栏透明度
  */
 @property(nonatomic,assign)BOOL xa_isSetBarAlpha;
+
+/**
+ 当前控制器是否设置过转场信息
+ */
+@property(nonatomic,assign)BOOL xa_isSetTansition;
 @end
 @implementation UIViewController (XANavBarTransition)
 + (void)load{
@@ -57,11 +64,11 @@
 
 #pragma mark - Deal
 - (void)xa_dealViewWillAppear{
-    if(self.navigationController == nil || self.parentViewController != self.navigationController){
+    if(self.navigationController == nil){
         return;
     }
-    NSLog(@"yx:viewWillAppear:%@",self);
-    if([self xa_isSetBarAlpha]){
+    if([self xa_isSetBarAlpha] &&
+       [self.view xa_isDisplaying]){
         //重置当前页面的导航栏透明度
         [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
     }else{
@@ -70,13 +77,15 @@
 }
 
 - (void)xa_dealViewDidAppear{
-    if(self.navigationController == nil || self.parentViewController != self.navigationController){
+    if(self.navigationController == nil){
         return;
     }
-     NSLog(@"yx:viewDidAppear:%@",self);
-    //每当页面显示的时候创建转场对象
-    [self.navigationController xa_configTransitionInfoWithType:self.xa_transitionType
-                                                      delegate:self.xa_transitionDelegate];
+    if([self xa_isSetTansition] &&
+       [self.view xa_isDisplaying]){
+        //每当页面显示的时候创建转场对象
+        [self.navigationController xa_configTransitionInfoWithType:self.xa_transitionType
+                                                          delegate:self.xa_transitionDelegate];
+    }
 }
 
 #pragma mark - Getter/Setter
@@ -96,6 +105,7 @@
 }
 
 - (void)setXa_transitionType:(XATransitionType)xa_transitionType{
+    self.xa_isSetTansition = xa_transitionType != XATransitionTypeUnknow;
     objc_setAssociatedObject(self, @selector(xa_transitionType), @(xa_transitionType), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -112,7 +122,19 @@
 }
 
 - (void)setXa_isSetBarAlpha:(BOOL)xa_isSetBarAlpha{
-    objc_setAssociatedObject(self, @selector(xa_isSetBarAlpha), @(xa_isSetBarAlpha), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(xa_isSetBarAlpha), @(xa_isSetBarAlpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+
+- (BOOL)xa_isSetTansition{
+     return [objc_getAssociatedObject(self, _cmd)boolValue];
+    
+}
+
+- (void)setXa_isSetTansition:(BOOL)xa_isSetTansition{
+    
+     objc_setAssociatedObject(self, @selector(xa_isSetTansition), @(xa_isSetTansition), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 
 @end

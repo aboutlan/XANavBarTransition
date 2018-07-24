@@ -37,7 +37,6 @@
     }
     UIView *barBackgroundView  = [barSubviews firstObject];
     barBackgroundView.alpha    = navBarAlpha;
-    
 }
 
 #pragma mark - Getter/Setter
