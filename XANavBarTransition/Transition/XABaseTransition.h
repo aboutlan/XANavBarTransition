@@ -9,19 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "XABaseTransitionAnimation.h"
 #import "UIViewController+XANavBarTransition.h"
-@class XABaseTransition;
-@protocol XATransitionMessageDelegate <NSObject>
-- (void)transition:(XABaseTransition *)transition startTransitionAction:(XATransitionType )transitionType;
-- (void)transition:(XABaseTransition *)transition endTransitionAction:(BOOL)isFinishTransition;
-@required
-- (UIViewController *)transition:(XABaseTransition *)transition getNextViewControllerAction:(XATransitionType )transitionType;
-@end
 @interface XABaseTransition : NSObject<UIGestureRecognizerDelegate>{
     @protected
     XABaseTransitionAnimation *_animation;
 }
 @property (nonatomic, weak)   UINavigationController *nc;
-@property (nonatomic, weak)   id<XATransitionMessageDelegate> delegate;
+@property (nonatomic, weak)   id<XATransitionDelegate> transitionDelegate;
 @property (nonatomic, assign) BOOL transitionEnable;
 @property (nonatomic, strong) UIViewController *nextVC;
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactive;
@@ -31,11 +24,11 @@
 @property (nonatomic, assign, readonly) XATransitionType transitionType;
 
 - (instancetype)initWithNavigationController:(UINavigationController *)nc
-                                    delegate:(id<XATransitionMessageDelegate>)delegate;
+                          transitionDelegate:(id<XATransitionDelegate>)delegate;
 
 #pragma mark - Subclass Rewrite
 - (void)setupWithNc:(UINavigationController *)nc
-        delegate:(id<XATransitionMessageDelegate>)delegate;
+           delegate:(id<XATransitionDelegate>)delegate;
 - (CGFloat)calcTransitioningX:(CGPoint)translationPoint;
 @end
 

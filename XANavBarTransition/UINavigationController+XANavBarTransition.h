@@ -13,9 +13,9 @@
 @interface UINavigationController (XANavBarTransition)<UIGestureRecognizerDelegate>
 
 /**
- 当前手势是否正在滑动转场中
+ 当前是否正在滑动转场中
  */
-@property (nonatomic, assign, getter=xa_isGrTransitioning) BOOL xa_grTransitioning;
+@property (nonatomic, assign, getter=xa_isTransitioning) BOOL xa_Transitioning;
 
 /**
  是否允许左滑Pop

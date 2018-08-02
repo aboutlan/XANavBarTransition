@@ -75,16 +75,17 @@
 
 #pragma mark - Deal
 - (void)xa_dealViewWillAppear{
-    if(self.navigationController == nil){
+    if(self.navigationController == nil ||
+       self.navigationController.xa_isTransitioning){
         return;
     }
     if([self xa_isSetBarAlpha] &&
        [self.view xa_isDisplaying]){
         //更新当前控制器的导航栏透明度
-//        [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
+        [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
     }else{
         //设置导航栏透明度默认值
-//        self.xa_navBarAlpha = 1;
+        self.xa_navBarAlpha = 1;
     }
 }
 

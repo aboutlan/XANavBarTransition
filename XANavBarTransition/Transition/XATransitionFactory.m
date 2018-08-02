@@ -10,9 +10,9 @@
 #import "XALeftTransition.h"
 #import "XARightTransition.h"
 @implementation XATransitionFactory
-+(XABaseTransition *)handlerWithType:(XATransitionType)type
-                         msgDelegate:(id<XATransitionMessageDelegate>)delegate
-                navigationController:(UINavigationController *)nc{
++ (XABaseTransition *)handlerWithType:(XATransitionType)type
+                 navigationController:(UINavigationController *)nc
+                   transitionDelegate:(id<XATransitionDelegate>)delegate{
     
     if(nc == nil || delegate == nil){
         return nil;
@@ -22,11 +22,11 @@
     switch (type) {
         case XATransitionTypeLeft:
             transition  = [[XALeftTransition alloc] initWithNavigationController:nc
-                                                                        delegate:delegate];
+                                                              transitionDelegate:delegate];
             break;
         case XATransitionTypeRight:
-            transition = [[XARightTransition alloc] initWithNavigationController:nc
-                                                                        delegate:delegate];
+             transition = [[XARightTransition alloc] initWithNavigationController:nc
+                                                               transitionDelegate:delegate];
         default:
             break;
     }

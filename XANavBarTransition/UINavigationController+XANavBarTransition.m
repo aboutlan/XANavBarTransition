@@ -46,12 +46,12 @@
 }
 
 #pragma mark - Getter/Setter
-- (BOOL)xa_isGrTransitioning{
+- (BOOL)xa_isTransitioning{
     return [objc_getAssociatedObject(self, _cmd)boolValue];
 }
 
-- (void)setXa_grTransitioning:(BOOL)xa_grTransitioning{
-    objc_setAssociatedObject(self, @selector(xa_isGrTransitioning), @(xa_grTransitioning), OBJC_ASSOCIATION_RETAIN);
+- (void)setXa_Transitioning:(BOOL)xa_Transitioning{
+    objc_setAssociatedObject(self, @selector(xa_isTransitioning), @(xa_Transitioning), OBJC_ASSOCIATION_RETAIN);
 }
 
 - (BOOL)xa_isPopEnable{
