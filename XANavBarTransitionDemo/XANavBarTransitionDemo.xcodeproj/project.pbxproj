@@ -157,8 +157,8 @@
 				3855DB271F30622400628B4D /* ThirdViewController.m */,
 				3855DB301F30632100628B4D /* BaseNavigationController.h */,
 				3855DB311F30632100628B4D /* BaseNavigationController.m */,
-				3855DAFD1F30602200628B4D /* Main.storyboard */,
 				38DE212B20A8624A0032FCC7 /* CommonDefine.h */,
+				3855DAFD1F30602200628B4D /* Main.storyboard */,
 				3855DAF41F30602200628B4D /* Supporting Files */,
 			);
 			path = XANavBarTransitionDemo;
@@ -262,6 +262,7 @@
 				3855DAED1F30602200628B4D /* Sources */,
 				3855DAEE1F30602200628B4D /* Frameworks */,
 				3855DAEF1F30602200628B4D /* Resources */,
+				380844A2210AEB4700F2DE8A /* Integrate Reveal Server */,
 			);
 			buildRules = (
 			);
@@ -382,6 +383,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		380844A2210AEB4700F2DE8A /* Integrate Reveal Server */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Integrate Reveal Server";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3855DAED1F30602200628B4D /* Sources */ = {

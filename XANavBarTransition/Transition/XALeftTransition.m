@@ -15,13 +15,10 @@
 
 @implementation XALeftTransition
 #pragma mark - Setup
-
-- (void)setupWithNc:(UINavigationController *)nc
-           delegate:(id<XATransitionDelegate>)delegate{
+- (void)setupWithNc:(UINavigationController *)nc delegate:(id<XATransitionMessageDelegate>)delegate{
     [super setupWithNc:nc delegate:delegate];
     //接管系统Pop的边缘手势滑动的代理
-//    self.nc.interactivePopGestureRecognizer.delegate = self;
-    
+    //    self.nc.interactivePopGestureRecognizer.delegate = self;
 }
 
 
@@ -50,11 +47,7 @@
             return NO;
         }
         
-        if(![self.transitionDelegate respondsToSelector:@selector(xa_nextViewControllerInTransitionType:)]){//未实现代理不处理
-            return NO;
-        }
-        
-        self.nextVC = [self.transitionDelegate xa_nextViewControllerInTransitionType:self.transitionType];//是否为有效的控制器
+        self.nextVC = [self.delegate transition:self getNextViewControllerAction:self.transitionType];//是否为有效的跳转控制器
         if(self.nextVC  == nil ||
            [self.nc.childViewControllers containsObject:self.nextVC]){
             return NO;

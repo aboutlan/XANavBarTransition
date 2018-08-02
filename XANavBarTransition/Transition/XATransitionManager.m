@@ -12,13 +12,14 @@
 #import "UIViewController+XANavBarTransition.h"
 #import "UINavigationController+XANavBarTransition.h"
 #import <objc/message.h>
-@interface XATransitionManager()<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
+@interface XATransitionManager()<UIGestureRecognizerDelegate,UINavigationControllerDelegate,XATransitionMessageDelegate>
 @property (nonatomic, weak) UINavigationController  *nc;
 @property (nonatomic, weak) id<UIGestureRecognizerDelegate> interactivePopDelegate;
 @property (nonatomic, strong) XABaseTransition *transition;
 @property (nonatomic, strong) UIPanGestureRecognizer *interactivPopPan;
 @property (nonatomic, assign) BOOL  hasConfigCompletion;
 @property (nonatomic, assign, readwrite) XATransitionType transitionType;
+@property (nonatomic, assign, readwrite) BOOL isTransitioning;
 @property (nonatomic, weak,   readwrite) id<XATransitionDelegate> transitionDelegate;
 @end
 
@@ -73,11 +74,14 @@
     self.nc.interactivePopGestureRecognizer.delegate = self;
     self.transitionType = transitionType;
     self.transitionDelegate = transitionDelegate;
-    self.transition = [XATransitionFactory handlerWithType:transitionType
-                                           navigationController:nc
-                                             transitionDelegate:transitionDelegate];
+    self.transition = [XATransitionFactory handlerWithType:transitionType msgDelegate:self navigationController:self.nc];
     [self createFullScreenPopGestureRecognizer];
 }
+
+- (void)unInitTransitionWithNc:(UINavigationController *)nc{
+    [self releaseResource];
+}
+
 
 - (void)createFullScreenPopGestureRecognizer{
     if(!self.interactivPopPan){
@@ -100,11 +104,9 @@
 - (void)xa_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [self xa_pushViewController:viewController animated:animated];
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
-    
     if (nc != nil && viewController != nil) {
-        
         id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
-        //监听手势返回的交互改变,如手势滑动过程当中松手就会回调block
+        //监听push的完成或取消操作
         if (coordinator != nil) {
             if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
                 [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
@@ -117,6 +119,34 @@
             }
         }
     }
+    
+}
+
+
+- (UIViewController *)xa_popViewControllerAnimated:(BOOL)animated{
+    
+    UIViewController *popVc    = [self xa_popViewControllerAnimated:animated];
+    UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
+    if(nc.viewControllers.count <= 0){
+        return popVc;
+    }
+    UIViewController *topVC = [nc.viewControllers lastObject];
+    if (topVC != nil) {
+        id<UIViewControllerTransitionCoordinator> coordinator = topVC.transitionCoordinator;
+        //监听pop的完成或取消操作
+        if (coordinator != nil) {
+            if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
+                [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
+                    dealInteractionEndAction(context,nc);
+                }];
+            }else{
+                [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+                    dealInteractionEndAction(context,nc);
+                }];
+            }
+        }
+    }
+    return popVc;
 }
 
 
@@ -139,37 +169,9 @@
     }
 }
 
-
-- (UIViewController *)xa_popViewControllerAnimated:(BOOL)animated{
-    
-    UIViewController *popVc    = [self xa_popViewControllerAnimated:animated];
-    UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
-    if(nc.viewControllers.count <= 0){
-        return popVc;
-    }
-    UIViewController *topVC = [nc.viewControllers lastObject];
-    if (topVC != nil) {
-        id<UIViewControllerTransitionCoordinator> coordinator = topVC.transitionCoordinator;
-        
-        //监听手势返回的交互改变,如手势滑动过程当中松手就会回调block
-        if (coordinator != nil) {
-            if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
-                [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
-                    dealInteractionEndAction(context,nc);
-                }];
-            }else{
-                [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                    dealInteractionEndAction(context,nc);
-                }];
-            }
-        }
-    }
-    return popVc;
-}
-
 #pragma mark - Deal
 void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> context,UINavigationController *nc){
-    
+    //处理导航栏的透明度状态
     if ([context isCancelled]) {// 取消了(还在当前页面)
         //根据剩余的进度来计算动画时长xa_changeNavBarAlpha
         CGFloat animdDuration = [context transitionDuration] * [context percentComplete];
@@ -193,8 +195,26 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 }
 
 - (void)releaseResource{
+    self.transitionType = XATransitionTypeUnknow;
     self.transition = nil;
     self.transitionDelegate = nil;
+    self.isTransitioning  = NO;
+}
+
+#pragma mark - <XATransitionMessageDelegate>
+- (void)transition:(XABaseTransition *)transition startTransitionAction:(XATransitionType)transitionType{
+    self.isTransitioning = YES;
+}
+
+- (void)transition:(XABaseTransition *)transition endTransitionAction:(BOOL)isFinishTransition{
+    self.isTransitioning = NO;
+}
+
+- (UIViewController *)transition:(XABaseTransition *)transition getNextViewControllerAction:(XATransitionType )transitionType{
+    if([self.transitionDelegate respondsToSelector: @selector(xa_nextViewControllerInTransitionType:)] ){
+        [self.transitionDelegate xa_nextViewControllerInTransitionType:transitionType];
+    }
+    return nil;
 }
 
 #pragma mark - <UINavigationControllerDelegate>
@@ -207,10 +227,7 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     }else if(operation == UINavigationControllerOperationPop){
         transitionAnim = self.transition.popAnimation;
     }
-    __weak typeof(self) weakSelf = self;
-    transitionAnim.transitionCompletion = ^{
-        [weakSelf releaseResource];
-    };
+
     return transitionAnim;
 }
 
@@ -250,13 +267,8 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     return self.nc != nil;
 }
 
-- (void)setTransitionType:(XATransitionType)transitionType{
-    _transitionType = transitionType;
-}
-
 - (void)setTransitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
     _transitionDelegate = transitionDelegate;
-    self.transition.transitionDelegate = transitionDelegate;
 }
 @end
 

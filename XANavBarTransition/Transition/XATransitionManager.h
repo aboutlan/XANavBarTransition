@@ -13,6 +13,7 @@
 @interface XATransitionManager : NSObject
 
 @property (nonatomic, assign, readonly) XATransitionType transitionType;
+@property (nonatomic, assign, readonly) BOOL isTransitioning;
 @property (nonatomic, weak,   readonly) id<XATransitionDelegate> transitionDelegate;
 
 + (instancetype)sharedManager;
@@ -20,4 +21,6 @@
 - (void)configTransitionWithNc:(UINavigationController *)nc
                 transitionType:(XATransitionType)transitionType
             transitionDelegate:(id<XATransitionDelegate>)transitionDelegate;
+
+- (void)unInitTransitionWithNc:(UINavigationController *)nc;
 @end

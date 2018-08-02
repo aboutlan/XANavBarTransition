@@ -20,7 +20,7 @@
 @implementation XABaseTransition
 
 - (instancetype)initWithNavigationController:(UINavigationController *)nc
-                          transitionDelegate:(id<XATransitionDelegate>)delegate{
+                                    delegate:(id<XATransitionMessageDelegate>)delegate{
     if(self = [super init]){
         [self setupWithNc:nc delegate:delegate];
     }
@@ -29,10 +29,10 @@
 
 #pragma mark - Setup
 - (void)setupWithNc:(UINavigationController *)nc
-           delegate:(id<XATransitionDelegate>)delegate{
+           delegate:(id<XATransitionMessageDelegate>)delegate{
     self.nc = nc;
-    self.transitionView     = nc.view;
-    self.transitionDelegate = delegate;
+    self.transitionView = nc.view;
+    self.delegate = delegate;
     [self setupGestureRecognize:nc.view];
 }
 
@@ -54,21 +54,24 @@
         beginTouchTime = [[NSDate date]timeIntervalSince1970];
         [self.nc pushViewController:self.nextVC animated:YES];
         [self.interactive updateInteractiveTransition:0];
-        
+        [self.delegate transition:self startTransitionAction:self.transitionType];
     } else if (pan.state == UIGestureRecognizerStateChanged) {
         
         [self.interactive updateInteractiveTransition:progress];
         
     } else if (pan.state == UIGestureRecognizerStateEnded) {
-        
+        BOOL isFinishTransition = NO;
         endTouchTime = [[NSDate date]timeIntervalSince1970];
         CGFloat dValueTime = endTouchTime - beginTouchTime;
         if (progress > 0.3 || dValueTime <= 0.15f) {//dValueTime <= 0.15f 该条件用于判断是否为轻扫
             [self.interactive finishInteractiveTransition];
+            isFinishTransition = YES;
         } else {
             [self.interactive cancelInteractiveTransition];
+            isFinishTransition = NO;
         }
         self.interactive = nil;
+        [self.delegate transition:self endTransitionAction:isFinishTransition];
     }
 }
 

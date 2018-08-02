@@ -34,6 +34,10 @@
     SEL  originalDidAppearSEL = @selector(viewDidAppear:);
     SEL  swizzledDidAppearSEL = @selector(xa_viewDidAppear:);
     [self swizzlingMethodWithOriginal:originalDidAppearSEL swizzled:swizzledDidAppearSEL];
+    
+    SEL  originalDidDisappearSEL = @selector(viewDidDisappear:);
+    SEL  swizzledDidDisappearSEL = @selector(xa_viewDidDisappear:);
+    [self swizzlingMethodWithOriginal:originalDidDisappearSEL swizzled:swizzledDidDisappearSEL];
    
 }
 
@@ -62,6 +66,13 @@
     [self xa_dealViewDidAppear];
 }
 
+
+- (void)xa_viewDidDisappear:(BOOL)animated{
+    [self xa_viewDidDisappear:YES];
+    
+    [self xa_dealViewDidDisappear];
+}
+
 #pragma mark - Deal
 - (void)xa_dealViewWillAppear{
     if(self.navigationController == nil){
@@ -69,10 +80,11 @@
     }
     if([self xa_isSetBarAlpha] &&
        [self.view xa_isDisplaying]){
-        //重置当前页面的导航栏透明度
-        [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
+        //更新当前控制器的导航栏透明度
+//        [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
     }else{
-        self.xa_navBarAlpha = 1;
+        //设置导航栏透明度默认值
+//        self.xa_navBarAlpha = 1;
     }
 }
 
@@ -82,9 +94,17 @@
     }
     if([self xa_isSetTansition] &&
        [self.view xa_isDisplaying]){
-        //每当页面显示的时候创建转场对象
+        //配置当前控制器转场信息
         [self.navigationController xa_configTransitionInfoWithType:self.xa_transitionType
                                                           delegate:self.xa_transitionDelegate];
+    }
+}
+
+- (void)xa_dealViewDidDisappear{
+    if([self xa_isSetTansition] &&
+       [self.view xa_isDisplaying]){
+        //清除当前控制器转场信息
+        [self.navigationController xa_unInitTransitionInfo];
     }
 }
 

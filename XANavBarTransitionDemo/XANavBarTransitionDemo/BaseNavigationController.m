@@ -7,6 +7,8 @@
 //
 
 #import "BaseNavigationController.h"
+#import "UINavigationController+XANavBarTransition.h"
+
 
 @interface BaseNavigationController ()
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
@@ -22,13 +24,14 @@
     self.navigationBar.translucent  = NO;
     self.navigationBar.barTintColor = [UIColor blackColor];
     self.navigationBar.shadowImage  = [UIImage new];
-
+    
     [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setTitleTextAttributes:@{
                                                  NSForegroundColorAttributeName:[UIColor whiteColor],
                                                  NSFontAttributeName : [UIFont systemFontOfSize:16]
                                                  }];
   
+    self.xa_popEnable = YES;
     
     
 }

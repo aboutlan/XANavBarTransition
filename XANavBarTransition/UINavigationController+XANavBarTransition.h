@@ -51,4 +51,9 @@
  */
 - (void)xa_configTransitionInfoWithType:(XATransitionType)transitionType
                                delegate:(id <XATransitionDelegate>)transitionDelegate;
+
+/**
+ 清除转场的信息
+ */
+- (void)xa_unInitTransitionInfo;
 @end

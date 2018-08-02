@@ -36,10 +36,7 @@
         if(point.x < 0){ //向左边滑动不处理
             return NO;
         }
-        
-        if(![self.nc.xa_transitionDelegate respondsToSelector:@selector(xa_nextViewControllerInTransitionType:)]){//未实现代理不处理
-            return NO;
-        }
+      
         
         return YES;
     }

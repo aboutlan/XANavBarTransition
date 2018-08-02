@@ -22,7 +22,7 @@
 
 - (void)setup{
     self.desViewController = [[UIViewController alloc]init];
-    self.desViewController.view.backgroundColor = [UIColor redColor];
+    self.desViewController.view.backgroundColor = [UIColor orangeColor];
     self.desViewController.xa_navBarAlpha = 0;
     self.desViewController.title = @"HomePage";
     self.desViewController.extendedLayoutIncludesOpaqueBars = YES;
