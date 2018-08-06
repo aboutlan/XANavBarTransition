@@ -11,9 +11,9 @@
 #import "UINavigationController+XANavBarTransition.h"
 
 @interface XATransitionManager : NSObject
-
 @property (nonatomic, assign, readonly) XATransitionType transitionType;
 @property (nonatomic, assign, readonly) BOOL isTransitioning;
+@property (nonatomic, weak,   readonly) UINavigationController  *nc;
 @property (nonatomic, weak,   readonly) id<XATransitionDelegate> transitionDelegate;
 
 + (instancetype)sharedManager;

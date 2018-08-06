@@ -13,13 +13,13 @@
 #import "UINavigationController+XANavBarTransition.h"
 #import <objc/message.h>
 @interface XATransitionManager()<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
-@property (nonatomic, weak) UINavigationController  *nc;
 @property (nonatomic, weak) id<UIGestureRecognizerDelegate> interactivePopDelegate;
 @property (nonatomic, strong) XABaseTransition *transition;
 @property (nonatomic, strong) UIPanGestureRecognizer *interactivPopPan;
 @property (nonatomic, assign) BOOL  hasConfigCompletion;
 @property (nonatomic, assign, readwrite) XATransitionType transitionType;
 @property (nonatomic, assign, readwrite) BOOL isTransitioning;
+@property (nonatomic, weak,   readwrite) UINavigationController  *nc;
 @property (nonatomic, weak,   readwrite) id<XATransitionDelegate> transitionDelegate;
 @end
 
@@ -27,18 +27,18 @@
 #pragma mark - Setup
 + (void)load{
     //交换导航控制器的手势进度转场方法,来监听手势滑动的进度
-    SEL originalSEL =  NSSelectorFromString(@"_updateInteractiveTransition:");
-    SEL swizzledSEL =  NSSelectorFromString(@"xa_updateInteractiveTransition:");
-    [self swizzlingMethodWithOriginal:originalSEL swizzled:swizzledSEL];
+    SEL percentOriginalSEL =  NSSelectorFromString(@"_updateInteractiveTransition:");
+    SEL percentSwizzledSEL =  NSSelectorFromString(@"xa_updateInteractiveTransition:");
+    [self swizzlingMethodWithOrginClass:[UINavigationController class] swizzledClass:[self class] originalSEL:percentOriginalSEL swizzledSEL:percentSwizzledSEL];
     
     //交换导航控制器的popViewControllerAnimated:方法,来监听什么时候当前控制被back
     SEL popOriginalSEL =  @selector(popViewControllerAnimated:);
     SEL popSwizzledSEL =  NSSelectorFromString(@"xa_popViewControllerAnimated:");
-    [self swizzlingMethodWithOriginal:popOriginalSEL swizzled:popSwizzledSEL];
+    [self swizzlingMethodWithOrginClass:[UINavigationController class] swizzledClass:[self class] originalSEL:popOriginalSEL swizzledSEL:popSwizzledSEL];
     
     SEL pushOriginalSEL =  @selector(pushViewController:animated:);
     SEL pushSwizzledSEL =  NSSelectorFromString(@"xa_pushViewController:animated:");
-    [self swizzlingMethodWithOriginal:pushOriginalSEL swizzled:pushSwizzledSEL];
+    [self swizzlingMethodWithOrginClass:[UINavigationController class] swizzledClass:[self class] originalSEL:pushOriginalSEL swizzledSEL:pushSwizzledSEL];
 }
 
 + (instancetype)sharedManager{
@@ -51,10 +51,11 @@
 }
 
 #pragma mark - Action
-+ (void)swizzlingMethodWithOriginal:(SEL)originalSEL swizzled:(SEL)swizzledSEL{
++ (void)swizzlingMethodWithOrginClass:(Class)orginClass
+                        swizzledClass:(Class)swizzledClass
+                          originalSEL:(SEL)originalSEL
+                          swizzledSEL:(SEL)swizzledSEL{
     
-    Class orginClass     = [UINavigationController class];
-    Class swizzledClass  = [self class];
     Method orginMethod   = class_getInstanceMethod(orginClass, originalSEL);
     Method swizzldMethod = class_getInstanceMethod(swizzledClass, swizzledSEL);
     IMP originalIMP = method_getImplementation(orginMethod);
@@ -77,7 +78,7 @@
     self.transition = [XATransitionFactory handlerWithType:transitionType
                                            navigationController:nc
                                              transitionDelegate:transitionDelegate];
-    [self createFullScreenPopGestureRecognizer];
+    [self createFullScreenPopGestureRecognizer:nc];
 }
 
 - (void)unInitTransitionWithNc:(UINavigationController *)nc{
@@ -85,21 +86,40 @@
 }
 
 
-- (void)createFullScreenPopGestureRecognizer{
-    if(!self.interactivPopPan){
+- (void)createFullScreenPopGestureRecognizer:(UINavigationController *)nc{
+    static __weak UINavigationController *currentPopNc = nil;
+    if(self.interactivPopPan == nil ||
+        currentPopNc != nc){
+        currentPopNc = nc;
         //添加全屏的滑动手势
-        UIGestureRecognizer *navPanPopGr =  self.nc.interactivePopGestureRecognizer;
-        self.interactivePopDelegate = self.nc.interactivePopGestureRecognizer.delegate;
+        UIGestureRecognizer *navPanPopGr = currentPopNc.interactivePopGestureRecognizer;
+        self.interactivePopDelegate = currentPopNc.interactivePopGestureRecognizer.delegate;
         NSArray *targets = [navPanPopGr valueForKey:@"_targets"];
         id desTarget     = [targets firstObject];
         id target        = [desTarget valueForKey:@"_target"];
-        SEL transitionAction  = NSSelectorFromString(@"handleNavigationTransition:");
-        self.interactivPopPan = [[UIPanGestureRecognizer alloc]initWithTarget:target action:transitionAction];
+        SEL transitionSEL  = NSSelectorFromString(@"handleNavigationTransition:");
+        self.interactivPopPan = [[UIPanGestureRecognizer alloc]initWithTarget:target action:transitionSEL];
         self.interactivPopPan.delegate = self;
-        [self.nc.view addGestureRecognizer:self.interactivPopPan];
+        [currentPopNc.view addGestureRecognizer:self.interactivPopPan];
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [XATransitionManager swizzlingMethodWithOrginClass:[target class] swizzledClass:[self class] originalSEL:transitionSEL swizzledSEL:@selector(xa_handleNavigationTransition:)];
+        });
+      
     }
     self.interactivPopPan.delegate = self;
     self.interactivPopPan.enabled  = YES;
+}
+
+- (void)xa_handleNavigationTransition:(UIGestureRecognizer *)pan{
+    [self xa_handleNavigationTransition:pan];
+    UINavigationController *nc = [XATransitionManager sharedManager].nc;
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        nc.xa_Transitioning = YES;
+        
+    }  else if (pan.state == UIGestureRecognizerStateEnded) {
+        nc.xa_Transitioning = NO;
+    }
 }
 
 
@@ -110,7 +130,6 @@
         id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
         //监听push的完成或取消操作
         if (coordinator != nil) {
-            nc.xa_Transitioning = YES;
             if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
                 [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
                     dealInteractionEndAction(context,nc);
@@ -130,15 +149,11 @@
    
     UIViewController *popVc    = [self xa_popViewControllerAnimated:animated];
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
-    if(nc.viewControllers.count <= 0){
-        return popVc;
-    }
     UIViewController *topVC = [nc.viewControllers lastObject];
     if (topVC != nil) {
         id<UIViewControllerTransitionCoordinator> coordinator = topVC.transitionCoordinator;
         //监听pop的完成或取消操作
         if (coordinator != nil) {
-            nc.xa_Transitioning = YES;
             if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
                 [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
                     dealInteractionEndAction(context,nc);
@@ -182,9 +197,7 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
         CGFloat fromVCAlpha   = [context viewControllerForKey:UITransitionContextFromViewControllerKey].xa_navBarAlpha;
         [UIView animateWithDuration:animdDuration animations:^{
             [nc xa_changeNavBarAlpha:fromVCAlpha];
-        }completion:^(BOOL finished) {
-             nc.xa_Transitioning = NO;
-        }];
+        }completion:nil];
         
     } else {// 自动完成(pop到上一个界面了)
         
@@ -192,9 +205,7 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
         CGFloat toVCAlpha     = [context viewControllerForKey:UITransitionContextToViewControllerKey].xa_navBarAlpha;
         [UIView animateWithDuration:animdDuration animations:^{
             [nc xa_changeNavBarAlpha:toVCAlpha];
-        }completion:^(BOOL finished) {
-             nc.xa_Transitioning = NO;
-        }];
+        }completion:nil];
     };
    
 }
@@ -241,6 +252,10 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
         }
         
         if(point.x < 0){ //向左边滑动不处理
+            return NO;
+        }
+        
+        if(self.nc.viewControllers.count <= 1){//栈底控制器不需要
             return NO;
         }
         

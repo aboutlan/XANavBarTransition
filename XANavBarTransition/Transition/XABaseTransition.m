@@ -52,15 +52,15 @@
     progress = MIN(1, MAX(progress, 0));
     if (pan.state == UIGestureRecognizerStateBegan) {
         beginTouchTime = [[NSDate date]timeIntervalSince1970];
+        self.nc.xa_Transitioning = YES;
         [self.nc pushViewController:self.nextVC animated:YES];
-        [self.interactive updateInteractiveTransition:0];    
-        
+        [self.interactive updateInteractiveTransition:0];
     } else if (pan.state == UIGestureRecognizerStateChanged) {
         
         [self.interactive updateInteractiveTransition:progress];
         
     } else if (pan.state == UIGestureRecognizerStateEnded) {
-        
+        self.nc.xa_Transitioning = NO;
         endTouchTime = [[NSDate date]timeIntervalSince1970];
         CGFloat dValueTime = endTouchTime - beginTouchTime;
         if (progress > 0.3 || dValueTime <= 0.15f) {//dValueTime <= 0.15f 该条件用于判断是否为轻扫
