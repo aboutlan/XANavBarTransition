@@ -135,7 +135,7 @@
 }
 
 - (void)setXa_transitionDelegate:(id<XATransitionDelegate>)xa_transitionDelegate{
-    objc_setAssociatedObject(self,@selector(xa_transitionDelegate),xa_transitionDelegate,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self,@selector(xa_transitionDelegate),xa_transitionDelegate,OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (BOOL)xa_isSetBarAlpha{

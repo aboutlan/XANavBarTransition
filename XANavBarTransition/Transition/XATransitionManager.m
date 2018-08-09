@@ -76,9 +76,8 @@
     self.transitionType = transitionType;
     self.transitionDelegate = transitionDelegate;
     self.transition = [XATransitionFactory handlerWithType:transitionType
-                                           navigationController:nc
-                                             transitionDelegate:transitionDelegate];
-    [self createFullScreenPopGestureRecognizer:nc];
+                                      navigationController:nc
+                                        transitionDelegate:transitionDelegate];
 }
 
 - (void)unInitTransitionWithNc:(UINavigationController *)nc{
