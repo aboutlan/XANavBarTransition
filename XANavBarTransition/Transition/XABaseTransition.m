@@ -12,7 +12,7 @@
 @interface XABaseTransition()
 @property (nonatomic, strong, readwrite) XABaseTransitionAnimation *pushAnimation;
 @property (nonatomic, strong, readwrite) XABaseTransitionAnimation *popAnimation;
-@property (nonatomic, assign, readwrite) XATransitionType transitionType;
+@property (nonatomic, assign, readwrite) XATransitionMode transitionMode;
 @end
 
 @implementation XABaseTransition

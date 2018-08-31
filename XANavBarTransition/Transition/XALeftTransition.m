@@ -124,7 +124,7 @@
             return NO;
         }
         
-        self.nextVC = [self.transitionDelegate xa_nextViewControllerInTransitionType:self.transitionType];//是否为有效的控制器
+        self.nextVC = [self.transitionDelegate xa_nextViewControllerInTransitionMode:self.transitionMode];//是否为有效的控制器
         if(self.nextVC  == nil ||
            [self.nc.childViewControllers containsObject:self.nextVC]){
             return NO;
@@ -156,8 +156,8 @@
 
 
 #pragma mark - Getter/Setter
-- (XATransitionType)transitionType{
-    return XATransitionTypeLeft;
+- (XATransitionMode)transitionMode{
+    return XATransitionModeLeft;
 }
 
 - (XABaseTransitionAnimation *)pushAnimation{

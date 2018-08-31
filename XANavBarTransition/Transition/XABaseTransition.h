@@ -24,7 +24,7 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *popInteractivePan;
 @property (nonatomic, strong, readonly) XABaseTransitionAnimation *pushAnimation;
 @property (nonatomic, strong, readonly) XABaseTransitionAnimation *popAnimation;
-@property (nonatomic, assign, readonly) XATransitionType transitionType;
+@property (nonatomic, assign, readonly) XATransitionMode transitionMode;
 
 - (instancetype)initWithNavigationController:(UINavigationController *)nc
                           transitionDelegate:(id<XATransitionDelegate>)delegate;

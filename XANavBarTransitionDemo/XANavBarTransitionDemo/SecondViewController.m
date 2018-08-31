@@ -25,7 +25,7 @@
     self.xa_navBarAlpha = 0;
     self.title = @"2";
     self.xa_transitionDelegate = self;
-    self.xa_transitionType     = XATransitionTypeLeft;
+    self.xa_transitionMode     = XATransitionModeLeft;
 }
 
 
@@ -52,7 +52,7 @@
 }
 
 #pragma mark - <XATransitionDelegate>
-- (UIViewController *)xa_nextViewControllerInTransitionType:(XATransitionType)transitionType{
+- (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{
     UIViewController *vc = [[UIViewController alloc]init];
     vc.view.backgroundColor = [UIColor blueColor];
     return vc;

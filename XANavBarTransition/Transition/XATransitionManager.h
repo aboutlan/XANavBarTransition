@@ -13,14 +13,14 @@
 
 @interface XATransitionManager : NSObject
 @property (nonatomic, strong, readonly) XABaseTransition *transition;
-@property (nonatomic, assign, readonly) XATransitionType transitionType;
+@property (nonatomic, assign, readonly) XATransitionMode transitionMode;
 @property (nonatomic, weak,   readonly) UINavigationController  *nc;
 @property (nonatomic, weak,   readonly) id<XATransitionDelegate> transitionDelegate;
 
 + (instancetype)sharedManager;
 
 - (void)configTransitionWithNc:(UINavigationController *)nc
-                transitionType:(XATransitionType)transitionType
+                transitionMode:(XATransitionMode)transitionMode
             transitionDelegate:(id<XATransitionDelegate>)transitionDelegate;
 
 - (void)unInitTransitionWithNc:(UINavigationController *)nc;

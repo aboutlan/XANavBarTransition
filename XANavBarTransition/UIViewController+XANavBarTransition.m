@@ -19,12 +19,13 @@
 /**
  当前控制器是否设置过导航栏透明度
  */
-@property(nonatomic,assign)BOOL xa_isSetBarAlpha;
+@property(nonatomic, assign)BOOL xa_isSetBarAlpha;
 
 /**
- 当前控制器是否设置过转场信息
+ 当前控制器的转场事件类型
  */
-@property(nonatomic,assign)BOOL xa_isSetTansition;
+@property(nonatomic, assign, readonly)XATransitionAction xa_transitionAction;
+
 @end
 @implementation UIViewController (XANavBarTransition)
 + (void)load{
@@ -82,18 +83,16 @@
     if(self.navigationController == nil){
         return;
     }
-    if([self xa_isSetTansition] &&
-       [self.view xa_isDisplaying]){
+    if([self.view xa_isDisplaying]){
         //配置当前控制器转场信息
-        [self.navigationController xa_configTransitionInfoWithType:self.xa_transitionType
+        [self.navigationController xa_configTransitionInfoWithMode:self.xa_transitionMode
                                                           delegate:self.xa_transitionDelegate];
     }
 }
 
 - (void)xa_dealViewDidDisappear{
-    if([self xa_isSetTansition] &&
-       [self.view xa_isDisplaying]){
-        //清除当前控制器转场信息
+    if([self.view xa_isDisplaying]){
+        //销毁当前控制器转场信息
         [self.navigationController xa_unInitTransitionInfo];
     }
 }
@@ -110,13 +109,12 @@
     [self.navigationController xa_changeNavBarAlpha:xa_navBarAlpha];
 }
 
-- (XATransitionType)xa_transitionType{
+- (XATransitionMode)xa_transitionMode{
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 
-- (void)setXa_transitionType:(XATransitionType)xa_transitionType{
-    self.xa_isSetTansition = xa_transitionType != XATransitionTypeUnknow;
-    objc_setAssociatedObject(self, @selector(xa_transitionType), @(xa_transitionType), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setXa_transitionMode:(XATransitionMode)xa_transitionMode{
+    objc_setAssociatedObject(self, @selector(xa_transitionMode), @(xa_transitionMode), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (id<XATransitionDelegate>)xa_transitionDelegate{
@@ -143,6 +141,27 @@
 
 - (void)setXa_isSetTansition:(BOOL)xa_isSetTansition{
      objc_setAssociatedObject(self, @selector(xa_isSetTansition), @(xa_isSetTansition), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (XATransitionAction)xa_transitionAction{
+    BOOL isPop = YES;
+    XATransitionAction action = XATransitionActionOnlyPop;
+    if(self.xa_transitionDelegate == nil && isPop == NO){
+        
+        action = XATransitionActionNerver;
+        
+    }else if(self.xa_transitionDelegate != nil && isPop == NO){
+        
+        action =  XATransitionActionOnlyPush;
+        
+    }else if(self.xa_transitionDelegate == nil && isPop == YES){
+        
+        action =  XATransitionActionOnlyPop;
+        
+    }else{
+        action = XATransitionActionPushPop;
+    }
+    return action;
 }
 
 

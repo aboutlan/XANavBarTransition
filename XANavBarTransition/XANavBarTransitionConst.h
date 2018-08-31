@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, XATransitionType) {
-    XATransitionTypeUnknow = 0,
-    XATransitionTypeLeft,
-    XATransitionTypeRight
+typedef NS_ENUM(NSInteger, XATransitionMode) {
+    XATransitionModeUnknow = 0,
+    XATransitionModeLeft,
+    XATransitionModeRight
+};
+
+typedef NS_ENUM(NSInteger, XATransitionAction) {
+    XATransitionActionNerver = 0,
+    XATransitionActionOnlyPush,
+    XATransitionActionOnlyPop,
+    XATransitionActionPushPop
 };

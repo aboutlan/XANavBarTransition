@@ -39,17 +39,18 @@
 /**
  改变当前的转场类型
 
- @param xa_transitionType  转场类型
+ @param xa_transitionMode  转场类型
  */
-//- (void)xa_changeTransitionType:(XATransitionType)xa_transitionType;
+//- (void)xa_changetransitionMode:(XATransitionMode)xa_transitionMode;
+
 
 /**
- 配置转场的信息
+  配置转场的信息
 
- @param transitionType 转场类型
+ @param transitionMode 转场类型
  @param transitionDelegate 转场代理
  */
-- (void)xa_configTransitionInfoWithType:(XATransitionType)transitionType
+- (void)xa_configTransitionInfoWithMode:(XATransitionMode)transitionMode
                                delegate:(id <XATransitionDelegate>)transitionDelegate;
 
 /**

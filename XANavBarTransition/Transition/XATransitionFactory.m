@@ -11,7 +11,7 @@
 #import "XARightTransition.h"
 @implementation XATransitionFactory
 + (XABaseTransition *)handlerWithNc:(UINavigationController *)nc
-                     transitionType:(XATransitionType)type
+                     transitionMode:(XATransitionMode)mode
                  transitionDelegate:(id<XATransitionDelegate>)delegate{
     
     if(nc == nil || delegate == nil){
@@ -19,12 +19,12 @@
     }
     
     XABaseTransition *transition = nil;
-    switch (type) {
-        case XATransitionTypeLeft:
+    switch (mode) {
+        case XATransitionModeLeft:
             transition  = [[XALeftTransition alloc] initWithNavigationController:nc
                                                               transitionDelegate:delegate];
             break;
-        case XATransitionTypeRight:
+        case XATransitionModeRight:
              transition = [[XARightTransition alloc] initWithNavigationController:nc
                                                                transitionDelegate:delegate];
         default:

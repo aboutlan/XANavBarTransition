@@ -15,11 +15,11 @@
 
 
 #pragma mark - Transition
-- (void)xa_configTransitionInfoWithType:(XATransitionType)transitionType
-                           delegate:(id <XATransitionDelegate>)transitionDelegate{
+- (void)xa_configTransitionInfoWithMode:(XATransitionMode)transitionMode
+                               delegate:(id <XATransitionDelegate>)transitionDelegate{
     [XATransitionManager.sharedManager configTransitionWithNc:self
-                                               transitionType:transitionType
-                                           transitionDelegate:transitionDelegate ];
+                                               transitionMode:transitionMode
+                                           transitionDelegate:transitionDelegate];
 }
 
 - (void)xa_unInitTransitionInfo{

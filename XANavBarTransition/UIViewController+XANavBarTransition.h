@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XANavBarTransitionConst.h"
 @protocol XATransitionDelegate <NSObject>
-- (UIViewController *)xa_nextViewControllerInTransitionType:(XATransitionType)transitionType;
+- (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode;
 //- (UIViewController *)xa_transitionAnimationDidEnd:(BOOL)isFinish;
 @end
 
@@ -22,7 +22,7 @@
 /**
  转场类型
  */
-@property (nonatomic, assign) XATransitionType xa_transitionType;
+@property (nonatomic, assign) XATransitionMode xa_transitionMode;
 
 /**
  转场代理

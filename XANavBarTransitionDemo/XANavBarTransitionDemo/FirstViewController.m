@@ -31,11 +31,11 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.xa_navBarAlpha = 1;
     self.xa_transitionDelegate = self;
-    self.xa_transitionType     = XATransitionTypeLeft;
+    self.xa_transitionMode     = XATransitionModeLeft;
 }
 
 #pragma mark - <XATransitionDelegate>
-- (UIViewController *)xa_nextViewControllerInTransitionType:(XATransitionType)transitionType{
+- (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{
      return self.desViewController;
 }
 

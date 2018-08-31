@@ -45,8 +45,8 @@
 
 
 #pragma mark - Getter/Setter
-- (XATransitionType)transitionType{
-    return XATransitionTypeRight;
+- (XATransitionMode)transitionMode{
+    return XATransitionModeRight;
 }
 
 
