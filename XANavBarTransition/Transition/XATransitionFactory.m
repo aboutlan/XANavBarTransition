@@ -12,9 +12,10 @@
 @implementation XATransitionFactory
 + (XABaseTransition *)handlerWithNc:(UINavigationController *)nc
                      transitionMode:(XATransitionMode)mode
+                   transitionAction:(XATransitionAction)action
                  transitionDelegate:(id<XATransitionDelegate>)delegate{
     
-    if(nc == nil || delegate == nil){
+    if(nc == nil){
         return nil;
     }
     
@@ -22,11 +23,13 @@
     switch (mode) {
         case XATransitionModeLeft:
             transition  = [[XALeftTransition alloc] initWithNavigationController:nc
+                                                                transitionAction:action
                                                               transitionDelegate:delegate];
             break;
         case XATransitionModeRight:
-             transition = [[XARightTransition alloc] initWithNavigationController:nc
-                                                               transitionDelegate:delegate];
+            transition = [[XARightTransition alloc] initWithNavigationController:nc
+                                                                transitionAction:action
+                                                              transitionDelegate:delegate];
         default:
             break;
     }

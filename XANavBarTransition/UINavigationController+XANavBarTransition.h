@@ -48,9 +48,11 @@
   配置转场的信息
 
  @param transitionMode 转场类型
+ @param transitionAction 转场行为
  @param transitionDelegate 转场代理
  */
 - (void)xa_configTransitionInfoWithMode:(XATransitionMode)transitionMode
+                                 action:(XATransitionAction)transitionAction
                                delegate:(id <XATransitionDelegate>)transitionDelegate;
 
 /**

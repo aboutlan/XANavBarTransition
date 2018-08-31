@@ -21,6 +21,7 @@
 
 - (void)configTransitionWithNc:(UINavigationController *)nc
                 transitionMode:(XATransitionMode)transitionMode
+              transitionAction:(XATransitionAction)transitionAction
             transitionDelegate:(id<XATransitionDelegate>)transitionDelegate;
 
 - (void)unInitTransitionWithNc:(UINavigationController *)nc;

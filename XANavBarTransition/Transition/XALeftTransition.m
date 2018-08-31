@@ -14,44 +14,9 @@
 @end
 
 @implementation XALeftTransition
-#pragma mark - Setup
 
-- (void)setupWithNc:(UINavigationController *)nc
-           delegate:(id<XATransitionDelegate>)delegate{
-    [super setupWithNc:nc delegate:delegate];
-    
-    //接管系统自带的Pop转场
-    [self createPopInteractivePan:nc];
 
-    
-}
 #pragma mark - Action
-- (void)createPopInteractivePan:(UINavigationController *)nc{
-    static __weak UINavigationController *currentPopNc = nil;
-    
-    self.nc.interactivePopGestureRecognizer.delegate = self;
-    if(currentPopNc != nc){
-        currentPopNc = nc;
-        //runtime拿到系统pop手势的target与action,借助其action完成左滑pop转场的功能。
-        UIGestureRecognizer *systemPopGR = currentPopNc.interactivePopGestureRecognizer;
-        id  target = [[systemPopGR valueForKey:@"_targets"]firstObject];
-        id  transitionTarget   = [target valueForKey:@"_target"];
-        SEL transitionSEL      = NSSelectorFromString(@"handleNavigationTransition:");
-        self.popInteractivePan = [[UIPanGestureRecognizer alloc]initWithTarget:transitionTarget action:transitionSEL];
-        [currentPopNc.view addGestureRecognizer:self.popInteractivePan];
-        
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [XANavBarTransitionTool swizzlingMethodWithOrginClass:[target class] swizzledClass:[self class] originalSEL:transitionSEL swizzledSEL:@selector(xa_handleNavigationTransition:)];
-        });
-    }
-
-    self.popInteractivePan.delegate = self;
-    self.popInteractivePan.enabled  = YES;
-}
-
-
-
 - (void)interactiveTransitioningEvent:(UIPanGestureRecognizer *)pan{
     if(pan == self.pushInteractivePan){
         static NSTimeInterval beginTouchTime,endTouchTime;//beginTouchTime和endTouchTime这两个数据量主要是用于参考是否为轻扫
@@ -107,14 +72,9 @@
 
 #pragma mark - <UIGestureRecognizerDelegate>
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
-    NSLog(@"xa:gestureRecognizerShouldBegin:%@",gestureRecognizer);
     if(gestureRecognizer == self.pushInteractivePan){
         CGPoint point    = [gestureRecognizer translationInView:nil];
         CGPoint velocity = [gestureRecognizer velocityInView:nil];
-        
-        if(!self.transitionEnable){
-            return NO;
-        }
         
         if (fabs(velocity.y) > fabs(velocity.x)) {//垂直方向不处理
             return NO;
@@ -176,5 +136,23 @@
     return nil;
 }
 
+- (UIPanGestureRecognizer *)popInteractivePan{
+    if(_popInteractivePan == nil){
+        //接管系统的pop手势,runtime拿到系统pop手势的target与action,借助其action完成左滑pop转场的功能。
+        UIGestureRecognizer *systemPopGR = self.nc.interactivePopGestureRecognizer;
+        id  target = [[systemPopGR valueForKey:@"_targets"]firstObject];
+        id  transitionTarget   = [target valueForKey:@"_target"];
+        SEL transitionSEL      = NSSelectorFromString(@"handleNavigationTransition:");
+        
+        _popInteractivePan = [[UIPanGestureRecognizer alloc]initWithTarget:transitionTarget action:transitionSEL];
+        [self.nc.view addGestureRecognizer:_popInteractivePan];
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [XANavBarTransitionTool swizzlingMethodWithOrginClass:[target class] swizzledClass:[self class] originalSEL:transitionSEL swizzledSEL:@selector(xa_handleNavigationTransition:)];
+        });
+    }
+    return _popInteractivePan;
+}
 
 @end

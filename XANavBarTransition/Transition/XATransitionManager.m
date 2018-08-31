@@ -17,6 +17,7 @@
 @property (nonatomic, assign) BOOL  hasConfigCompletion;
 @property (nonatomic, strong, readwrite) XABaseTransition *transition;
 @property (nonatomic, assign, readwrite) XATransitionMode transitionMode;
+@property (nonatomic, assign, readwrite) XATransitionAction transitionAction;
 @property (nonatomic, weak,   readwrite) UINavigationController  *nc;
 @property (nonatomic, weak,   readwrite) id<XATransitionDelegate> transitionDelegate;
 @end
@@ -46,14 +47,17 @@
 #pragma mark - Action
 - (void)configTransitionWithNc:(UINavigationController *)nc
                 transitionMode:(XATransitionMode)transitionMode
+              transitionAction:(XATransitionAction)transitionAction
             transitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
     self.nc = nc;
     self.nc.delegate = self;
-    self.transitionMode = transitionMode;
+    self.transitionMode     = transitionMode;
+    self.transitionAction   = transitionAction;
     self.transitionDelegate = transitionDelegate;
     self.transition = [XATransitionFactory handlerWithNc:nc
                                           transitionMode:transitionMode
-                                        transitionDelegate:transitionDelegate];
+                                        transitionAction:transitionAction
+                                      transitionDelegate:transitionDelegate];
     
 }
 
@@ -130,7 +134,6 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 
 - (void)releaseResource{
     self.nc.xa_Transitioning = NO;
-    self.transitionMode = XATransitionModeUnknow;
     self.transition = nil;
     self.transitionDelegate = nil;
 }
@@ -150,8 +153,7 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
-    if(self.transition.transitionEnable &&
-       [self.transitionDelegate respondsToSelector:@selector(xa_nextViewControllerInTransitionMode:)]){
+    if([self.transitionDelegate respondsToSelector:@selector(xa_nextViewControllerInTransitionMode:)]){
         return self.transition.interactive;
     }
     return nil;

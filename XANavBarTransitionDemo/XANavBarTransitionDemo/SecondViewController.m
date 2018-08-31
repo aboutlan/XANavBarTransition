@@ -9,7 +9,7 @@
 #import "SecondViewController.h"
 #import "XANavBarTransition.h"
 #import "CommonDefine.h"
-@interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource,XATransitionDelegate>
+@interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource>
 @end
 
 @implementation SecondViewController
@@ -24,8 +24,7 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.xa_navBarAlpha = 0;
     self.title = @"2";
-    self.xa_transitionDelegate = self;
-    self.xa_transitionMode     = XATransitionModeLeft;
+    self.xa_transitionMode = XATransitionModeLeft;
 }
 
 
@@ -52,11 +51,11 @@
 }
 
 #pragma mark - <XATransitionDelegate>
-- (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{
-    UIViewController *vc = [[UIViewController alloc]init];
-    vc.view.backgroundColor = [UIColor blueColor];
-    return vc;
-}
+//- (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{
+//    UIViewController *vc = [[UIViewController alloc]init];
+//    vc.view.backgroundColor = [UIColor blueColor];
+//    return vc;
+//}
 
 
 @end

@@ -25,9 +25,6 @@
         CGPoint point    = [gestureRecognizer translationInView:nil];
         CGPoint velocity = [gestureRecognizer velocityInView:nil];
         
-        if(!self.transitionEnable){
-            return NO;
-        }
         
         if (fabs(velocity.y) > fabs(velocity.x)) {//垂直方向不处理
             return NO;

@@ -22,7 +22,7 @@
 @property(nonatomic, assign)BOOL xa_isSetBarAlpha;
 
 /**
- 当前控制器的转场事件类型
+ 当前控制器的转场行为类型
  */
 @property(nonatomic, assign, readonly)XATransitionAction xa_transitionAction;
 
@@ -86,6 +86,7 @@
     if([self.view xa_isDisplaying]){
         //配置当前控制器转场信息
         [self.navigationController xa_configTransitionInfoWithMode:self.xa_transitionMode
+                                                            action:self.xa_transitionAction
                                                           delegate:self.xa_transitionDelegate];
     }
 }

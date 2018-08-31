@@ -9,14 +9,17 @@
 #import "XABaseTransition.h"
 #import "XANavBarTransition.h"
 #import "XABaseTransition.h"
+
+
 @interface XABaseTransition()
 @property (nonatomic, strong, readwrite) XABaseTransitionAnimation *pushAnimation;
 @property (nonatomic, strong, readwrite) XABaseTransitionAnimation *popAnimation;
 @property (nonatomic, assign, readwrite) XATransitionMode transitionMode;
 @end
 
-@implementation XABaseTransition
 
+@implementation XABaseTransition
+#pragma mark - Setup
 + (void)load{
     //交换导航控制器的手势进度转场方法,来监听手势滑动的进度
     SEL percentOriginalSEL =  NSSelectorFromString(@"_updateInteractiveTransition:");
@@ -25,26 +28,29 @@
 }
 
 - (instancetype)initWithNavigationController:(UINavigationController *)nc
+                            transitionAction:(XATransitionAction)action
                           transitionDelegate:(id<XATransitionDelegate>)delegate{
     if(self = [super init]){
-        [self setupWithNc:nc delegate:delegate];
+        [self setupWithNc:nc action:action delegate:delegate];
     }
     return self;
 }
 
-#pragma mark - Setup
 - (void)setupWithNc:(UINavigationController *)nc
+             action:(XATransitionAction)action
            delegate:(id<XATransitionDelegate>)delegate{
     self.nc = nc;
     self.transitionView     = nc.view;
     self.transitionDelegate = delegate;
-    [self setupGestureRecognize:nc.view];
+    [self setupGestureRecognize:nc.view action:action];
 }
 
-- (void)setupGestureRecognize:(UIView *)transitionView{
-    self.pushInteractivePan.enabled  = YES;
+- (void)setupGestureRecognize:(UIView *)transitionView
+                       action:(XATransitionAction)action{
     self.pushInteractivePan.delegate = self;
-    self.transitionEnable = self.pushInteractivePan.enabled;
+    self.popInteractivePan.delegate  = self;
+    self.pushTransitionEnable = action == XATransitionActionOnlyPush || action == XATransitionActionPushPop;
+    self.popTransitionEnable  = action == XATransitionActionOnlyPop  || action == XATransitionActionPushPop;
     [transitionView addGestureRecognizer:self.pushInteractivePan];
 }
 
@@ -79,18 +85,6 @@
 
 
 #pragma mark - Getter/Setter
-- (void)setTransitionEnable:(BOOL)transitionEnable{
-    _transitionEnable = transitionEnable;
-    self.pushInteractivePan.enabled = transitionEnable;
-    
-    //如果关闭了全屏滑动,就开启系统的边缘滑动并接管代理
-    //    BOOL interactivePopEnabled  =  !self.fullscreenPanGestureRecognizer.enabled;
-    //需求,不开启侧滑
-//    BOOL interactivePopEnabled = NO;
-//    self.interactivePopGestureRecognizer.enabled  = interactivePopEnabled;
-//    self.interactivePopGestureRecognizer.delegate = interactivePopEnabled ? self : self.interactivePopGestureRecognizerDelegate;
-}
-
 - (UIPercentDrivenInteractiveTransition *)interactive{
     if(_interactive == nil){
         _interactive = ({
@@ -123,4 +117,23 @@
     }
     return _popInteractivePan;
 }
+
+- (BOOL)pushTransitionEnable{
+    return self.pushInteractivePan.enabled;
+}
+
+- (void)setPushTransitionEnable:(BOOL)pushTransitionEnable{
+    self.pushInteractivePan.enabled  = pushTransitionEnable;
+    self.pushInteractivePan.delegate = pushTransitionEnable ? self : nil;
+}
+
+- (BOOL)popTransitionEnable{
+    return self.popInteractivePan.enabled;
+}
+
+- (void)setPopTransitionEnable:(BOOL)popTransitionEnable{
+    self.popInteractivePan.enabled  = popTransitionEnable;
+    self.popInteractivePan.delegate = popTransitionEnable ? self : nil;
+}
+
 @end

@@ -16,9 +16,11 @@
 
 #pragma mark - Transition
 - (void)xa_configTransitionInfoWithMode:(XATransitionMode)transitionMode
+                                 action:(XATransitionAction)transitionAction
                                delegate:(id <XATransitionDelegate>)transitionDelegate{
     [XATransitionManager.sharedManager configTransitionWithNc:self
                                                transitionMode:transitionMode
+                                             transitionAction:transitionAction
                                            transitionDelegate:transitionDelegate];
 }
 

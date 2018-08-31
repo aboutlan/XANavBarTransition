@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, XATransitionMode) {
-    XATransitionModeUnknow = 0,
-    XATransitionModeLeft,
-    XATransitionModeRight
+    XATransitionModeLeft = 0, //mode:left push，right pop
+    XATransitionModeRight//mode:right push,left pop
 };
 
 typedef NS_ENUM(NSInteger, XATransitionAction) {

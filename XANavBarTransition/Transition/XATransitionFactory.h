@@ -13,5 +13,6 @@
 @interface XATransitionFactory : NSObject
 + (XABaseTransition *)handlerWithNc:(UINavigationController *)nc
                      transitionMode:(XATransitionMode)mode
+                   transitionAction:(XATransitionAction)action
                  transitionDelegate:(id<XATransitionDelegate>)delegate;
 @end
