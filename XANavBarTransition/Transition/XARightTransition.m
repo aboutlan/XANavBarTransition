@@ -21,7 +21,7 @@
 #pragma mark - <UIGestureRecognizerDelegate>
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
     
-    if(gestureRecognizer == self.interactivePan){
+    if(gestureRecognizer == self.pushInteractivePan){
         CGPoint point    = [gestureRecognizer translationInView:nil];
         CGPoint velocity = [gestureRecognizer velocityInView:nil];
         

@@ -11,6 +11,8 @@
 #import "UIView+XATransitionExtension.h"
 #import <objc/message.h>
 #import "XANavBarTransition.h"
+#import "XANavBarTransitionTool.h"
+
 
 @interface UIViewController ()
 
@@ -29,29 +31,18 @@
     
     SEL  originalWillAppearSEL = @selector(viewWillAppear:);
     SEL  swizzledWillAppearSEL = @selector(xa_viewWillAppear:);
-    [self swizzlingMethodWithOriginal:originalWillAppearSEL swizzled:swizzledWillAppearSEL];
+    [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalWillAppearSEL swizzledSEL:swizzledWillAppearSEL];
     
     SEL  originalDidAppearSEL = @selector(viewDidAppear:);
     SEL  swizzledDidAppearSEL = @selector(xa_viewDidAppear:);
-    [self swizzlingMethodWithOriginal:originalDidAppearSEL swizzled:swizzledDidAppearSEL];
+    [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalDidAppearSEL swizzledSEL:swizzledDidAppearSEL];
     
     SEL  originalDidDisappearSEL = @selector(viewDidDisappear:);
     SEL  swizzledDidDisappearSEL = @selector(xa_viewDidDisappear:);
-    [self swizzlingMethodWithOriginal:originalDidDisappearSEL swizzled:swizzledDidDisappearSEL];
-   
+    [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalDidDisappearSEL swizzledSEL:swizzledDidDisappearSEL];
 }
 
-+ (void)swizzlingMethodWithOriginal:(SEL)originalSEL swizzled:(SEL)swizzledSEL{
 
-    Method orginMethod   = class_getInstanceMethod(self, originalSEL);
-    Method swizzldMethod = class_getInstanceMethod(self, swizzledSEL);
-    IMP originalIMP = method_getImplementation(orginMethod);
-    IMP swizzldIMP  = method_getImplementation(swizzldMethod);
-    const char *originalType = method_getTypeEncoding(orginMethod);
-    const char *swizzldType  = method_getTypeEncoding(swizzldMethod);
-    class_replaceMethod(self, swizzledSEL, originalIMP, originalType);
-    class_replaceMethod(self, originalSEL, swizzldIMP, swizzldType);
-}
 
 #pragma mark - Action
 - (void)xa_viewWillAppear:(BOOL)animated{

@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XABaseTransition.h"
 #import "XANavBarTransitionConst.h"
 #import "UINavigationController+XANavBarTransition.h"
 
 @interface XATransitionManager : NSObject
+@property (nonatomic, strong, readonly) XABaseTransition *transition;
 @property (nonatomic, assign, readonly) XATransitionType transitionType;
-@property (nonatomic, assign, readonly) BOOL isTransitioning;
 @property (nonatomic, weak,   readonly) UINavigationController  *nc;
 @property (nonatomic, weak,   readonly) id<XATransitionDelegate> transitionDelegate;
 

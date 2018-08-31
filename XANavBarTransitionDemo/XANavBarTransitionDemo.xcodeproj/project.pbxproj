@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3849E363211BEB7100501E0B /* XANavBarTransitionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */; };
 		3855DAF61F30602200628B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF51F30602200628B4D /* main.m */; };
 		3855DAF91F30602200628B4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF81F30602200628B4D /* AppDelegate.m */; };
 		3855DAFF1F30602200628B4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3855DAFD1F30602200628B4D /* Main.storyboard */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3849E361211BEB7100501E0B /* XANavBarTransitionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransitionTool.h; sourceTree = "<group>"; };
+		3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionTool.m; sourceTree = "<group>"; };
 		3855DAF11F30602200628B4D /* XANavBarTransitionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XANavBarTransitionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3855DAF51F30602200628B4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3855DAF71F30602200628B4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */,
 				38B13C5D20B2D877008E5096 /* XANavBarTransitionConst.h */,
 				38B13C5E20B2D877008E5096 /* XANavBarTransitionConst.m */,
+				3849E361211BEB7100501E0B /* XANavBarTransitionTool.h */,
+				3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */,
 				3855DB481F30822E00628B4D /* XANavBarTransition.h */,
 			);
 			name = XANavBarTransition;
@@ -407,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38A2369620B5543400189E94 /* XARightTransition.m in Sources */,
+				3849E363211BEB7100501E0B /* XANavBarTransitionTool.m in Sources */,
 				3855DB2E1F30622400628B4D /* SecondViewController.m in Sources */,
 				3855DAF91F30602200628B4D /* AppDelegate.m in Sources */,
 				3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */,
