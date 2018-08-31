@@ -221,8 +221,8 @@
 		386726B9210700EF00DAABB1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */,
 				386726BB210700EF00DAABB1 /* UIView+XATransitionExtension.h */,
+				386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";

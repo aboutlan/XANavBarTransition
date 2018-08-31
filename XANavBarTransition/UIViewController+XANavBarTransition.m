@@ -42,8 +42,6 @@
     [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalDidDisappearSEL swizzledSEL:swizzledDidDisappearSEL];
 }
 
-
-
 #pragma mark - Action
 - (void)xa_viewWillAppear:(BOOL)animated{
     [self xa_viewWillAppear:YES];
@@ -144,7 +142,6 @@
 }
 
 - (void)setXa_isSetTansition:(BOOL)xa_isSetTansition{
-    
      objc_setAssociatedObject(self, @selector(xa_isSetTansition), @(xa_isSetTansition), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

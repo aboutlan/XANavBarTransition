@@ -51,10 +51,10 @@
     self.nc.delegate = self;
     self.transitionType = transitionType;
     self.transitionDelegate = transitionDelegate;
-    self.transition = [XATransitionFactory handlerWithType:transitionType
-                                      navigationController:nc
+    self.transition = [XATransitionFactory handlerWithNc:nc
+                                          transitionType:transitionType
                                         transitionDelegate:transitionDelegate];
-   
+    
 }
 
 - (void)unInitTransitionWithNc:(UINavigationController *)nc{

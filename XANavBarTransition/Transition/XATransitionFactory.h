@@ -11,8 +11,7 @@
 #import "XANavBarTransitionConst.h"
 
 @interface XATransitionFactory : NSObject
-
-+ (XABaseTransition *)handlerWithType:(XATransitionType)type
-                 navigationController:(UINavigationController *)nc
-                   transitionDelegate:(id<XATransitionDelegate>)delegate;
++ (XABaseTransition *)handlerWithNc:(UINavigationController *)nc
+                     transitionType:(XATransitionType)type
+                 transitionDelegate:(id<XATransitionDelegate>)delegate;
 @end
