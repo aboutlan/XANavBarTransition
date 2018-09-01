@@ -20,7 +20,7 @@
 /**
  是否允许左滑Pop
  */
-@property (nonatomic, assign, getter=xa_isPopEnable) BOOL xa_popEnable;
+//@property (nonatomic, assign, getter=xa_isPopEnable) BOOL xa_popEnable;
 
 /**
  改变当前导航栏的透明度

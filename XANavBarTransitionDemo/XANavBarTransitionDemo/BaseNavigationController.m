@@ -31,7 +31,7 @@
                                                  NSFontAttributeName : [UIFont systemFontOfSize:16]
                                                  }];
   
-    self.xa_popEnable = YES;
+//    self.xa_popEnable = YES;
     
     
 }

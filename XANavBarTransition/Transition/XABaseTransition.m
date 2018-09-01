@@ -47,11 +47,10 @@
 
 - (void)setupGestureRecognize:(UIView *)transitionView
                        action:(XATransitionAction)action{
-    self.pushInteractivePan.delegate = self;
-    self.popInteractivePan.delegate  = self;
+    self.interactivePan.delegate = self;
     self.pushTransitionEnable = action == XATransitionActionOnlyPush || action == XATransitionActionPushPop;
     self.popTransitionEnable  = action == XATransitionActionOnlyPop  || action == XATransitionActionPushPop;
-    [transitionView addGestureRecognizer:self.pushInteractivePan];
+    [transitionView addGestureRecognizer:self.interactivePan];
 }
 
 #pragma mark - Action
@@ -78,62 +77,28 @@
     }
 }
 
-#pragma mark - Deal
-- (CGFloat)calcTransitioningX:(CGPoint)translationPoint{
-    return 0;
-}
-
-
 #pragma mark - Getter/Setter
-- (UIPercentDrivenInteractiveTransition *)interactive{
-    if(_interactive == nil){
-        _interactive = ({
+- (UIPercentDrivenInteractiveTransition *)percentInteractive{
+    if(_percentInteractive == nil){
+        _percentInteractive = ({
             UIPercentDrivenInteractiveTransition *interactive = [[UIPercentDrivenInteractiveTransition alloc] init];
             interactive.completionCurve = UIViewAnimationCurveEaseOut;
             interactive.completionSpeed = 0.99;
             interactive;
         });
     }
-    return _interactive;
+    return _percentInteractive;
 }
 
-- (UIPanGestureRecognizer *)pushInteractivePan{
-    if(_pushInteractivePan == nil){
-        _pushInteractivePan = ({
+- (UIPanGestureRecognizer *)interactivePan{
+    if(_interactivePan == nil){
+        _interactivePan = ({
             UIPanGestureRecognizer *interactiveGR  = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(interactiveTransitioningEvent:)];
             interactiveGR;
         });
     }
-    return _pushInteractivePan;
+    return _interactivePan;
 }
 
-
-- (UIPanGestureRecognizer *)popInteractivePan{
-    if(_popInteractivePan == nil){
-        _popInteractivePan = ({
-            UIPanGestureRecognizer *interactiveGR  = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(interactiveTransitioningEvent:)];
-            interactiveGR;
-        });
-    }
-    return _popInteractivePan;
-}
-
-- (BOOL)pushTransitionEnable{
-    return self.pushInteractivePan.enabled;
-}
-
-- (void)setPushTransitionEnable:(BOOL)pushTransitionEnable{
-    self.pushInteractivePan.enabled  = pushTransitionEnable;
-    self.pushInteractivePan.delegate = pushTransitionEnable ? self : nil;
-}
-
-- (BOOL)popTransitionEnable{
-    return self.popInteractivePan.enabled;
-}
-
-- (void)setPopTransitionEnable:(BOOL)popTransitionEnable{
-    self.popInteractivePan.enabled  = popTransitionEnable;
-    self.popInteractivePan.delegate = popTransitionEnable ? self : nil;
-}
 
 @end

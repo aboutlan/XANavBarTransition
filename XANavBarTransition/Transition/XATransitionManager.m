@@ -153,10 +153,8 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
-    if([self.transitionDelegate respondsToSelector:@selector(xa_nextViewControllerInTransitionMode:)]){
-        return self.transition.interactive;
-    }
-    return nil;
+    
+    return self.transition.percentInteractive;
 }
 
 

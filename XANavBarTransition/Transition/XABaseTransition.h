@@ -13,8 +13,7 @@
 @interface XABaseTransition : NSObject<UIGestureRecognizerDelegate>{
     @protected
     XABaseTransitionAnimation *_animation;
-    UIPanGestureRecognizer *_pushInteractivePan;
-    UIPanGestureRecognizer *_popInteractivePan;
+    UIPanGestureRecognizer *_interactive;
 }
 @property (nonatomic, weak)   UIView *transitionView;
 @property (nonatomic, weak)   UINavigationController *nc;
@@ -22,9 +21,8 @@
 @property (nonatomic, strong) UIViewController *nextVC;
 @property (nonatomic, assign) BOOL pushTransitionEnable;
 @property (nonatomic, assign) BOOL popTransitionEnable;
-@property (nonatomic, strong) UIPanGestureRecognizer *pushInteractivePan;
-@property (nonatomic, strong) UIPanGestureRecognizer *popInteractivePan;
-@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactive;
+@property (nonatomic, strong) UIPanGestureRecognizer *interactivePan;
+@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *percentInteractive;
 @property (nonatomic, strong, readonly) XABaseTransitionAnimation *pushAnimation;
 @property (nonatomic, strong, readonly) XABaseTransitionAnimation *popAnimation;
 @property (nonatomic, assign, readonly) XATransitionMode transitionMode;
@@ -39,7 +37,5 @@
            delegate:(id<XATransitionDelegate>)delegate;
 
 - (void)interactiveTransitioningEvent:(UIPanGestureRecognizer *)pan;
-
-- (CGFloat)calcTransitioningX:(CGPoint)translationPoint;
 @end
 
