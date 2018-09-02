@@ -18,7 +18,7 @@
 
 #pragma mark - Action
 - (void)interactiveTransitioningEvent:(UIPanGestureRecognizer *)pan{
-    
+    [super interactiveTransitioningEvent:pan];
     if(pan == self.interactivePan){
         static NSTimeInterval beginTouchTime,endTouchTime;//beginTouchTime和endTouchTime这两个数据量主要是用于参考是否为轻扫
         CGPoint translationPoint = [pan translationInView:self.transitionView];
@@ -26,7 +26,6 @@
         progress = MIN(1, MAX(progress, 0));
         if (pan.state == UIGestureRecognizerStateBegan) {
             beginTouchTime = [[NSDate date]timeIntervalSince1970];
-            self.nc.xa_Transitioning = YES;
             if(translationPoint.x < 0){//push
                 [self.nc pushViewController:self.nextVC animated:YES];
             }else{//pop
@@ -38,7 +37,6 @@
             [self.percentInteractive updateInteractiveTransition:progress];
             
         } else if (pan.state == UIGestureRecognizerStateEnded) {
-            self.nc.xa_Transitioning = NO;
             endTouchTime = [[NSDate date]timeIntervalSince1970];
             CGFloat dValueTime = endTouchTime - beginTouchTime;
             if (progress > 0.3 || dValueTime <= 0.15f) {//dValueTime <= 0.15f 该条件用于判断是否为轻扫

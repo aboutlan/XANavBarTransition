@@ -57,6 +57,18 @@
 #pragma mark - Action
 - (void)interactiveTransitioningEvent:(UIPanGestureRecognizer *)pan{
     
+    if(pan == self.interactivePan){
+        if (pan.state == UIGestureRecognizerStateBegan) {
+            self.nc.xa_Transitioning = YES;
+            self.percentInteractive = [[UIPercentDrivenInteractiveTransition alloc] init];
+            self.percentInteractive.completionCurve = UIViewAnimationCurveEaseOut;
+            self.percentInteractive.completionSpeed = 0.99;
+           
+        } else if (pan.state == UIGestureRecognizerStateEnded) {
+            self.nc.xa_Transitioning = NO;
+        }
+    }
+    
 }
 
 - (void)xa_updateInteractiveTransition:(CGFloat)percentComplete{
@@ -79,17 +91,6 @@
 }
 
 #pragma mark - Getter/Setter
-- (UIPercentDrivenInteractiveTransition *)percentInteractive{
-    if(_percentInteractive == nil){
-        _percentInteractive = ({
-            UIPercentDrivenInteractiveTransition *interactive = [[UIPercentDrivenInteractiveTransition alloc] init];
-            interactive.completionCurve = UIViewAnimationCurveEaseOut;
-            interactive.completionSpeed = 0.99;
-            interactive;
-        });
-    }
-    return _percentInteractive;
-}
 
 - (UIPanGestureRecognizer *)interactivePan{
     if(_interactivePan == nil){
