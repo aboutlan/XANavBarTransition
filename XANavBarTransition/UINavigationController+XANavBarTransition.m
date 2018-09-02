@@ -12,8 +12,19 @@
 #import <objc/message.h>
 
 @implementation UINavigationController (XANavBarTransition)
+#pragma mark - Setup
++ (void)load{
+    
+    SEL  originalWillAppearSEL = @selector(viewDidLoad);
+    SEL  swizzledWillAppearSEL = @selector(xa_viewDidLoad);
+    [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalWillAppearSEL swizzledSEL:swizzledWillAppearSEL];
+}
 
-
+- (void)xa_viewDidLoad {
+    [self xa_viewDidLoad];
+    self.xa_TransitionEnable = YES;
+    
+}
 #pragma mark - Transition
 - (void)xa_configTransitionInfoWithMode:(XATransitionMode)transitionMode
                                  action:(XATransitionAction)transitionAction
@@ -55,12 +66,14 @@
     objc_setAssociatedObject(self, @selector(xa_isTransitioning), @(xa_Transitioning), OBJC_ASSOCIATION_RETAIN);
 }
 
-- (BOOL)xa_isPopEnable{
-    return [objc_getAssociatedObject(self, _cmd)boolValue];
+
+- (void)setXa_TransitionEnable:(BOOL)xa_TransitionEnable{
+    objc_setAssociatedObject(self, @selector(xa_isTransitionEnable), @(xa_TransitionEnable), OBJC_ASSOCIATION_RETAIN);
+    XATransitionManager.sharedManager.transitionEnable = xa_TransitionEnable;
 }
 
-- (void)setXa_popEnable:(BOOL)xa_popEnable{
-     objc_setAssociatedObject(self, @selector(xa_isPopEnable), @(xa_popEnable), OBJC_ASSOCIATION_RETAIN);
+- (BOOL)xa_isTransitionEnable{
+    return [objc_getAssociatedObject(self, _cmd)boolValue];;
 }
 
 @end

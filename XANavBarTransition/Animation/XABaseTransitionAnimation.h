@@ -13,6 +13,6 @@ typedef NS_ENUM(NSInteger,XATransitionAnimationType){
 };
 
 @interface XABaseTransitionAnimation : NSObject<UIViewControllerAnimatedTransitioning>
-@property (nonatomic,assign) XATransitionAnimationType animationType;
-@property (nonatomic,copy)   dispatch_block_t transitionCompletion;
+@property (nonatomic, assign) XATransitionAnimationType animationType;
+@property (nonatomic, copy)   dispatch_block_t transitionCompletion;
 @end

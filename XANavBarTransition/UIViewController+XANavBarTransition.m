@@ -28,6 +28,7 @@
 
 @end
 @implementation UIViewController (XANavBarTransition)
+#pragma mark - Setup
 + (void)load{
     
     SEL  originalWillAppearSEL = @selector(viewWillAppear:);
@@ -43,7 +44,7 @@
     [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalDidDisappearSEL swizzledSEL:swizzledDidDisappearSEL];
 }
 
-#pragma mark - Action
+
 - (void)xa_viewWillAppear:(BOOL)animated{
     [self xa_viewWillAppear:YES];
     

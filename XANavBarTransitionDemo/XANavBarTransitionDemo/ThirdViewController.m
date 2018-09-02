@@ -8,7 +8,7 @@
 
 #import "ThirdViewController.h"
 #import "XANavBarTransition.h"
-@interface ThirdViewController ()
+@interface ThirdViewController ()//<UIGestureRecognizerDelegate>
 
 @end
 
@@ -23,7 +23,18 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.xa_navBarAlpha = 0.5;
     self.title = @"3";
+    
+    
+//    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
+
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+//    return YES;
+//}
+//
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//     self.navigationController.xa_TransitionEnable = NO;
+//}
 
 @end

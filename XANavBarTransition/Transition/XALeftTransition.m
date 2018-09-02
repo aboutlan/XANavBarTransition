@@ -22,7 +22,7 @@
     if(pan == self.interactivePan){
         static NSTimeInterval beginTouchTime,endTouchTime;//beginTouchTime和endTouchTime这两个数据量主要是用于参考是否为轻扫
         CGPoint translationPoint = [pan translationInView:self.transitionView];
-        CGFloat progress  = fabs(translationPoint.x / [UIScreen mainScreen].bounds.size.width) * 1.2;
+        CGFloat progress  = fabs(translationPoint.x / [UIScreen mainScreen].bounds.size.width) ;
         progress = MIN(1, MAX(progress, 0));
         if (pan.state == UIGestureRecognizerStateBegan) {
             beginTouchTime = [[NSDate date]timeIntervalSince1970];

@@ -18,9 +18,9 @@
 @property (nonatomic, assign, getter=xa_isTransitioning) BOOL xa_Transitioning;
 
 /**
- 是否允许左滑Pop
+ 是否开启转场功能
  */
-//@property (nonatomic, assign, getter=xa_isPopEnable) BOOL xa_popEnable;
+@property (nonatomic, assign, getter=xa_isTransitionEnable) BOOL xa_TransitionEnable;
 
 /**
  改变当前导航栏的透明度
@@ -28,21 +28,6 @@
  @param navBarAlpha 透明度
  */
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha;
-
-/**
- 改变当前的转场代理
-
- @param xa_transitionDelegate 转场代理
- */
-//- (void)xa_changeTransitionDelegate:(id <XATransitionDelegate>)xa_transitionDelegate;
-
-/**
- 改变当前的转场类型
-
- @param xa_transitionMode  转场类型
- */
-//- (void)xa_changetransitionMode:(XATransitionMode)xa_transitionMode;
-
 
 /**
   配置转场的信息

@@ -30,7 +30,6 @@
                                                  NSForegroundColorAttributeName:[UIColor whiteColor],
                                                  NSFontAttributeName : [UIFont systemFontOfSize:16]
                                                  }];
-  
 //    self.xa_popEnable = YES;
     
     

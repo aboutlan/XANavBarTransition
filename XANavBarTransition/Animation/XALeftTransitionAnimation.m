@@ -46,7 +46,6 @@
             [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
         }];
     }
-    
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted{

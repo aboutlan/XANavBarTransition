@@ -48,6 +48,7 @@
 - (void)setupGestureRecognize:(UIView *)transitionView
                        action:(XATransitionAction)action{
     self.interactivePan.delegate = self;
+    self.transitionEnable = [self.nc xa_isTransitionEnable];
     self.pushTransitionEnable = action == XATransitionActionOnlyPush || action == XATransitionActionPushPop;
     self.popTransitionEnable  = action == XATransitionActionOnlyPop  || action == XATransitionActionPushPop;
     [transitionView addGestureRecognizer:self.interactivePan];
@@ -100,5 +101,12 @@
     return _interactivePan;
 }
 
+- (void)setTransitionEnable:(BOOL)transitionEnable{
+    self.interactivePan.enabled = transitionEnable;
+}
+
+- (BOOL)transitionEnable{
+    return self.interactivePan.enabled;
+}
 
 @end

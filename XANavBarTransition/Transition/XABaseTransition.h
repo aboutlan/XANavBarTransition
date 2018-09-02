@@ -19,6 +19,7 @@
 @property (nonatomic, weak)   UINavigationController *nc;
 @property (nonatomic, weak)   id<XATransitionDelegate> transitionDelegate;
 @property (nonatomic, strong) UIViewController *nextVC;
+@property (nonatomic, assign) BOOL transitionEnable;//禁止手势滑动
 @property (nonatomic, assign) BOOL pushTransitionEnable;
 @property (nonatomic, assign) BOOL popTransitionEnable;
 @property (nonatomic, strong) UIPanGestureRecognizer *interactivePan;

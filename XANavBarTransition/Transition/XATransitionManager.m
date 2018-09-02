@@ -58,6 +58,7 @@
                                           transitionMode:transitionMode
                                         transitionAction:transitionAction
                                       transitionDelegate:transitionDelegate];
+
     
 }
 
@@ -148,7 +149,6 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     }else if(operation == UINavigationControllerOperationPop){
         transitionAnim = self.transition.popAnimation;
     }
-
     return transitionAnim;
 }
 
@@ -167,5 +167,15 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     _transitionDelegate = transitionDelegate;
     self.transition.transitionDelegate = transitionDelegate;
 }
+
+
+- (void)setTransitionEnable:(BOOL)transitionEnable{
+    self.transition.transitionEnable = transitionEnable;
+}
+
+- (BOOL)transitionEnable{
+    return self.transition.transitionEnable;
+}
+
 @end
 
