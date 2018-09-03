@@ -32,11 +32,10 @@
                             transitionAction:(XATransitionAction)action
                           transitionDelegate:(id<XATransitionDelegate>)delegate;
 
-#pragma mark - Subclass Rewrite
+
+#pragma mark - Override
 - (void)setupWithNc:(UINavigationController *)nc
              action:(XATransitionAction)action
            delegate:(id<XATransitionDelegate>)delegate;
-
-- (void)interactiveTransitioningEvent:(UIPanGestureRecognizer *)pan;
 @end
 

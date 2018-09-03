@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Lan. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, XATransitionMode) {
     XATransitionModeLeft = 0, //mode:left push，right pop
@@ -19,3 +19,5 @@ typedef NS_ENUM(NSInteger, XATransitionAction) {
     XATransitionActionOnlyPop,
     XATransitionActionPushPop
 };
+
+UIKIT_EXTERN const NSInteger  XATransitionAnimationMargin;

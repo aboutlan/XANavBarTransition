@@ -8,4 +8,4 @@
 
 #import "XANavBarTransitionConst.h"
 
-
+const NSInteger XATransitionAnimationMargin = 10;
