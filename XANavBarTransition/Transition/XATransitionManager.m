@@ -67,9 +67,11 @@
 }
 
 - (void)xa_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    [self xa_pushViewController:viewController animated:animated];
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
+    UIViewController *topVC = nc.topViewController;
+    [self xa_pushViewController:viewController animated:animated];
     if (nc != nil && viewController != nil) {
+        viewController.xa_transitionMode = topVC.xa_transitionMode;//pushedViewController默认延续相同的转场模式
         id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
         //监听push的完成或取消操作
         if (coordinator != nil) {
@@ -84,7 +86,6 @@
             }
         }
     }
-    
 }
 
 
@@ -92,7 +93,7 @@
    
     UIViewController *popVc    = [self xa_popViewControllerAnimated:animated];
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
-    UIViewController *topVC = [nc.viewControllers lastObject];
+    UIViewController *topVC = nc.topViewController;
     if (topVC != nil) {
         id<UIViewControllerTransitionCoordinator> coordinator = topVC.transitionCoordinator;
         //监听pop的完成或取消操作

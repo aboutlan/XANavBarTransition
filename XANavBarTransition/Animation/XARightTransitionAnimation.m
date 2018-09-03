@@ -16,25 +16,41 @@
 
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext{
-
-    //获取from和to控制器的view
+    NSInteger margin = 10;
     UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     UIView *toView   = [transitionContext viewForKey:UITransitionContextToViewKey];
     
-    //将toview添加到containerView
-    [transitionContext.containerView addSubview:toView];
-    
-    //开始做动画
-    toView.transform = CGAffineTransformMakeTranslation(-[UIScreen mainScreen].bounds.size.width, 0);
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]  animations:^{
-        fromView.transform = CGAffineTransformTranslate(fromView.transform, 50, 0);
-        toView.transform   = CGAffineTransformIdentity;
-    }completion:^(BOOL finished) {
-        //完成转场 开启交互(completeTransition一调用会把fromView先给移除掉)
-        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-    }];
-    
+    if(self.animationType == XAAnimTransitionTypePush){
+        [transitionContext.containerView addSubview:fromView];
+        [transitionContext.containerView addSubview:toView];
+        
+        toView.transform = CGAffineTransformMakeTranslation(-[UIScreen mainScreen].bounds.size.width, 0);
+        [UIView animateWithDuration:[self transitionDuration:transitionContext]  animations:^{
+            fromView.transform = CGAffineTransformTranslate(fromView.transform, 50, 0);
+            toView.transform   = CGAffineTransformIdentity;
+        }completion:^(BOOL finished) {
+            fromView.transform = CGAffineTransformIdentity;
+            toView.transform   = CGAffineTransformIdentity;
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        }];
+    }else{
+        [transitionContext.containerView addSubview:toView];
+        [transitionContext.containerView insertSubview:fromView aboveSubview:toView];
+        
+        toView.transform = CGAffineTransformMakeTranslation(50, 0);
+        [UIView animateWithDuration:[self transitionDuration:transitionContext]  animations:^{
+            fromView.transform = CGAffineTransformTranslate(fromView.transform,- [UIScreen mainScreen].bounds.size.width + margin, 0);
+            toView.transform   = CGAffineTransformIdentity;
+        }completion:^(BOOL finished) {
+            fromView.transform = CGAffineTransformIdentity;
+            toView.transform   = CGAffineTransformIdentity;
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        }];
+    }
 }
+
+
+
 
 - (void)animationEnded:(BOOL)transitionCompleted{
     //回调转场完成

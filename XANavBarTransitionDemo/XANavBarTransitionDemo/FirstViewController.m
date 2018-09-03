@@ -31,7 +31,7 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.xa_navBarAlpha = 1;
     self.xa_transitionDelegate = self;
-    self.xa_transitionMode     = XATransitionModeLeft;
+    self.xa_transitionMode     = XATransitionModeRight;
 }
 
 #pragma mark - <XATransitionDelegate>

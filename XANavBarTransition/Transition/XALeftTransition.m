@@ -67,14 +67,15 @@
                 return NO;
             }
             return self.pushTransitionEnable;
-        }else{//pop
-            
+        }else if(point.x > 0){//pop
             
             if(self.nc.viewControllers.count <= 1){//栈底控制器不处理
                 return NO;
             }
            return self.popTransitionEnable;
         }
+        
+        return NO;
     }
     return YES;
 }
