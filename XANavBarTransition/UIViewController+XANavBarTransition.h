@@ -19,6 +19,11 @@
 @property(nonatomic,assign)CGFloat xa_navBarAlpha;
 
 /**
+ 是否允许手势驱动popViewController
+ */
+@property (nonatomic, assign) BOOL xa_isPopEnable;
+
+/**
  转场类型
  */
 @property (nonatomic, assign) XATransitionMode xa_transitionMode;

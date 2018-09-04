@@ -44,7 +44,7 @@
 
 - (void)xa_viewDidLoad {
     self.xa_navBarAlpha = 1;
-    
+    self.xa_isPopEnable = YES;
     [self xa_viewDidLoad];
 }
 
@@ -99,6 +99,15 @@
 }
 
 #pragma mark - Getter/Setter
+
+- (BOOL)xa_isPopEnable{
+    return [objc_getAssociatedObject(self, _cmd)boolValue] ;
+}
+
+- (void)setXa_isPopEnable:(BOOL)xa_isPopEnable{
+    objc_setAssociatedObject(self, @selector(xa_isPopEnable), @(xa_isPopEnable), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (CGFloat)xa_navBarAlpha{
     return [objc_getAssociatedObject(self, _cmd)floatValue] ;
 }
@@ -136,22 +145,24 @@
 }
 
 - (XATransitionAction)xa_transitionAction{
-    BOOL isPop = YES;
+
     XATransitionAction action = XATransitionActionOnlyPop;
-    if(self.xa_transitionDelegate == nil && isPop == NO){
+    if(self.xa_transitionDelegate == nil && self.xa_isPopEnable == NO){
         
         action = XATransitionActionNerver;
         
-    }else if(self.xa_transitionDelegate != nil && isPop == NO){
+    }else if(self.xa_transitionDelegate != nil && self.xa_isPopEnable == NO){
         
         action =  XATransitionActionOnlyPush;
         
-    }else if(self.xa_transitionDelegate == nil && isPop == YES){
+    }else if(self.xa_transitionDelegate == nil && self.xa_isPopEnable == YES){
         
         action =  XATransitionActionOnlyPop;
         
     }else{
+        
         action = XATransitionActionPushPop;
+        
     }
     return action;
 }

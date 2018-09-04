@@ -23,7 +23,6 @@
     self.title = @"3";
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.xa_navBarAlpha = 0.5;
-  
 }
 
 @end
