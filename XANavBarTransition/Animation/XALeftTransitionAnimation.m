@@ -20,7 +20,6 @@
     }
 }
 
-
 - (void)performPushAnim:(id<UIViewControllerContextTransitioning>)transitionContext
                fromView:(UIView *)fromView
                  toView:(UIView *)toView{
@@ -40,7 +39,6 @@
               fromView:(UIView *)fromView
                 toView:(UIView *)toView{
     
-    
     toView.transform = CGAffineTransformMakeTranslation(-50, 0);
     [UIView animateWithDuration:[self transitionDuration:transitionContext]  animations:^{
         fromView.transform = CGAffineTransformTranslate(fromView.transform,[UIScreen mainScreen].bounds.size.width - XATransitionAnimationMargin, 0);
@@ -52,7 +50,6 @@
     }];
     
 }
-
 
 
 @end

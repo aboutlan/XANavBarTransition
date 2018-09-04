@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		382C357E213D372B0027DDA3 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382C357D213D372B0027DDA3 /* MessageViewController.m */; };
 		3849E363211BEB7100501E0B /* XANavBarTransitionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */; };
 		3855DAF61F30602200628B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF51F30602200628B4D /* main.m */; };
 		3855DAF91F30602200628B4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF81F30602200628B4D /* AppDelegate.m */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		382C357C213D372B0027DDA3 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		382C357D213D372B0027DDA3 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		3849E361211BEB7100501E0B /* XANavBarTransitionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransitionTool.h; sourceTree = "<group>"; };
 		3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionTool.m; sourceTree = "<group>"; };
 		3855DAF11F30602200628B4D /* XANavBarTransitionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XANavBarTransitionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +161,8 @@
 				3855DB291F30622400628B4D /* SecondViewController.m */,
 				3855DB281F30622400628B4D /* ThirdViewController.h */,
 				3855DB271F30622400628B4D /* ThirdViewController.m */,
+				382C357C213D372B0027DDA3 /* MessageViewController.h */,
+				382C357D213D372B0027DDA3 /* MessageViewController.m */,
 				3855DB301F30632100628B4D /* BaseNavigationController.h */,
 				3855DB311F30632100628B4D /* BaseNavigationController.m */,
 				38DE212B20A8624A0032FCC7 /* CommonDefine.h */,
@@ -417,6 +422,7 @@
 				3855DAF91F30602200628B4D /* AppDelegate.m in Sources */,
 				3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */,
 				3855DB2F1F30622400628B4D /* FirstViewController.m in Sources */,
+				382C357E213D372B0027DDA3 /* MessageViewController.m in Sources */,
 				38B13C5F20B2D877008E5096 /* XANavBarTransitionConst.m in Sources */,
 				38B13C5920B2D4FC008E5096 /* XATransitionFactory.m in Sources */,
 				38B13C5320B2D03C008E5096 /* XALeftTransition.m in Sources */,

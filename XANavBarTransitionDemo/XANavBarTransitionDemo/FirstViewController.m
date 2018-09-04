@@ -9,8 +9,9 @@
 #import "FirstViewController.h"
 #import "XANavBarTransition.h"
 #import "SecondViewController.h"
+#import "MessageViewController.h"
 @interface FirstViewController ()<XATransitionDelegate>
-@property (nonatomic, strong) UIViewController *desViewController;
+
 @end
 
 @implementation FirstViewController
@@ -21,22 +22,24 @@
 }
 
 - (void)setup{
-    self.desViewController = [[UIViewController alloc]init];
-    self.desViewController.view.backgroundColor = [UIColor orangeColor];
-    self.desViewController.xa_navBarAlpha = 0;
-    self.desViewController.title = @"HomePage";
-    self.desViewController.extendedLayoutIncludesOpaqueBars = YES;
-
     self.title = @"1";
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.xa_navBarAlpha = 1;
     self.xa_transitionDelegate = self;
-    self.xa_transitionMode     = XATransitionModeRight;
+//    self.xa_transitionMode     = XATransitionModeLeft;
+     self.xa_transitionMode     = XATransitionModeRight;
 }
 
 #pragma mark - <XATransitionDelegate>
 - (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{
-     return self.desViewController;
+    if(transitionMode == XATransitionModeLeft){
+        SecondViewController *secondVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([SecondViewController class])];
+        return secondVC;
+    }else{
+        MessageViewController *msgVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MessageViewController class])];
+        return msgVC;
+    }
+  
 }
 
 @end

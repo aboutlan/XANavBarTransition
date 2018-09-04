@@ -114,12 +114,12 @@
 }
 
 - (BOOL)getPushCondition:(CGPoint)translationPoint{
-    BOOL pushCondition = self.transitionMode ? translationPoint.x < 0 :  translationPoint.x > 0;
+    BOOL pushCondition = self.transitionMode == XATransitionModeLeft ? translationPoint.x < 0 :  translationPoint.x > 0;
     return pushCondition;
 }
 
 - (BOOL)getPopCondition:(CGPoint)translationPoint{
-    BOOL popCondition = self.transitionMode ? translationPoint.x > 0 :  translationPoint.x < 0;
+    BOOL popCondition = self.transitionMode == XATransitionModeLeft ? translationPoint.x > 0 :  translationPoint.x < 0;
     return popCondition;
 }
 
