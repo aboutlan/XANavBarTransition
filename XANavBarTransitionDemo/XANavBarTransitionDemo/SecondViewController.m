@@ -8,8 +8,9 @@
 
 #import "SecondViewController.h"
 #import "XANavBarTransition.h"
+#import "ThirdViewController.h"
 #import "CommonDefine.h"
-@interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource,XATransitionDelegate>
 @end
 
 @implementation SecondViewController
@@ -21,10 +22,13 @@
 
 - (void)setup{
     XA_ADJUSTS_SCROLLVIEW_INSETS(self.tableView);
+
+    self.title = @"2";
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.xa_navBarAlpha = 0;
-    self.title = @"2";
     self.xa_transitionMode = XATransitionModeLeft;
+    self.xa_transitionDelegate = self;
+    
 }
 
 
@@ -51,11 +55,10 @@
 }
 
 #pragma mark - <XATransitionDelegate>
-//- (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{
-//    UIViewController *vc = [[UIViewController alloc]init];
-//    vc.view.backgroundColor = [UIColor blueColor];
-//    return vc;
-//}
+- (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{
+    ThirdViewController *thirdVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([ThirdViewController class])];
+    return thirdVC;
+}
 
 
 @end

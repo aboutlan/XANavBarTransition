@@ -10,7 +10,6 @@
 #import "XANavBarTransitionConst.h"
 @protocol XATransitionDelegate <NSObject>
 - (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode;
-//- (UIViewController *)xa_transitionAnimationDidEnd:(BOOL)isFinish;
 @end
 
 @interface UIViewController (XANavBarTransition)

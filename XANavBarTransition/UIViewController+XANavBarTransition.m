@@ -17,11 +17,6 @@
 @interface UIViewController ()
 
 /**
- 当前控制器是否设置过导航栏透明度
- */
-@property(nonatomic, assign)BOOL xa_isSetBarAlpha;
-
-/**
  当前控制器的转场行为类型
  */
 @property(nonatomic, assign, readonly)XATransitionAction xa_transitionAction;
@@ -30,6 +25,9 @@
 @implementation UIViewController (XANavBarTransition)
 #pragma mark - Setup
 + (void)load{
+    SEL  originalDidLoadSEL = @selector(viewDidLoad);
+    SEL  swizzledDidLoadSEL = @selector(xa_viewDidLoad);
+    [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalDidLoadSEL swizzledSEL:swizzledDidLoadSEL];
     
     SEL  originalWillAppearSEL = @selector(viewWillAppear:);
     SEL  swizzledWillAppearSEL = @selector(xa_viewWillAppear:);
@@ -44,6 +42,11 @@
     [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalDidDisappearSEL swizzledSEL:swizzledDidDisappearSEL];
 }
 
+- (void)xa_viewDidLoad {
+    self.xa_navBarAlpha = 1;
+    
+    [self xa_viewDidLoad];
+}
 
 - (void)xa_viewWillAppear:(BOOL)animated{
     [self xa_viewWillAppear:YES];
@@ -57,7 +60,6 @@
     [self xa_dealViewDidAppear];
 }
 
-
 - (void)xa_viewDidDisappear:(BOOL)animated{
     [self xa_viewDidDisappear:YES];
     
@@ -66,17 +68,14 @@
 
 #pragma mark - Deal
 - (void)xa_dealViewWillAppear{
+    
     if(self.navigationController == nil ||
-       self.navigationController.xa_isTransitioning){
+       self.navigationController.xa_isTransitioning){//转场中不允许设置导航栏透明度,防止导航栏背景跳变
         return;
     }
-    if([self xa_isSetBarAlpha] &&
-       [self.view xa_isDisplaying]){
+    if([self.view xa_isDisplaying]){
         //更新当前控制器的导航栏透明度
         [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
-    }else{
-        //设置导航栏透明度默认值
-        self.xa_navBarAlpha = 1;
     }
 }
 
@@ -106,7 +105,6 @@
 
 - (void)setXa_navBarAlpha:(CGFloat)xa_navBarAlpha{
     xa_navBarAlpha = MAX(0,MIN(1, xa_navBarAlpha));
-    self.xa_isSetBarAlpha = YES;
     objc_setAssociatedObject(self, @selector(xa_navBarAlpha), @(xa_navBarAlpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self.navigationController xa_changeNavBarAlpha:xa_navBarAlpha];
 }
@@ -125,14 +123,6 @@
 
 - (void)setXa_transitionDelegate:(id<XATransitionDelegate>)xa_transitionDelegate{
     objc_setAssociatedObject(self,@selector(xa_transitionDelegate),xa_transitionDelegate,OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (BOOL)xa_isSetBarAlpha{
-    return [objc_getAssociatedObject(self, _cmd)boolValue];
-}
-
-- (void)setXa_isSetBarAlpha:(BOOL)xa_isSetBarAlpha{
-    objc_setAssociatedObject(self, @selector(xa_isSetBarAlpha), @(xa_isSetBarAlpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 

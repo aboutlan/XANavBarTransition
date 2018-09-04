@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-    self.xa_navBarAlpha = 1;
     self.xa_transitionDelegate = self;
+    
     self.view.backgroundColor  = [self randomGrayColor];
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.title = [NSString stringWithFormat:@"Message-%ld",self.titleIndex];

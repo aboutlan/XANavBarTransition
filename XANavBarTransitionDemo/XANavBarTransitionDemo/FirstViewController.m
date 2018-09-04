@@ -24,10 +24,11 @@
 - (void)setup{
     self.title = @"1";
     self.extendedLayoutIncludesOpaqueBars = YES;
+    
     self.xa_navBarAlpha = 1;
     self.xa_transitionDelegate = self;
 //    self.xa_transitionMode     = XATransitionModeLeft;
-     self.xa_transitionMode     = XATransitionModeRight;
+    self.xa_transitionMode     = XATransitionModeRight;
 }
 
 #pragma mark - <XATransitionDelegate>
@@ -39,7 +40,7 @@
         MessageViewController *msgVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MessageViewController class])];
         return msgVC;
     }
-  
+
 }
 
 @end

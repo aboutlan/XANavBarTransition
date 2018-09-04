@@ -15,16 +15,16 @@
 #pragma mark - Setup
 + (void)load{
     
-    SEL  originalWillAppearSEL = @selector(viewDidLoad);
-    SEL  swizzledWillAppearSEL = @selector(xa_viewDidLoad);
-    [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalWillAppearSEL swizzledSEL:swizzledWillAppearSEL];
+    SEL  originalDidLoadSEL = @selector(viewDidLoad);
+    SEL  swizzledDidLoadSEL = @selector(xa_viewDidLoad);
+    [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalDidLoadSEL swizzledSEL:swizzledDidLoadSEL];
 }
 
 - (void)xa_viewDidLoad {
-    [self xa_viewDidLoad];
     self.xa_TransitionEnable = YES;
-    
+    [self xa_viewDidLoad];
 }
+
 #pragma mark - Transition
 - (void)xa_configTransitionInfoWithMode:(XATransitionMode)transitionMode
                                  action:(XATransitionAction)transitionAction
