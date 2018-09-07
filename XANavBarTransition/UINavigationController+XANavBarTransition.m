@@ -8,7 +8,7 @@
 
 #import "UINavigationController+XANavBarTransition.h"
 #import "UIViewController+XANavBarTransition.h"
-#import "XATransitionManager.h"
+#import "XATransitionSession.h"
 #import <objc/message.h>
 
 @implementation UINavigationController (XANavBarTransition)
@@ -21,22 +21,8 @@
 }
 
 - (void)xa_viewDidLoad {
-    self.xa_TransitionEnable = YES;
+    self.xa_isTransitionEnable = YES;
     [self xa_viewDidLoad];
-}
-
-#pragma mark - Transition
-- (void)xa_configTransitionInfoWithMode:(XATransitionMode)transitionMode
-                                 action:(XATransitionAction)transitionAction
-                               delegate:(id <XATransitionDelegate>)transitionDelegate{
-    [XATransitionManager.sharedManager configTransitionWithNc:self
-                                               transitionMode:transitionMode
-                                             transitionAction:transitionAction
-                                           transitionDelegate:transitionDelegate];
-}
-
-- (void)xa_unInitTransitionInfo{
-    [XATransitionManager.sharedManager unInitTransitionWithNc:self];
 }
 
 #pragma mark - Alpha
@@ -58,22 +44,24 @@
 }
 
 #pragma mark - Getter/Setter
+
 - (BOOL)xa_isTransitioning{
+    
     return [objc_getAssociatedObject(self, _cmd)boolValue];
 }
 
-- (void)setXa_Transitioning:(BOOL)xa_Transitioning{
-    objc_setAssociatedObject(self, @selector(xa_isTransitioning), @(xa_Transitioning), OBJC_ASSOCIATION_RETAIN);
-}
-
-
-- (void)setXa_TransitionEnable:(BOOL)xa_TransitionEnable{
-    objc_setAssociatedObject(self, @selector(xa_isTransitionEnable), @(xa_TransitionEnable), OBJC_ASSOCIATION_RETAIN);
-    XATransitionManager.sharedManager.transitionEnable = xa_TransitionEnable;
+- (void)setXa_isTransitioning:(BOOL)xa_isTransitioning{
+      objc_setAssociatedObject(self, @selector(xa_isTransitioning), @(xa_isTransitioning), OBJC_ASSOCIATION_RETAIN);
 }
 
 - (BOOL)xa_isTransitionEnable{
-    return [objc_getAssociatedObject(self, _cmd)boolValue];;
+     return [objc_getAssociatedObject(self, _cmd)boolValue];;
 }
+
+- (void)setXa_isTransitionEnable:(BOOL)xa_isTransitionEnable{
+    objc_setAssociatedObject(self, @selector(xa_isTransitionEnable), @(xa_isTransitionEnable), OBJC_ASSOCIATION_RETAIN);
+    self.topViewController.xa_transitionSession.transitionEnable = xa_isTransitionEnable;
+}
+
 
 @end

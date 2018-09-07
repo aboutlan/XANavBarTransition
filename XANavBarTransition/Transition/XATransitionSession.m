@@ -1,20 +1,19 @@
 //
-//  XATransitionManager.m
+//  XATransitionSession.m
 //  XANavBarTransitionDemo
 //
 //  Created by xangam on 2018/5/21.
 //  Copyright © 2018年 Lan. All rights reserved.
 //
 
-#import "XATransitionManager.h"
+#import "XATransitionSession.h"
 #import "XATransitionFactory.h"
 #import "XANavBarTransitionTool.h"
 #import "UIViewController+XANavBarTransition.h"
 #import "UINavigationController+XANavBarTransition.h"
 
-@interface XATransitionManager()<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
+@interface XATransitionSession()<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic, assign) BOOL  hasConfigCompletion;
 @property (nonatomic, strong, readwrite) XABaseTransition *transition;
 @property (nonatomic, assign, readwrite) XATransitionMode transitionMode;
 @property (nonatomic, assign, readwrite) XATransitionAction transitionAction;
@@ -22,7 +21,7 @@
 @property (nonatomic, weak,   readwrite) id<XATransitionDelegate> transitionDelegate;
 @end
 
-@implementation XATransitionManager
+@implementation XATransitionSession
 #pragma mark - Setup
 + (void)load{
     SEL popOriginalSEL =  @selector(popViewControllerAnimated:);
@@ -35,34 +34,26 @@
     [XANavBarTransitionTool swizzlingMethodWithOrginClass:[UINavigationController class] swizzledClass:[self class] originalSEL:pushOriginalSEL swizzledSEL:pushSwizzledSEL];
 }
 
-+ (instancetype)sharedManager{
-    static id _sharedManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedManager = [[self alloc] init];
-    });
-    return _sharedManager;
-}
-
 #pragma mark - Action
-- (void)configTransitionWithNc:(UINavigationController *)nc
-                transitionMode:(XATransitionMode)transitionMode
-              transitionAction:(XATransitionAction)transitionAction
-            transitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
-    self.nc = nc;
-    self.nc.delegate = self;
-    self.transitionMode     = transitionMode;
-    self.transitionAction   = transitionAction;
-    self.transitionDelegate = transitionDelegate;
-    self.transition = [XATransitionFactory handlerWithNc:nc
-                                          transitionMode:transitionMode
-                                        transitionAction:transitionAction
-                                      transitionDelegate:transitionDelegate];
-
-    
+- (instancetype)initSessionWithNc:(UINavigationController *)nc
+                   transitionMode:(XATransitionMode)transitionMode
+                 transitionAction:(XATransitionAction)transitionAction
+               transitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
+    if(self = [super init]){
+        self.nc = nc;
+        self.nc.delegate = self;
+        self.transitionMode     = transitionMode;
+        self.transitionAction   = transitionAction;
+        self.transitionDelegate = transitionDelegate;
+        self.transition = [XATransitionFactory handlerWithNc:nc
+                                              transitionMode:transitionMode
+                                            transitionAction:transitionAction
+                                          transitionDelegate:transitionDelegate];
+    }
+    return  self;
 }
 
-- (void)unInitTransitionWithNc:(UINavigationController *)nc{
+- (void)unInitSessionWithNc:(UINavigationController *)nc{
     [self releaseResource];
 }
 
@@ -135,7 +126,7 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 }
 
 - (void)releaseResource{
-    self.nc.xa_Transitioning = NO;
+    self.nc.xa_isTransitioning = NO;
     self.transition = nil;
     self.transitionDelegate = nil;
 }
@@ -160,10 +151,6 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 
 
 #pragma mark - Getter/Setter
-- (BOOL)hasConfigCompletion{
-    return self.nc != nil;
-}
-
 - (void)setTransitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
     _transitionDelegate = transitionDelegate;
     self.transition.transitionDelegate = transitionDelegate;

@@ -10,10 +10,10 @@
 #import "XABaseTransitionAnimation.h"
 #import "XANavBarTransitionTool.h"
 #import "UIViewController+XANavBarTransition.h"
+@protocol XATransitionDelegate;
 @interface XABaseTransition : NSObject<UIGestureRecognizerDelegate>{
     @protected
     XABaseTransitionAnimation *_animation;
-    UIPanGestureRecognizer *_interactive;
 }
 @property (nonatomic, weak)   UIView *transitionView;
 @property (nonatomic, weak)   UINavigationController *nc;

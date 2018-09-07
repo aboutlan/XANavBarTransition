@@ -11,7 +11,6 @@
 
 
 @interface BaseNavigationController ()
-@property (nonatomic, strong) UIPanGestureRecognizer *pan;
 @end
 
 @implementation BaseNavigationController

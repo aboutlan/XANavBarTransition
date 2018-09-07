@@ -8,7 +8,7 @@
 
 #import "XALeftTransition.h"
 #import "XALeftTransitionAnimation.h"
-#import "XATransitionManager.h"
+#import "XATransitionSession.h"
 @interface XALeftTransition()
 @end
 

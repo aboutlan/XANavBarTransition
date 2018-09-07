@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XANavBarTransitionConst.h"
+@class XATransitionSession;
 @protocol XATransitionDelegate <NSObject>
 - (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode;
 @end
@@ -19,18 +20,22 @@
 @property(nonatomic,assign)CGFloat xa_navBarAlpha;
 
 /**
- 是否允许手势驱动popViewController
+ 当前控制器是否允许使用手势驱动进行popViewController操作
  */
 @property (nonatomic, assign) BOOL xa_isPopEnable;
 
 /**
- 转场类型
+ 当前控制器要转场类型
  */
 @property (nonatomic, assign) XATransitionMode xa_transitionMode;
 
 /**
- 转场代理
+ 当前控制器转场代理
  */
 @property (nonatomic,weak) id <XATransitionDelegate>  xa_transitionDelegate;
 
+/**
+ 当前控制器的转场会话对象
+ */
+@property(nonatomic, strong, readonly)XATransitionSession *xa_transitionSession;
 @end

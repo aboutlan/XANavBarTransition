@@ -13,14 +13,14 @@
 @interface UINavigationController (XANavBarTransition)<UIGestureRecognizerDelegate>
 
 /**
- 当前是否正在滑动转场中
+ 读取当前是否正在滑动转场中
  */
-@property (nonatomic, assign, getter=xa_isTransitioning) BOOL xa_Transitioning;
+@property (nonatomic, assign) BOOL xa_isTransitioning;
 
 /**
- 是否开启转场功能
+ 是否开启转场功能,一旦设置效果将作用于全局。
  */
-@property (nonatomic, assign, getter=xa_isTransitionEnable) BOOL xa_TransitionEnable;
+@property (nonatomic, assign) BOOL xa_isTransitionEnable;
 
 /**
  改变当前导航栏的透明度
@@ -28,20 +28,4 @@
  @param navBarAlpha 透明度
  */
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha;
-
-/**
-  配置转场的信息
-
- @param transitionMode 转场类型
- @param transitionAction 转场行为
- @param transitionDelegate 转场代理
- */
-- (void)xa_configTransitionInfoWithMode:(XATransitionMode)transitionMode
-                                 action:(XATransitionAction)transitionAction
-                               delegate:(id <XATransitionDelegate>)transitionDelegate;
-
-/**
- 清除转场的信息
- */
-- (void)xa_unInitTransitionInfo;
 @end

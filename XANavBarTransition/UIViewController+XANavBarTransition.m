@@ -9,9 +9,9 @@
 #import "UIViewController+XANavBarTransition.h"
 #import "UINavigationController+XANavBarTransition.h"
 #import "UIView+XATransitionExtension.h"
-#import <objc/message.h>
-#import "XANavBarTransition.h"
 #import "XANavBarTransitionTool.h"
+#import "XATransitionSession.h"
+#import <objc/message.h>
 
 
 @interface UIViewController ()
@@ -20,6 +20,11 @@
  当前控制器的转场行为类型
  */
 @property(nonatomic, assign, readonly)XATransitionAction xa_transitionAction;
+
+/**
+ 当前控制器的转场会话对象
+ */
+@property(nonatomic, strong, readwrite)XATransitionSession *xa_transitionSession;
 
 @end
 @implementation UIViewController (XANavBarTransition)
@@ -83,18 +88,25 @@
     if(self.navigationController == nil){
         return;
     }
-    if([self.view xa_isDisplaying]){
-        //配置当前控制器转场信息
-        [self.navigationController xa_configTransitionInfoWithMode:self.xa_transitionMode
-                                                            action:self.xa_transitionAction
-                                                          delegate:self.xa_transitionDelegate];
+    if([self.view xa_isDisplaying] &&
+       [self.navigationController xa_isTransitionEnable]){
+        //初始化当前控制器转场信息
+        self.xa_transitionSession = [[XATransitionSession alloc] initSessionWithNc:self.navigationController
+                                                                    transitionMode:self.xa_transitionMode
+                                                                  transitionAction:self.xa_transitionAction
+                                                                transitionDelegate:self.xa_transitionDelegate];
     }
 }
 
 - (void)xa_dealViewDidDisappear{
-    if([self.view xa_isDisplaying]){
+    if(self.navigationController == nil){
+        return;
+    }
+    
+    if([self.view xa_isDisplaying] &&
+        [self.navigationController xa_isTransitionEnable]){
         //销毁当前控制器转场信息
-        [self.navigationController xa_unInitTransitionInfo];
+        [self.xa_transitionSession unInitSessionWithNc:self.navigationController];
     }
 }
 
@@ -142,6 +154,15 @@
 
 - (void)setXa_isSetTansition:(BOOL)xa_isSetTansition{
      objc_setAssociatedObject(self, @selector(xa_isSetTansition), @(xa_isSetTansition), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (XATransitionSession *)xa_transitionSession{
+     return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setXa_transitionSession:(XATransitionSession *)xa_transitionSession{
+    
+    objc_setAssociatedObject(self, @selector(xa_transitionSession), xa_transitionSession, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (XATransitionAction)xa_transitionAction{

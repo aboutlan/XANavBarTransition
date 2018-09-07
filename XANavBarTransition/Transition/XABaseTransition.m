@@ -9,6 +9,8 @@
 #import "XABaseTransition.h"
 #import "XANavBarTransition.h"
 #import "XABaseTransition.h"
+#import "XATransitionSession.h"
+
 
 
 @interface XABaseTransition()
@@ -57,7 +59,6 @@
 
 #pragma mark - Action
 - (void)interactiveTransitioningEvent:(UIPanGestureRecognizer *)pan{
-    
     if(pan == self.interactivePan){
         static NSTimeInterval beginTouchTime,endTouchTime;//beginTouchTime和endTouchTime这两个数据量主要是用于参考是否为轻扫
         CGPoint translationPoint = [pan translationInView:nil];
@@ -65,7 +66,7 @@
         progress = MIN(1, MAX(progress, 0));
         if (pan.state == UIGestureRecognizerStateBegan) {
             beginTouchTime = [[NSDate date]timeIntervalSince1970];
-            self.nc.xa_Transitioning = YES;
+            self.nc.xa_isTransitioning = YES;
             self.percentInteractive = [[UIPercentDrivenInteractiveTransition alloc] init];
             self.percentInteractive.completionCurve = UIViewAnimationCurveEaseOut;
             self.percentInteractive.completionSpeed = 0.99;
@@ -87,7 +88,7 @@
             } else {
                 [self.percentInteractive cancelInteractiveTransition];
             }
-            self.nc.xa_Transitioning = NO;
+            self.nc.xa_isTransitioning = NO;
             self.percentInteractive = nil;
             
         }
