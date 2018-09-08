@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		382C357E213D372B0027DDA3 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382C357D213D372B0027DDA3 /* MessageViewController.m */; };
 		3849E363211BEB7100501E0B /* XANavBarTransitionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */; };
+		3852D8EB2142BC0D00D78C92 /* XATransitionSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3852D8EA2142BC0D00D78C92 /* XATransitionSession.m */; };
 		3855DAF61F30602200628B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF51F30602200628B4D /* main.m */; };
 		3855DAF91F30602200628B4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF81F30602200628B4D /* AppDelegate.m */; };
 		3855DAFF1F30602200628B4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3855DAFD1F30602200628B4D /* Main.storyboard */; };
@@ -25,7 +26,6 @@
 		386726BC210700EF00DAABB1 /* UIView+XATransitionExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */; };
 		38A2369620B5543400189E94 /* XARightTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2369520B5543400189E94 /* XARightTransition.m */; };
 		38A2369820B5548600189E94 /* XARightTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2369720B5548600189E94 /* XARightTransitionAnimation.m */; };
-		38B13C4F20B2BB02008E5096 /* XATransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C4E20B2BB02008E5096 /* XATransitionManager.m */; };
 		38B13C5320B2D03C008E5096 /* XALeftTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5220B2D03C008E5096 /* XALeftTransition.m */; };
 		38B13C5620B2D0A4008E5096 /* XABaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5520B2D0A4008E5096 /* XABaseTransition.m */; };
 		38B13C5920B2D4FC008E5096 /* XATransitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5820B2D4FC008E5096 /* XATransitionFactory.m */; };
@@ -56,6 +56,8 @@
 		382C357D213D372B0027DDA3 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		3849E361211BEB7100501E0B /* XANavBarTransitionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransitionTool.h; sourceTree = "<group>"; };
 		3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionTool.m; sourceTree = "<group>"; };
+		3852D8E92142BC0D00D78C92 /* XATransitionSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XATransitionSession.h; sourceTree = "<group>"; };
+		3852D8EA2142BC0D00D78C92 /* XATransitionSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XATransitionSession.m; sourceTree = "<group>"; };
 		3855DAF11F30602200628B4D /* XANavBarTransitionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XANavBarTransitionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3855DAF51F30602200628B4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3855DAF71F30602200628B4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,8 +91,6 @@
 		38A2369520B5543400189E94 /* XARightTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XARightTransition.m; sourceTree = "<group>"; };
 		38A2369720B5548600189E94 /* XARightTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XARightTransitionAnimation.m; sourceTree = "<group>"; };
 		38A2369920B5548B00189E94 /* XARightTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XARightTransitionAnimation.h; sourceTree = "<group>"; };
-		38B13C4D20B2BB02008E5096 /* XATransitionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XATransitionManager.h; sourceTree = "<group>"; };
-		38B13C4E20B2BB02008E5096 /* XATransitionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XATransitionManager.m; sourceTree = "<group>"; };
 		38B13C5120B2D03C008E5096 /* XALeftTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XALeftTransition.h; sourceTree = "<group>"; };
 		38B13C5220B2D03C008E5096 /* XALeftTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XALeftTransition.m; sourceTree = "<group>"; };
 		38B13C5420B2D0A4008E5096 /* XABaseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XABaseTransition.h; sourceTree = "<group>"; };
@@ -235,8 +235,8 @@
 		38B13C5020B2CFEF008E5096 /* Transition */ = {
 			isa = PBXGroup;
 			children = (
-				38B13C4D20B2BB02008E5096 /* XATransitionManager.h */,
-				38B13C4E20B2BB02008E5096 /* XATransitionManager.m */,
+				3852D8E92142BC0D00D78C92 /* XATransitionSession.h */,
+				3852D8EA2142BC0D00D78C92 /* XATransitionSession.m */,
 				38B13C5720B2D4FC008E5096 /* XATransitionFactory.h */,
 				38B13C5820B2D4FC008E5096 /* XATransitionFactory.m */,
 				38B13C5420B2D0A4008E5096 /* XABaseTransition.h */,
@@ -330,7 +330,7 @@
 				TargetAttributes = {
 					3855DAF01F30602200628B4D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2LN2G9AVN9;
+						DevelopmentTeam = EKCRNK7YVN;
 						ProvisioningStyle = Automatic;
 					};
 					3855DB091F30602200628B4D = {
@@ -416,6 +416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3852D8EB2142BC0D00D78C92 /* XATransitionSession.m in Sources */,
 				38A2369620B5543400189E94 /* XARightTransition.m in Sources */,
 				3849E363211BEB7100501E0B /* XANavBarTransitionTool.m in Sources */,
 				3855DB2E1F30622400628B4D /* SecondViewController.m in Sources */,
@@ -435,7 +436,6 @@
 				3855DB441F30692B00628B4D /* UIViewController+XANavBarTransition.m in Sources */,
 				38B13C5620B2D0A4008E5096 /* XABaseTransition.m in Sources */,
 				3855DB2D1F30622400628B4D /* ThirdViewController.m in Sources */,
-				38B13C4F20B2BB02008E5096 /* XATransitionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,7 +600,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				DEVELOPMENT_TEAM = EKCRNK7YVN;
 				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemo;
@@ -614,7 +614,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				DEVELOPMENT_TEAM = EKCRNK7YVN;
 				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemo;

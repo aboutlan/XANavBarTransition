@@ -13,12 +13,12 @@
 @interface UINavigationController (XANavBarTransition)<UIGestureRecognizerDelegate>
 
 /**
- 读取当前是否正在滑动转场中
+ 当前是否正在滑动转场中
  */
 @property (nonatomic, assign) BOOL xa_isTransitioning;
 
 /**
- 是否开启转场功能,一旦设置效果将作用于全局。
+ 是否开启转场功能,该属性会作用于全局。
  */
 @property (nonatomic, assign) BOOL xa_isTransitionEnable;
 

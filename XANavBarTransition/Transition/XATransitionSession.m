@@ -60,23 +60,9 @@
 - (void)xa_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
     UIViewController *topVC = nc.topViewController;
+    viewController.xa_transitionMode = topVC.xa_transitionMode;//pushedViewController默认延续相同的转场模式
     [self xa_pushViewController:viewController animated:animated];
-    if (nc != nil && viewController != nil) {
-        viewController.xa_transitionMode = topVC.xa_transitionMode;//pushedViewController默认延续相同的转场模式
-        id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
-        //监听push的完成或取消操作
-        if (coordinator != nil) {
-            if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
-                [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
-                    dealInteractionEndAction(context,nc);
-                }];
-            }else{
-                [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                    dealInteractionEndAction(context,nc);
-                }];
-            }
-        }
-    }
+    dealInteractionNotify(viewController, nc);
 }
 
 
@@ -85,8 +71,14 @@
     UIViewController *popVc    = [self xa_popViewControllerAnimated:animated];
     UINavigationController *nc = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController *)self : nil;
     UIViewController *topVC = nc.topViewController;
-    if (topVC != nil) {
-        id<UIViewControllerTransitionCoordinator> coordinator = topVC.transitionCoordinator;
+    dealInteractionNotify(topVC,nc);
+    return popVc;
+}
+
+#pragma mark - Deal
+void dealInteractionNotify(UIViewController *desVc,UINavigationController *nc){
+    if (desVc != nil  && nc != nil) {
+        id<UIViewControllerTransitionCoordinator> coordinator = desVc.transitionCoordinator;
         //监听pop的完成或取消操作
         if (coordinator != nil) {
             if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
@@ -100,10 +92,8 @@
             }
         }
     }
-    return popVc;
 }
 
-#pragma mark - Deal
 void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> context,UINavigationController *nc){
     //处理导航栏的透明度状态
     if ([context isCancelled]) {// 取消了(还在当前页面)
@@ -122,7 +112,6 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
             [nc xa_changeNavBarAlpha:toVCAlpha];
         }completion:nil];
     };
-   
 }
 
 - (void)releaseResource{
@@ -164,6 +153,5 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 - (BOOL)transitionEnable{
     return self.transition.transitionEnable;
 }
-
 @end
 

@@ -80,6 +80,7 @@
     }
     if([self.view xa_isDisplaying]){
         //更新当前控制器的导航栏透明度
+     
         [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
     }
 }
@@ -107,6 +108,7 @@
         [self.navigationController xa_isTransitionEnable]){
         //销毁当前控制器转场信息
         [self.xa_transitionSession unInitSessionWithNc:self.navigationController];
+        self.xa_transitionSession = nil;
     }
 }
 
