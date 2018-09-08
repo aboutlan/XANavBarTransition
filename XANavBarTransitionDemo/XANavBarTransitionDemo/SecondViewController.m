@@ -28,7 +28,6 @@
     self.xa_navBarAlpha = 0;
     self.xa_transitionMode = XATransitionModeLeft;
     self.xa_transitionDelegate = self;
-    
 }
 
 

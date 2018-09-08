@@ -102,7 +102,9 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
         CGFloat fromVCAlpha   = [context viewControllerForKey:UITransitionContextFromViewControllerKey].xa_navBarAlpha;
         [UIView animateWithDuration:animdDuration animations:^{
             [nc xa_changeNavBarAlpha:fromVCAlpha];
-        }completion:nil];
+        }completion:^(BOOL finished) {
+            nc.xa_isTransitioning = NO;
+        }];
         
     } else {// 自动完成(pop到上一个界面了)
         
@@ -110,12 +112,15 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
         CGFloat toVCAlpha     = [context viewControllerForKey:UITransitionContextToViewControllerKey].xa_navBarAlpha;
         [UIView animateWithDuration:animdDuration animations:^{
             [nc xa_changeNavBarAlpha:toVCAlpha];
-        }completion:nil];
+        }completion:^(BOOL finished) {
+            nc.xa_isTransitioning = NO;
+        }];
     };
 }
 
+
 - (void)releaseResource{
-    self.nc.xa_isTransitioning = NO;
+    self.nc = nil;
     self.transition = nil;
     self.transitionDelegate = nil;
 }
@@ -135,6 +140,9 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
     
+    if(self.transition.percentInteractive){
+        navigationController.xa_isTransitioning = YES;
+    }
     return self.transition.percentInteractive;
 }
 

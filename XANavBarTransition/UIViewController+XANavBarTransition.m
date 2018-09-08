@@ -73,43 +73,41 @@
 
 #pragma mark - Deal
 - (void)xa_dealViewWillAppear{
-    
     if(self.navigationController == nil ||
-       self.navigationController.xa_isTransitioning){//转场中不允许设置导航栏透明度,防止导航栏背景跳变
+       self.navigationController.xa_isTransitioning == YES ||//转场中不允许设置导航栏透明度,防止导航栏背景跳变
+       [self.view xa_isDisplaying] == NO){
         return;
     }
-    if([self.view xa_isDisplaying]){
-        //更新当前控制器的导航栏透明度
-     
-        [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
-    }
+    
+    //更新当前控制器的导航栏透明度
+    [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
 }
 
 - (void)xa_dealViewDidAppear{
-    if(self.navigationController == nil){
+    if(self.navigationController == nil ||
+       self.navigationController.xa_isTransitioning == YES ||
+       [self.navigationController xa_isTransitionEnable] == NO ||
+       [self.view xa_isDisplaying] == NO){
         return;
     }
-    if([self.view xa_isDisplaying] &&
-       [self.navigationController xa_isTransitionEnable]){
-        //初始化当前控制器转场信息
-        self.xa_transitionSession = [[XATransitionSession alloc] initSessionWithNc:self.navigationController
-                                                                    transitionMode:self.xa_transitionMode
-                                                                  transitionAction:self.xa_transitionAction
-                                                                transitionDelegate:self.xa_transitionDelegate];
-    }
+  
+    //初始化当前控制器转场信息
+    self.xa_transitionSession = [[XATransitionSession alloc] initSessionWithNc:self.navigationController
+                                                                transitionMode:self.xa_transitionMode
+                                                              transitionAction:self.xa_transitionAction
+                                                            transitionDelegate:self.xa_transitionDelegate];
+    
 }
 
 - (void)xa_dealViewDidDisappear{
-    if(self.navigationController == nil){
+    if(self.xa_transitionSession == nil ||
+       [self.navigationController xa_isTransitionEnable] == NO){
         return;
     }
-    
-    if([self.view xa_isDisplaying] &&
-        [self.navigationController xa_isTransitionEnable]){
-        //销毁当前控制器转场信息
-        [self.xa_transitionSession unInitSessionWithNc:self.navigationController];
-        self.xa_transitionSession = nil;
-    }
+
+    //销毁当前控制器转场信息
+    [self.xa_transitionSession unInitSessionWithNc:self.navigationController];
+    self.xa_transitionSession = nil;
 }
 
 #pragma mark - Getter/Setter

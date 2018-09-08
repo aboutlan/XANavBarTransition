@@ -15,7 +15,6 @@
     @protected
     XABaseTransitionAnimation *_animation;
 }
-@property (nonatomic, weak)   UIView *transitionView;
 @property (nonatomic, weak)   UINavigationController *nc;
 @property (nonatomic, weak)   id<XATransitionDelegate> transitionDelegate;
 @property (nonatomic, strong) UIViewController *nextVC;

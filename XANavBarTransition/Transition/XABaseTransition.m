@@ -43,18 +43,16 @@
              action:(XATransitionAction)action
            delegate:(id<XATransitionDelegate>)delegate{
     self.nc = nc;
-    self.transitionView     = nc.view;
     self.transitionDelegate = delegate;
-    [self setupGestureRecognize:nc.view action:action];
+    [self setupGestureRecognizeWithAction:action];
 }
 
-- (void)setupGestureRecognize:(UIView *)transitionView
-                       action:(XATransitionAction)action{
+- (void)setupGestureRecognizeWithAction:(XATransitionAction)action{
     self.interactivePan.delegate = self;
     self.transitionEnable = [self.nc xa_isTransitionEnable];
     self.pushTransitionEnable = action == XATransitionActionOnlyPush || action == XATransitionActionPushPop;
     self.popTransitionEnable  = action == XATransitionActionOnlyPop  || action == XATransitionActionPushPop;
-    [transitionView addGestureRecognizer:self.interactivePan];
+    [self.nc.topViewController.view addGestureRecognizer:self.interactivePan];
 }
 
 #pragma mark - Action
@@ -66,7 +64,6 @@
         progress = MIN(1, MAX(progress, 0));
         if (pan.state == UIGestureRecognizerStateBegan) {
             beginTouchTime = [[NSDate date]timeIntervalSince1970];
-            self.nc.xa_isTransitioning = YES;
             self.percentInteractive = [[UIPercentDrivenInteractiveTransition alloc] init];
             self.percentInteractive.completionCurve = UIViewAnimationCurveEaseOut;
             self.percentInteractive.completionSpeed = 0.99;
@@ -88,7 +85,6 @@
             } else {
                 [self.percentInteractive cancelInteractiveTransition];
             }
-            self.nc.xa_isTransitioning = NO;
             self.percentInteractive = nil;
             
         }
@@ -131,6 +127,9 @@
         CGPoint velocity  = [gestureRecognizer velocityInView:nil];
         
         if (fabs(velocity.y) > fabs(velocity.x)) {//垂直方向不处理
+            return NO;
+        }
+        if(self.nc.xa_isTransitioning){
             return NO;
         }
         
