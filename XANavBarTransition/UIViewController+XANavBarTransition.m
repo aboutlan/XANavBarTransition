@@ -88,6 +88,7 @@
     if(self.navigationController == nil ||
        self.navigationController.xa_isTransitioning == YES ||
        [self.navigationController xa_isTransitionEnable] == NO ||
+       self.navigationController.topViewController != self ||
        [self.view xa_isDisplaying] == NO){
         return;
     }

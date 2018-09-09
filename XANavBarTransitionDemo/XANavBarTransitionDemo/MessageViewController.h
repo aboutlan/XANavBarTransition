@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol XATransitionDelegate;
+#import "XANavBarTransition.h"
 @interface MessageViewController : UIViewController<XATransitionDelegate>
 @property (nonatomic, assign) NSInteger titleIndex;
 @end

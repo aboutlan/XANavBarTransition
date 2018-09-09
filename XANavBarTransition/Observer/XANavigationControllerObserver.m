@@ -90,7 +90,7 @@
     if([self.delegate respondsToSelector: @selector(navigationControllerPreferredInterfaceOrientationForPresentation:)]){
         return [self.delegate navigationControllerPreferredInterfaceOrientationForPresentation:navigationController];
     }
-    return UIInterfaceOrientationUnknown;
+    return UIInterfaceOrientationPortrait;
 }
 
 @end
