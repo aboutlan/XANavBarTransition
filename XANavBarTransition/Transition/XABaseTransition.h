@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XANavBarTransitionConst.h"
 #import "XABaseTransitionAnimation.h"
-#import "XANavBarTransitionTool.h"
-#import "UIViewController+XANavBarTransition.h"
 @protocol XATransitionDelegate;
 @interface XABaseTransition : NSObject<UIGestureRecognizerDelegate>{
     @protected

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XABaseTransition.h"
 #import "XANavBarTransitionConst.h"
-
+@class XABaseTransition;
+@protocol XATransitionDelegate;
 @interface XATransitionFactory : NSObject
 + (XABaseTransition *)handlerWithNc:(UINavigationController *)nc
                      transitionMode:(XATransitionMode)mode

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XABaseTransition.h"
 #import "XANavBarTransitionConst.h"
-
+@class XABaseTransition;
+@protocol XATransitionDelegate;
 @interface XATransitionSession : NSObject
 @property (nonatomic, assign) BOOL transitionEnable;
 @property (nonatomic, strong, readonly) XABaseTransition *transition;

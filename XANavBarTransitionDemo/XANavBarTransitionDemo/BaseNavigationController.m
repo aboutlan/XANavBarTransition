@@ -7,7 +7,7 @@
 //
 
 #import "BaseNavigationController.h"
-#import "UINavigationController+XANavBarTransition.h"
+#import "XANavBarTransition.h"
 
 
 @interface BaseNavigationController ()

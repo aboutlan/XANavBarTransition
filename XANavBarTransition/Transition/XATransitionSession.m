@@ -7,6 +7,7 @@
 //
 
 #import "XATransitionSession.h"
+#import "XABaseTransition.h"
 #import "XATransitionFactory.h"
 #import "XANavBarTransitionTool.h"
 #import "XANavigationControllerObserver.h"

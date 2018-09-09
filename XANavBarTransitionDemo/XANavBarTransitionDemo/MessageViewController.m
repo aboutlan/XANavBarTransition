@@ -8,9 +8,6 @@
 
 #import "MessageViewController.h"
 #import "XANavBarTransition.h"
-@interface MessageViewController ()<XATransitionDelegate>
-
-@end
 
 @implementation MessageViewController
 
@@ -21,7 +18,7 @@
     
     self.view.backgroundColor  = [self randomGrayColor];
     self.extendedLayoutIncludesOpaqueBars = YES;
-    self.title = [NSString stringWithFormat:@"Message-%ld",self.titleIndex];
+    self.title = [NSString stringWithFormat:@"Message-%ld",(long)self.titleIndex];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 
 }

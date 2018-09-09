@@ -9,6 +9,7 @@
 #import "UINavigationController+XANavBarTransition.h"
 #import "UIViewController+XANavBarTransition.h"
 #import "XATransitionSession.h"
+#import "XANavBarTransitionTool.h"
 #import "XANavigationControllerObserver.h"
 #import <objc/message.h>
 @interface UINavigationController()

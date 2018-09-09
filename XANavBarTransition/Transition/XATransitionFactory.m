@@ -9,6 +9,7 @@
 #import "XATransitionFactory.h"
 #import "XALeftTransition.h"
 #import "XARightTransition.h"
+#import "XABaseTransition.h"
 @implementation XATransitionFactory
 + (XABaseTransition *)handlerWithNc:(UINavigationController *)nc
                      transitionMode:(XATransitionMode)mode

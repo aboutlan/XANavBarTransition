@@ -8,9 +8,10 @@
 
 #import "XABaseTransition.h"
 #import "XANavBarTransition.h"
-#import "XABaseTransition.h"
 #import "XATransitionSession.h"
-
+#import "XABaseTransitionAnimation.h"
+#import "XANavBarTransitionTool.h"
+#import "UIViewController+XANavBarTransition.h"
 
 
 @interface XABaseTransition()
