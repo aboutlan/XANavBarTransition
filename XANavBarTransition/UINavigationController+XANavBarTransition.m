@@ -9,7 +9,11 @@
 #import "UINavigationController+XANavBarTransition.h"
 #import "UIViewController+XANavBarTransition.h"
 #import "XATransitionSession.h"
+#import "XANavigationControllerObserver.h"
 #import <objc/message.h>
+@interface UINavigationController()
+@property (nonatomic, strong, readwrite) XANavigationControllerObserver  *xa_ncObserver;
+@end
 
 @implementation UINavigationController (XANavBarTransition)
 #pragma mark - Setup
@@ -22,6 +26,7 @@
 
 - (void)xa_viewDidLoad {
     self.xa_isTransitionEnable = YES;
+    self.xa_ncObserver = [[XANavigationControllerObserver alloc]initWithNc:self];
     [self xa_viewDidLoad];
 }
 
@@ -63,5 +68,20 @@
     self.topViewController.xa_transitionSession.transitionEnable = xa_isTransitionEnable;
 }
 
+- (XANavigationControllerObserver *)xa_ncObserver{
+     return objc_getAssociatedObject(self, _cmd) ;
+}
+
+- (void)setXa_ncObserver:(XANavigationControllerObserver *)xa_ncObserver{
+       objc_setAssociatedObject(self,@selector(xa_ncObserver),xa_ncObserver,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (id<UINavigationControllerDelegate>)xa_delegate{
+    return self.xa_ncObserver.delegate;
+}
+
+- (void)setXa_delegate:(id<UINavigationControllerDelegate>)xa_delegate{
+    self.xa_ncObserver.delegate = xa_delegate;
+}
 
 @end

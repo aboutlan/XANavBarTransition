@@ -9,8 +9,10 @@
 #import "XATransitionSession.h"
 #import "XATransitionFactory.h"
 #import "XANavBarTransitionTool.h"
+#import "XANavigationControllerObserver.h"
 #import "UIViewController+XANavBarTransition.h"
 #import "UINavigationController+XANavBarTransition.h"
+#import <objc/message.h>
 
 @interface XATransitionSession()<UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
@@ -41,7 +43,6 @@
                transitionDelegate:(id<XATransitionDelegate>)transitionDelegate{
     if(self = [super init]){
         self.nc = nc;
-        self.nc.delegate = self;
         self.transitionMode     = transitionMode;
         self.transitionAction   = transitionAction;
         self.transitionDelegate = transitionDelegate;
@@ -49,6 +50,7 @@
                                               transitionMode:transitionMode
                                             transitionAction:transitionAction
                                           transitionDelegate:transitionDelegate];
+        [self.nc.xa_ncObserver configWithTransition:self.transition];
     }
     return  self;
 }
@@ -118,9 +120,9 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
     };
 }
 
-
 - (void)releaseResource{
     self.nc = nil;
+    [self.nc.xa_ncObserver cleanConfig];
     self.transition = nil;
     self.transitionDelegate = nil;
 }

@@ -55,6 +55,7 @@
 
 - (void)xa_viewWillAppear:(BOOL)animated{
     [self xa_viewWillAppear:YES];
+
     
     [self xa_dealViewWillAppear];
 }
@@ -96,6 +97,7 @@
                                                                 transitionMode:self.xa_transitionMode
                                                               transitionAction:self.xa_transitionAction
                                                             transitionDelegate:self.xa_transitionDelegate];
+   
     
 }
 
@@ -149,7 +151,6 @@
 
 - (BOOL)xa_isSetTansition{
      return [objc_getAssociatedObject(self, _cmd)boolValue];
-    
 }
 
 - (void)setXa_isSetTansition:(BOOL)xa_isSetTansition{
