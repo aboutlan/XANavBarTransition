@@ -617,7 +617,7 @@
 				DEVELOPMENT_TEAM = EKCRNK7YVN;
 				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xangam.XANavBarTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 				WARNING_LDFLAGS = "";
@@ -631,7 +631,7 @@
 				DEVELOPMENT_TEAM = EKCRNK7YVN;
 				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Xangam.XANavBarTransitionDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xangam.XANavBarTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 				WARNING_LDFLAGS = "";
