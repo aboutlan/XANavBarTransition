@@ -16,21 +16,13 @@
   
     self.xa_transitionDelegate = self;
     
-    self.view.backgroundColor  = [self randomGrayColor];
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.title = [NSString stringWithFormat:@"Message-%ld",(long)self.titleIndex];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-
+    self.xa_navBarAlpha = 0.4 + (self.titleIndex / 10.0);
 }
 
 
-- (UIColor *)randomGrayColor {
-    CGFloat randomColor =  (arc4random_uniform(100) + 1) /1000.0;
-    return [UIColor colorWithRed:0.9 + randomColor
-                           green:0.9 + randomColor
-                            blue:0.9 + randomColor
-                           alpha:1.0f];
-}
 
 #pragma mark - <XATransitionDelegate>
 - (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{

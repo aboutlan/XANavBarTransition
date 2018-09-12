@@ -50,6 +50,7 @@
     CGFloat offsetY = scrollView.contentOffset.y;
     if(offsetY > 0){
         self.xa_navBarAlpha = (offsetY - 50 ) / 150;
+        [self.navigationController xa_changeNavBarAlpha:self.xa_navBarAlpha];
     }
 }
 
