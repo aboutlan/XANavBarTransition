@@ -13,7 +13,7 @@
         <!--First View Controller-->
         <scene sceneID="Jjg-tK-8DP">
             <objects>
-                <viewController id="Zlb-xs-cli" customClass="FirstViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstViewController" id="Zlb-xs-cli" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QwB-JP-WL6"/>
                         <viewControllerLayoutGuide type="bottom" id="uUc-VO-wZi"/>
@@ -357,13 +357,40 @@
                     <view key="view" contentMode="scaleToFill" id="gbQ-Mx-w19">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXT-ee-yNr" userLabel="Transition Enable Btn">
+                                <rect key="frame" x="126" y="288.5" width="123" height="30"/>
+                                <state key="normal" title="禁用滑动转场功能"/>
+                                <state key="selected" title="开启滑动转场功能"/>
+                                <state key="highlighted" title="开启滑动转场功能"/>
+                                <connections>
+                                    <action selector="transitionEnableBtnClick:" destination="Fgs-cS-CTw" eventType="touchUpInside" id="mta-k5-eE8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyw-Hq-I1N" userLabel="Model Btn">
+                                <rect key="frame" x="103" y="348.5" width="169" height="30"/>
+                                <state key="normal" title="弹出新的一组导航控制器"/>
+                                <connections>
+                                    <action selector="modelBtnClick:" destination="Fgs-cS-CTw" eventType="touchUpInside" id="7C8-89-o4c"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KXT-ee-yNr" firstAttribute="centerY" secondItem="gbQ-Mx-w19" secondAttribute="centerY" constant="-30" id="A2F-vp-NOt"/>
+                            <constraint firstItem="KXT-ee-yNr" firstAttribute="centerX" secondItem="gbQ-Mx-w19" secondAttribute="centerX" id="CVD-hl-vgj"/>
+                            <constraint firstItem="tyw-Hq-I1N" firstAttribute="centerY" secondItem="gbQ-Mx-w19" secondAttribute="centerY" constant="30" id="EjO-ky-r7K"/>
+                            <constraint firstItem="tyw-Hq-I1N" firstAttribute="centerX" secondItem="gbQ-Mx-w19" secondAttribute="centerX" id="vpk-GO-weW"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="transitionEnableBtn" destination="KXT-ee-yNr" id="0a2-80-X6e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ux-m9-1aK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="-107"/>
+            <point key="canvasLocation" x="786" y="-117"/>
         </scene>
         <!--Base Navigation Controller-->
         <scene sceneID="oZX-LB-PsB">

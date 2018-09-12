@@ -8,7 +8,9 @@
 
 #import "ThirdViewController.h"
 #import "XANavBarTransition.h"
+#import "FirstViewController.h"
 @interface ThirdViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *transitionEnableBtn;
 
 @end
 
@@ -23,6 +25,20 @@
     self.title = @"3";
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.xa_navBarAlpha = 0.5;
+    self.transitionEnableBtn.selected =  !self.navigationController.xa_isTransitionEnable;
+}
+
+- (IBAction)transitionEnableBtnClick:(UIButton *)sender {
+    BOOL enable = !self.navigationController.xa_isTransitionEnable;
+    sender.selected = !enable;
+    self.navigationController.xa_isTransitionEnable = enable;
+  
+}
+
+- (IBAction)modelBtnClick:(UIButton *)sender {
+    FirstViewController *firsetVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([FirstViewController class])];
+    UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:firsetVC];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 @end

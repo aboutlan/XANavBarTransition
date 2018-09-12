@@ -87,7 +87,6 @@
 - (void)xa_dealViewDidAppear{
     if(self.navigationController == nil ||
        self.navigationController.xa_isTransitioning == YES ||
-       [self.navigationController xa_isTransitionEnable] == NO ||
        self.navigationController.topViewController != self ||
        [self.view xa_isDisplaying] == NO){
         return;
@@ -100,8 +99,7 @@
 }
 
 - (void)xa_dealViewDidDisappear{
-    if(self.xa_transitionSession == nil ||
-       [self.navigationController xa_isTransitionEnable] == NO){
+    if(self.xa_transitionSession == nil){
         return;
     }
     //销毁当前控制器转场信息
