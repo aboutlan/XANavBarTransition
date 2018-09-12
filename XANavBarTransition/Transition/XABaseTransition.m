@@ -40,6 +40,14 @@
     return self;
 }
 
+- (void)unInitWithVC:(UIViewController *)unInitVC{
+    if([unInitVC.view.gestureRecognizers containsObject:self.interactivePan]){
+        [unInitVC.view removeGestureRecognizer:self.interactivePan];
+    }
+    self.interactivePan = nil;
+    self.nextVC = nil;
+}
+
 - (void)setupWithNc:(UINavigationController *)nc
              action:(XATransitionAction)action
            delegate:(id<XATransitionDelegate>)delegate{
@@ -64,6 +72,7 @@
         CGFloat progress  = fabs(translationPoint.x / [UIScreen mainScreen].bounds.size.width) ;
         progress = MIN(1, MAX(progress, 0));
         if (pan.state == UIGestureRecognizerStateBegan) {
+            
             beginTouchTime = [[NSDate date]timeIntervalSince1970];
             self.percentInteractive = [[UIPercentDrivenInteractiveTransition alloc] init];
             self.percentInteractive.completionCurve = UIViewAnimationCurveEaseOut;
@@ -74,7 +83,6 @@
                 [self.nc popViewControllerAnimated:YES];
             }
             [self.percentInteractive updateInteractiveTransition:0];
-            
         } else if (pan.state == UIGestureRecognizerStateChanged) {
             [self.percentInteractive updateInteractiveTransition:progress];
             
@@ -87,7 +95,7 @@
                 [self.percentInteractive cancelInteractiveTransition];
             }
             self.percentInteractive = nil;
-            
+         
         }
     }
 }
@@ -175,6 +183,5 @@
 - (BOOL)transitionEnable{
     return self.interactivePan.enabled;
 }
-
 
 @end

@@ -9,7 +9,6 @@
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 #import "XANavBarTransition.h"
-\
 #import "CommonDefine.h"
 @interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource,XATransitionDelegate>
 @end

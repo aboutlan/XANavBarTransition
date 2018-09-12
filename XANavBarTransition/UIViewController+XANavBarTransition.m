@@ -92,14 +92,11 @@
        [self.view xa_isDisplaying] == NO){
         return;
     }
-  
     //初始化当前控制器转场信息
     self.xa_transitionSession = [[XATransitionSession alloc] initSessionWithNc:self.navigationController
                                                                 transitionMode:self.xa_transitionMode
                                                               transitionAction:self.xa_transitionAction
                                                             transitionDelegate:self.xa_transitionDelegate];
-   
-    
 }
 
 - (void)xa_dealViewDidDisappear{
@@ -107,9 +104,8 @@
        [self.navigationController xa_isTransitionEnable] == NO){
         return;
     }
-
     //销毁当前控制器转场信息
-    [self.xa_transitionSession unInitSessionWithNc:self.navigationController];
+    [self.xa_transitionSession unInitSessionWithVC:self];
     self.xa_transitionSession = nil;
 }
 

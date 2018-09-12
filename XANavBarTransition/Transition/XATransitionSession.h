@@ -22,5 +22,5 @@
                  transitionAction:(XATransitionAction)transitionAction
                transitionDelegate:(id<XATransitionDelegate>)transitionDelegate;
 
-- (void)unInitSessionWithNc:(UINavigationController *)nc;
+- (void)unInitSessionWithVC:(UIViewController *)unInitVC;
 @end

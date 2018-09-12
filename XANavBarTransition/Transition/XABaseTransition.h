@@ -30,7 +30,7 @@
                             transitionAction:(XATransitionAction)action
                           transitionDelegate:(id<XATransitionDelegate>)delegate;
 
-
+- (void)unInitWithVC:(UIViewController *)unInitVC;
 #pragma mark - Override
 - (void)setupWithNc:(UINavigationController *)nc
              action:(XATransitionAction)action

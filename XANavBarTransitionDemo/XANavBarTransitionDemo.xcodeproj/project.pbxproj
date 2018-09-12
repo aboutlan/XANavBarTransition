@@ -343,7 +343,7 @@
 				TargetAttributes = {
 					3855DAF01F30602200628B4D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = EKCRNK7YVN;
+						DevelopmentTeam = 2LN2G9AVN9;
 						ProvisioningStyle = Automatic;
 					};
 					3855DB091F30602200628B4D = {
@@ -614,11 +614,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = EKCRNK7YVN;
+				DEVELOPMENT_TEAM = 2LN2G9AVN9;
 				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xangam.XANavBarTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 				WARNING_LDFLAGS = "";
 			};
@@ -628,11 +630,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = EKCRNK7YVN;
+				DEVELOPMENT_TEAM = 2LN2G9AVN9;
 				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xangam.XANavBarTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 				WARNING_LDFLAGS = "";
 			};

@@ -56,8 +56,12 @@
     return  self;
 }
 
-- (void)unInitSessionWithNc:(UINavigationController *)nc{
-    [self releaseResource];
+- (void)unInitSessionWithVC:(UIViewController *)unInitVC{
+    [self.nc.xa_ncObserver cleanConfig];
+    [self.transition unInitWithVC:unInitVC];
+    self.nc = nil;
+    self.transition = nil;
+    self.transitionDelegate = nil;
 }
 
 - (void)xa_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
@@ -84,11 +88,11 @@ void dealInteractionNotify(UIViewController *desVc,UINavigationController *nc){
         id<UIViewControllerTransitionCoordinator> coordinator = desVc.transitionCoordinator;
         //监听pop的完成或取消操作
         if (coordinator != nil) {
-            if([[UIDevice currentDevice].systemVersion intValue]  >= 10){//适配iOS10
+            if (@available(iOS 10.0, *)) {
                 [coordinator notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context){
                     dealInteractionEndAction(context,nc);
                 }];
-            }else{
+            } else {
                 [coordinator notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
                     dealInteractionEndAction(context,nc);
                 }];
@@ -97,7 +101,11 @@ void dealInteractionNotify(UIViewController *desVc,UINavigationController *nc){
     }
 }
 
+
 void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> context,UINavigationController *nc){
+    
+    UIViewController *fromVC = [context viewControllerForKey:UITransitionContextFromViewControllerKey];
+    
     //处理导航栏的透明度状态
     if ([context isCancelled]) {// 取消了(还在当前页面)
         //根据剩余的进度来计算动画时长xa_changeNavBarAlpha
@@ -107,6 +115,8 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
             [nc xa_changeNavBarAlpha:fromVCAlpha];
         }completion:^(BOOL finished) {
             nc.xa_isTransitioning = NO;
+            //释放资源以及手势
+            [fromVC.xa_transitionSession unInitSessionWithVC:fromVC];
         }];
         
     } else {// 自动完成(pop到上一个界面了)
@@ -117,16 +127,13 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
             [nc xa_changeNavBarAlpha:toVCAlpha];
         }completion:^(BOOL finished) {
             nc.xa_isTransitioning = NO;
+            //释放资源以及手势
+            [fromVC.xa_transitionSession unInitSessionWithVC:fromVC];
         }];
     };
 }
 
-- (void)releaseResource{
-    self.nc = nil;
-    [self.nc.xa_ncObserver cleanConfig];
-    self.transition = nil;
-    self.transitionDelegate = nil;
-}
+
 
 #pragma mark - <UINavigationControllerDelegate>
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
