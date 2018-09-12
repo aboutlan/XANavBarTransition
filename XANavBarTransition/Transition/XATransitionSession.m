@@ -103,9 +103,6 @@ void dealInteractionNotify(UIViewController *desVc,UINavigationController *nc){
 
 
 void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> context,UINavigationController *nc){
-    
-    UIViewController *fromVC = [context viewControllerForKey:UITransitionContextFromViewControllerKey];
-    
     //处理导航栏的透明度状态
     if ([context isCancelled]) {// 取消了(还在当前页面)
         //根据剩余的进度来计算动画时长xa_changeNavBarAlpha
@@ -113,11 +110,7 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
         CGFloat fromVCAlpha   = [context viewControllerForKey:UITransitionContextFromViewControllerKey].xa_navBarAlpha;
         [UIView animateWithDuration:animdDuration animations:^{
             [nc xa_changeNavBarAlpha:fromVCAlpha];
-        }completion:^(BOOL finished) {
-            nc.xa_isTransitioning = NO;
-            //释放资源以及手势
-            [fromVC.xa_transitionSession unInitSessionWithVC:fromVC];
-        }];
+        }completion:nil];
         
     } else {// 自动完成(pop到上一个界面了)
         
@@ -125,37 +118,9 @@ void dealInteractionEndAction(id<UIViewControllerTransitionCoordinatorContext> c
         CGFloat toVCAlpha     = [context viewControllerForKey:UITransitionContextToViewControllerKey].xa_navBarAlpha;
         [UIView animateWithDuration:animdDuration animations:^{
             [nc xa_changeNavBarAlpha:toVCAlpha];
-        }completion:^(BOOL finished) {
-            nc.xa_isTransitioning = NO;
-            //释放资源以及手势
-            [fromVC.xa_transitionSession unInitSessionWithVC:fromVC];
-        }];
+        }completion:nil];
     };
 }
-
-
-
-#pragma mark - <UINavigationControllerDelegate>
-- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
-    UIViewController *nextVc  = self.transition.nextVC;
-    XABaseTransitionAnimation *transitionAnim = nil;
-    if(operation == UINavigationControllerOperationPush &&
-       nextVc == toVC){
-        transitionAnim = self.transition.pushAnimation;
-    }else if(operation == UINavigationControllerOperationPop){
-        transitionAnim = self.transition.popAnimation;
-    }
-    return transitionAnim;
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
-    
-    if(self.transition.percentInteractive){
-        navigationController.xa_isTransitioning = YES;
-    }
-    return self.transition.percentInteractive;
-}
-
 
 #pragma mark - Getter/Setter
 - (void)setTransitionDelegate:(id<XATransitionDelegate>)transitionDelegate{

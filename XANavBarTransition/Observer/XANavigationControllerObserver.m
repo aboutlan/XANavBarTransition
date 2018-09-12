@@ -58,9 +58,6 @@
     if([self.delegate respondsToSelector: @selector(navigationController:interactionControllerForAnimationController:)]){
         return  [self.delegate navigationController:navigationController interactionControllerForAnimationController:animationController];
     }else if(self.transition != nil){
-        if(self.transition.percentInteractive){
-            navigationController.xa_isTransitioning = YES;
-        }
         return self.transition.percentInteractive;
     }
     return nil;

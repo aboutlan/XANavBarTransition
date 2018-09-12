@@ -177,7 +177,6 @@
         action =  XATransitionActionOnlyPop;
         
     }else{
-        
         action = XATransitionActionPushPop;
         
     }

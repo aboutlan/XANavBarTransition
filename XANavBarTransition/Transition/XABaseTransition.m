@@ -52,6 +52,7 @@
              action:(XATransitionAction)action
            delegate:(id<XATransitionDelegate>)delegate{
     self.nc = nc;
+    self.transitionView = nc.topViewController.view;
     self.transitionDelegate = delegate;
     [self setupGestureRecognizeWithAction:action];
 }
@@ -61,7 +62,7 @@
     self.transitionEnable = [self.nc xa_isTransitionEnable];
     self.pushTransitionEnable = action == XATransitionActionOnlyPush || action == XATransitionActionPushPop;
     self.popTransitionEnable  = action == XATransitionActionOnlyPop  || action == XATransitionActionPushPop;
-    [self.nc.topViewController.view addGestureRecognizer:self.interactivePan];
+    [self.transitionView addGestureRecognizer:self.interactivePan];
 }
 
 #pragma mark - Action
@@ -72,7 +73,7 @@
         CGFloat progress  = fabs(translationPoint.x / [UIScreen mainScreen].bounds.size.width) ;
         progress = MIN(1, MAX(progress, 0));
         if (pan.state == UIGestureRecognizerStateBegan) {
-            
+            self.nc.xa_isTransitioning = YES;
             beginTouchTime = [[NSDate date]timeIntervalSince1970];
             self.percentInteractive = [[UIPercentDrivenInteractiveTransition alloc] init];
             self.percentInteractive.completionCurve = UIViewAnimationCurveEaseOut;
@@ -87,6 +88,7 @@
             [self.percentInteractive updateInteractiveTransition:progress];
             
         } else if (pan.state == UIGestureRecognizerStateEnded) {
+       
             endTouchTime = [[NSDate date]timeIntervalSince1970];
             CGFloat dValueTime = endTouchTime - beginTouchTime;
             if (progress > 0.3 || dValueTime <= 0.15f) {//dValueTime <= 0.15f 该条件用于判断是否为轻扫
@@ -94,8 +96,13 @@
             } else {
                 [self.percentInteractive cancelInteractiveTransition];
             }
+            self.nc.xa_isTransitioning = NO;
             self.percentInteractive = nil;
-         
+            if(self.transitionView != nil &&
+               self.interactivePan != nil){
+                [self.transitionView removeGestureRecognizer:self.interactivePan];
+                self.interactivePan = nil;
+            }
         }
     }
 }
