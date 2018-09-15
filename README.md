@@ -61,4 +61,4 @@ See demo for details.
 
 ## Contact
 
-If you have problems during use, please submit an issue to me or [@关于岚](https://weibo.com/daxiec)。Welcome to contact me，Thank you！
+If you have problems during use, please submit an issue to me or [@关于岚](https://weibo.com/daxiec)。Welcome to contact me！
