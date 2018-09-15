@@ -15,7 +15,7 @@
 
 @interface UIViewController (XANavBarTransition)
 /**
- 当前控制器导航栏的透明度
+ 当前控制器导航栏的透明度，默认值为1
  */
 @property(nonatomic,assign)CGFloat xa_navBarAlpha;
 
@@ -25,7 +25,7 @@
 @property (nonatomic, assign) BOOL xa_isPopEnable;
 
 /**
- 当前控制器要转场类型
+ 当前控制器要转场类型，默认值XATransitionModeLeft
  */
 @property (nonatomic, assign) XATransitionMode xa_transitionMode;
 
