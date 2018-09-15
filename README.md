@@ -30,9 +30,12 @@ Initialize in the viewDidLoad method of the controller.
 - If you need the push feature, please confirm the transition mode and set the transition delegate object, implementation protocol method, the default is left mode.
 
     ```objc
-    self.xa_transitionMode     = XATransitionModeRight;
-    self.xa_transitionDelegate = self;
-    
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+        self.xa_transitionMode     = XATransitionModeRight;
+        self.xa_transitionDelegate = self;
+    }   
+ 
     - (UIViewController *)xa_nextViewControllerInTransitionMode:(XATransitionMode)transitionMode{
         UIViewController *nextVC = [[UIViewController alloc]init]; 
         return  nextVC;
