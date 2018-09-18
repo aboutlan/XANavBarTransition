@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		382C357E213D372B0027DDA3 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382C357D213D372B0027DDA3 /* MessageViewController.m */; };
-		383F889921450B8F003015C3 /* XANavigationControllerObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 383F889821450B8F003015C3 /* XANavigationControllerObserver.m */; };
-		3849E363211BEB7100501E0B /* XANavBarTransitionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */; };
-		3852D8EB2142BC0D00D78C92 /* XATransitionSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3852D8EA2142BC0D00D78C92 /* XATransitionSession.m */; };
 		3855DAF61F30602200628B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF51F30602200628B4D /* main.m */; };
 		3855DAF91F30602200628B4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DAF81F30602200628B4D /* AppDelegate.m */; };
 		3855DAFF1F30602200628B4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3855DAFD1F30602200628B4D /* Main.storyboard */; };
@@ -22,17 +19,9 @@
 		3855DB2E1F30622400628B4D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB291F30622400628B4D /* SecondViewController.m */; };
 		3855DB2F1F30622400628B4D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB2B1F30622400628B4D /* FirstViewController.m */; };
 		3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB311F30632100628B4D /* BaseNavigationController.m */; };
-		3855DB411F30690700628B4D /* UINavigationController+XANavBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB3F1F30690700628B4D /* UINavigationController+XANavBarTransition.m */; };
-		3855DB441F30692B00628B4D /* UIViewController+XANavBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */; };
-		386726BC210700EF00DAABB1 /* UIView+XATransitionExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */; };
-		38A2369620B5543400189E94 /* XARightTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2369520B5543400189E94 /* XARightTransition.m */; };
-		38A2369820B5548600189E94 /* XARightTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2369720B5548600189E94 /* XARightTransitionAnimation.m */; };
-		38B13C5320B2D03C008E5096 /* XALeftTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5220B2D03C008E5096 /* XALeftTransition.m */; };
-		38B13C5620B2D0A4008E5096 /* XABaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5520B2D0A4008E5096 /* XABaseTransition.m */; };
-		38B13C5920B2D4FC008E5096 /* XATransitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5820B2D4FC008E5096 /* XATransitionFactory.m */; };
-		38B13C5F20B2D877008E5096 /* XANavBarTransitionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B13C5E20B2D877008E5096 /* XANavBarTransitionConst.m */; };
-		38E35A8F20B3AB0B00219C09 /* XALeftTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E35A8E20B3AB0B00219C09 /* XALeftTransitionAnimation.m */; };
-		38E35A9420B3B84700219C09 /* XABaseTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E35A9320B3B84700219C09 /* XABaseTransitionAnimation.m */; };
+		5B7110AEA6C0648DA980C3EC /* libPods-XANavBarTransitionDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A76EB4F39A5149D0A0E5B0 /* libPods-XANavBarTransitionDemoUITests.a */; };
+		890B3F951F8913B8FF8AB02B /* libPods-XANavBarTransitionDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE4A6A5E407564C42A28759 /* libPods-XANavBarTransitionDemo.a */; };
+		B9B27BC13253DB9933C93ED5 /* libPods-XANavBarTransitionDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0EB0D04512D61290B8DA209 /* libPods-XANavBarTransitionDemoTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,14 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E3000EB05AB2ED00A62D37D /* Pods-XANavBarTransitionDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XANavBarTransitionDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XANavBarTransitionDemo/Pods-XANavBarTransitionDemo.release.xcconfig"; sourceTree = "<group>"; };
+		242772797557401D319C3274 /* Pods-XANavBarTransitionDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XANavBarTransitionDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XANavBarTransitionDemoTests/Pods-XANavBarTransitionDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		382C357C213D372B0027DDA3 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		382C357D213D372B0027DDA3 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
-		383F889721450B2E003015C3 /* XANavigationControllerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XANavigationControllerObserver.h; sourceTree = "<group>"; };
-		383F889821450B8F003015C3 /* XANavigationControllerObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XANavigationControllerObserver.m; sourceTree = "<group>"; };
-		3849E361211BEB7100501E0B /* XANavBarTransitionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransitionTool.h; sourceTree = "<group>"; };
-		3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionTool.m; sourceTree = "<group>"; };
-		3852D8E92142BC0D00D78C92 /* XATransitionSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XATransitionSession.h; sourceTree = "<group>"; };
-		3852D8EA2142BC0D00D78C92 /* XATransitionSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XATransitionSession.m; sourceTree = "<group>"; };
 		3855DAF11F30602200628B4D /* XANavBarTransitionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XANavBarTransitionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3855DAF51F30602200628B4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3855DAF71F30602200628B4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,30 +68,14 @@
 		3855DB2C1F30622400628B4D /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		3855DB301F30632100628B4D /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		3855DB311F30632100628B4D /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
-		3855DB3E1F30690700628B4D /* UINavigationController+XANavBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+XANavBarTransition.h"; sourceTree = "<group>"; };
-		3855DB3F1F30690700628B4D /* UINavigationController+XANavBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+XANavBarTransition.m"; sourceTree = "<group>"; };
-		3855DB421F30692B00628B4D /* UIViewController+XANavBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XANavBarTransition.h"; sourceTree = "<group>"; };
-		3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XANavBarTransition.m"; sourceTree = "<group>"; };
-		3855DB481F30822E00628B4D /* XANavBarTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransition.h; sourceTree = "<group>"; };
-		386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XATransitionExtension.m"; sourceTree = "<group>"; };
-		386726BB210700EF00DAABB1 /* UIView+XATransitionExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XATransitionExtension.h"; sourceTree = "<group>"; };
-		38A2369420B5543400189E94 /* XARightTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XARightTransition.h; sourceTree = "<group>"; };
-		38A2369520B5543400189E94 /* XARightTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XARightTransition.m; sourceTree = "<group>"; };
-		38A2369720B5548600189E94 /* XARightTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XARightTransitionAnimation.m; sourceTree = "<group>"; };
-		38A2369920B5548B00189E94 /* XARightTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XARightTransitionAnimation.h; sourceTree = "<group>"; };
-		38B13C5120B2D03C008E5096 /* XALeftTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XALeftTransition.h; sourceTree = "<group>"; };
-		38B13C5220B2D03C008E5096 /* XALeftTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XALeftTransition.m; sourceTree = "<group>"; };
-		38B13C5420B2D0A4008E5096 /* XABaseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XABaseTransition.h; sourceTree = "<group>"; };
-		38B13C5520B2D0A4008E5096 /* XABaseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XABaseTransition.m; sourceTree = "<group>"; };
-		38B13C5720B2D4FC008E5096 /* XATransitionFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XATransitionFactory.h; sourceTree = "<group>"; };
-		38B13C5820B2D4FC008E5096 /* XATransitionFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XATransitionFactory.m; sourceTree = "<group>"; };
-		38B13C5D20B2D877008E5096 /* XANavBarTransitionConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XANavBarTransitionConst.h; sourceTree = "<group>"; };
-		38B13C5E20B2D877008E5096 /* XANavBarTransitionConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XANavBarTransitionConst.m; sourceTree = "<group>"; };
 		38DE212B20A8624A0032FCC7 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
-		38E35A8D20B3AB0B00219C09 /* XALeftTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XALeftTransitionAnimation.h; sourceTree = "<group>"; };
-		38E35A8E20B3AB0B00219C09 /* XALeftTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XALeftTransitionAnimation.m; sourceTree = "<group>"; };
-		38E35A9220B3B84700219C09 /* XABaseTransitionAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XABaseTransitionAnimation.h; sourceTree = "<group>"; };
-		38E35A9320B3B84700219C09 /* XABaseTransitionAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XABaseTransitionAnimation.m; sourceTree = "<group>"; };
+		3D8B278EBF8DBEA3F175D110 /* Pods-XANavBarTransitionDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XANavBarTransitionDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XANavBarTransitionDemoUITests/Pods-XANavBarTransitionDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		430F6E049765B75E613F9C2E /* Pods-XANavBarTransitionDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XANavBarTransitionDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XANavBarTransitionDemoUITests/Pods-XANavBarTransitionDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		677852F469786C810E322034 /* Pods-XANavBarTransitionDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XANavBarTransitionDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XANavBarTransitionDemo/Pods-XANavBarTransitionDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C5A76EB4F39A5149D0A0E5B0 /* libPods-XANavBarTransitionDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XANavBarTransitionDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDE4A6A5E407564C42A28759 /* libPods-XANavBarTransitionDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XANavBarTransitionDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0A8E11756348D86ABBF9C66 /* Pods-XANavBarTransitionDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XANavBarTransitionDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XANavBarTransitionDemoTests/Pods-XANavBarTransitionDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		F0EB0D04512D61290B8DA209 /* libPods-XANavBarTransitionDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XANavBarTransitionDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				890B3F951F8913B8FF8AB02B /* libPods-XANavBarTransitionDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B27BC13253DB9933C93ED5 /* libPods-XANavBarTransitionDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,19 +99,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B7110AEA6C0648DA980C3EC /* libPods-XANavBarTransitionDemoUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		383F889621450B2E003015C3 /* Observer */ = {
+		0BDF177E5297075A67643C15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				383F889721450B2E003015C3 /* XANavigationControllerObserver.h */,
-				383F889821450B8F003015C3 /* XANavigationControllerObserver.m */,
+				DDE4A6A5E407564C42A28759 /* libPods-XANavBarTransitionDemo.a */,
+				F0EB0D04512D61290B8DA209 /* libPods-XANavBarTransitionDemoTests.a */,
+				C5A76EB4F39A5149D0A0E5B0 /* libPods-XANavBarTransitionDemoUITests.a */,
 			);
-			path = Observer;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3855DAE81F30602200628B4D = {
@@ -150,6 +123,8 @@
 				3855DB0D1F30602200628B4D /* XANavBarTransitionDemoTests */,
 				3855DB181F30602200628B4D /* XANavBarTransitionDemoUITests */,
 				3855DAF21F30602200628B4D /* Products */,
+				9AC0B09276781BCCCF718904 /* Pods */,
+				0BDF177E5297075A67643C15 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,7 +141,6 @@
 		3855DAF31F30602200628B4D /* XANavBarTransitionDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3855DB3C1F30690700628B4D /* XANavBarTransition */,
 				3855DB2C1F30622400628B4D /* FirstViewController.h */,
 				3855DB2B1F30622400628B4D /* FirstViewController.m */,
 				3855DB2A1F30622400628B4D /* SecondViewController.h */,
@@ -215,64 +189,17 @@
 			path = XANavBarTransitionDemoUITests;
 			sourceTree = "<group>";
 		};
-		3855DB3C1F30690700628B4D /* XANavBarTransition */ = {
+		9AC0B09276781BCCCF718904 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				38B13C5020B2CFEF008E5096 /* Transition */,
-				386726B9210700EF00DAABB1 /* Extension */,
-				383F889621450B2E003015C3 /* Observer */,
-				38E35A8C20B3A98B00219C09 /* Animation */,
-				3855DB3E1F30690700628B4D /* UINavigationController+XANavBarTransition.h */,
-				3855DB3F1F30690700628B4D /* UINavigationController+XANavBarTransition.m */,
-				3855DB421F30692B00628B4D /* UIViewController+XANavBarTransition.h */,
-				3855DB431F30692B00628B4D /* UIViewController+XANavBarTransition.m */,
-				38B13C5D20B2D877008E5096 /* XANavBarTransitionConst.h */,
-				38B13C5E20B2D877008E5096 /* XANavBarTransitionConst.m */,
-				3849E361211BEB7100501E0B /* XANavBarTransitionTool.h */,
-				3849E362211BEB7100501E0B /* XANavBarTransitionTool.m */,
-				3855DB481F30822E00628B4D /* XANavBarTransition.h */,
+				677852F469786C810E322034 /* Pods-XANavBarTransitionDemo.debug.xcconfig */,
+				0E3000EB05AB2ED00A62D37D /* Pods-XANavBarTransitionDemo.release.xcconfig */,
+				242772797557401D319C3274 /* Pods-XANavBarTransitionDemoTests.debug.xcconfig */,
+				E0A8E11756348D86ABBF9C66 /* Pods-XANavBarTransitionDemoTests.release.xcconfig */,
+				3D8B278EBF8DBEA3F175D110 /* Pods-XANavBarTransitionDemoUITests.debug.xcconfig */,
+				430F6E049765B75E613F9C2E /* Pods-XANavBarTransitionDemoUITests.release.xcconfig */,
 			);
-			name = XANavBarTransition;
-			path = ../../XANavBarTransition;
-			sourceTree = "<group>";
-		};
-		386726B9210700EF00DAABB1 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				386726BB210700EF00DAABB1 /* UIView+XATransitionExtension.h */,
-				386726BA210700EF00DAABB1 /* UIView+XATransitionExtension.m */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		38B13C5020B2CFEF008E5096 /* Transition */ = {
-			isa = PBXGroup;
-			children = (
-				3852D8E92142BC0D00D78C92 /* XATransitionSession.h */,
-				3852D8EA2142BC0D00D78C92 /* XATransitionSession.m */,
-				38B13C5720B2D4FC008E5096 /* XATransitionFactory.h */,
-				38B13C5820B2D4FC008E5096 /* XATransitionFactory.m */,
-				38B13C5420B2D0A4008E5096 /* XABaseTransition.h */,
-				38B13C5520B2D0A4008E5096 /* XABaseTransition.m */,
-				38B13C5120B2D03C008E5096 /* XALeftTransition.h */,
-				38B13C5220B2D03C008E5096 /* XALeftTransition.m */,
-				38A2369420B5543400189E94 /* XARightTransition.h */,
-				38A2369520B5543400189E94 /* XARightTransition.m */,
-			);
-			path = Transition;
-			sourceTree = "<group>";
-		};
-		38E35A8C20B3A98B00219C09 /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				38E35A9220B3B84700219C09 /* XABaseTransitionAnimation.h */,
-				38E35A9320B3B84700219C09 /* XABaseTransitionAnimation.m */,
-				38E35A8D20B3AB0B00219C09 /* XALeftTransitionAnimation.h */,
-				38E35A8E20B3AB0B00219C09 /* XALeftTransitionAnimation.m */,
-				38A2369920B5548B00189E94 /* XARightTransitionAnimation.h */,
-				38A2369720B5548600189E94 /* XARightTransitionAnimation.m */,
-			);
-			path = Animation;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +209,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3855DB1E1F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemo" */;
 			buildPhases = (
+				FAFF57F19AA361A7AD05C3CC /* [CP] Check Pods Manifest.lock */,
 				3855DAED1F30602200628B4D /* Sources */,
 				3855DAEE1F30602200628B4D /* Frameworks */,
 				3855DAEF1F30602200628B4D /* Resources */,
@@ -300,6 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3855DB211F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemoTests" */;
 			buildPhases = (
+				D48B2E3D1E2D5F87B074CC05 /* [CP] Check Pods Manifest.lock */,
 				3855DB061F30602200628B4D /* Sources */,
 				3855DB071F30602200628B4D /* Frameworks */,
 				3855DB081F30602200628B4D /* Resources */,
@@ -318,6 +247,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3855DB241F30602200628B4D /* Build configuration list for PBXNativeTarget "XANavBarTransitionDemoUITests" */;
 			buildPhases = (
+				F59E8FE609348DFCE3B0C7F7 /* [CP] Check Pods Manifest.lock */,
 				3855DB111F30602200628B4D /* Sources */,
 				3855DB121F30602200628B4D /* Frameworks */,
 				3855DB131F30602200628B4D /* Resources */,
@@ -422,6 +352,60 @@
 			shellPath = /bin/sh;
 			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi";
 		};
+		D48B2E3D1E2D5F87B074CC05 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XANavBarTransitionDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F59E8FE609348DFCE3B0C7F7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XANavBarTransitionDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAFF57F19AA361A7AD05C3CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XANavBarTransitionDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -429,26 +413,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3852D8EB2142BC0D00D78C92 /* XATransitionSession.m in Sources */,
-				38A2369620B5543400189E94 /* XARightTransition.m in Sources */,
-				3849E363211BEB7100501E0B /* XANavBarTransitionTool.m in Sources */,
 				3855DB2E1F30622400628B4D /* SecondViewController.m in Sources */,
 				3855DAF91F30602200628B4D /* AppDelegate.m in Sources */,
-				383F889921450B8F003015C3 /* XANavigationControllerObserver.m in Sources */,
 				3855DB321F30632100628B4D /* BaseNavigationController.m in Sources */,
 				3855DB2F1F30622400628B4D /* FirstViewController.m in Sources */,
 				382C357E213D372B0027DDA3 /* MessageViewController.m in Sources */,
-				38B13C5F20B2D877008E5096 /* XANavBarTransitionConst.m in Sources */,
-				38B13C5920B2D4FC008E5096 /* XATransitionFactory.m in Sources */,
-				38B13C5320B2D03C008E5096 /* XALeftTransition.m in Sources */,
-				386726BC210700EF00DAABB1 /* UIView+XATransitionExtension.m in Sources */,
-				38E35A8F20B3AB0B00219C09 /* XALeftTransitionAnimation.m in Sources */,
-				38E35A9420B3B84700219C09 /* XABaseTransitionAnimation.m in Sources */,
-				3855DB411F30690700628B4D /* UINavigationController+XANavBarTransition.m in Sources */,
 				3855DAF61F30602200628B4D /* main.m in Sources */,
-				38A2369820B5548600189E94 /* XARightTransitionAnimation.m in Sources */,
-				3855DB441F30692B00628B4D /* UIViewController+XANavBarTransition.m in Sources */,
-				38B13C5620B2D0A4008E5096 /* XABaseTransition.m in Sources */,
 				3855DB2D1F30622400628B4D /* ThirdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,6 +582,7 @@
 		};
 		3855DB1F1F30602200628B4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 677852F469786C810E322034 /* Pods-XANavBarTransitionDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2LN2G9AVN9;
@@ -628,6 +599,7 @@
 		};
 		3855DB201F30602200628B4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E3000EB05AB2ED00A62D37D /* Pods-XANavBarTransitionDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2LN2G9AVN9;
@@ -644,6 +616,7 @@
 		};
 		3855DB221F30602200628B4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 242772797557401D319C3274 /* Pods-XANavBarTransitionDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2LN2G9AVN9;
@@ -657,6 +630,7 @@
 		};
 		3855DB231F30602200628B4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0A8E11756348D86ABBF9C66 /* Pods-XANavBarTransitionDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2LN2G9AVN9;
@@ -670,6 +644,7 @@
 		};
 		3855DB251F30602200628B4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D8B278EBF8DBEA3F175D110 /* Pods-XANavBarTransitionDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2LN2G9AVN9;
 				INFOPLIST_FILE = XANavBarTransitionDemoUITests/Info.plist;
@@ -682,6 +657,7 @@
 		};
 		3855DB261F30602200628B4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 430F6E049765B75E613F9C2E /* Pods-XANavBarTransitionDemoUITests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2LN2G9AVN9;
 				INFOPLIST_FILE = XANavBarTransitionDemoUITests/Info.plist;
