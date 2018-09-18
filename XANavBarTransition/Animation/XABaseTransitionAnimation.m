@@ -16,9 +16,21 @@
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
+    UIViewController *toVC =  [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     UIView *toView   = [transitionContext viewForKey:UITransitionContextToViewKey];
-    
+  
+    //适配iOS12:在iOS12的该方法中toView拿到的尺寸为控制器extendedLayoutIncludesOpaqueBars属性设置之前的尺寸(控制器的View以Top Layout Guide为原点坐标轴)。
+    //解决方案:在这里将其恢复为控制器extendedLayoutIncludesOpaqueBars属性设置之后的尺寸。(控制器的Viewt以左上角为原点坐标抽)
+    if (@available(iOS 12.0, *)){
+        if(toVC.extendedLayoutIncludesOpaqueBars){
+            CGRect screenBounds = [UIScreen mainScreen].bounds;
+            CGRect toViewFrame = toView.frame;
+            toViewFrame.origin.y = 0;
+            toViewFrame.size.height = screenBounds.size.height;
+            toView.frame = toViewFrame;
+        }
+    }
     if(self.animationType == XAAnimTransitionTypePush){
         [transitionContext.containerView addSubview:fromView];
         [transitionContext.containerView addSubview:toView];
