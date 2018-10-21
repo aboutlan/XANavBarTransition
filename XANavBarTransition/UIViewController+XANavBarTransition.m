@@ -11,6 +11,7 @@
 #import "UIView+XATransitionExtension.h"
 #import "XANavBarTransitionTool.h"
 #import "XATransitionSession.h"
+#import "XANavigationControllerObserver.h"
 #import <objc/message.h>
 
 
@@ -48,8 +49,14 @@
 }
 
 - (void)xa_viewDidLoad {
+    //vc setup
     self.xa_navBarAlpha = 1;
     self.xa_isPopEnable = YES;
+    if([self isKindOfClass: [UINavigationController class]]){//nc setup
+        UINavigationController *nc = (UINavigationController *)self;
+        nc.xa_isTransitionEnable = YES;
+        nc.xa_ncObserver = [[XANavigationControllerObserver alloc]initWithNc:nc];
+    }
     [self xa_viewDidLoad];
 }
 

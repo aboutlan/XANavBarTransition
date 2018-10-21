@@ -12,24 +12,7 @@
 #import "XANavBarTransitionTool.h"
 #import "XANavigationControllerObserver.h"
 #import <objc/message.h>
-@interface UINavigationController()
-@property (nonatomic, strong, readwrite) XANavigationControllerObserver  *xa_ncObserver;
-@end
-
 @implementation UINavigationController (XANavBarTransition)
-#pragma mark - Setup
-+ (void)load{
-    
-    SEL  originalDidLoadSEL = @selector(viewDidLoad);
-    SEL  swizzledDidLoadSEL = @selector(xa_viewDidLoad);
-    [XANavBarTransitionTool swizzlingMethodWithOrginClass:[self class] swizzledClass:[self class] originalSEL:originalDidLoadSEL swizzledSEL:swizzledDidLoadSEL];
-}
-
-- (void)xa_viewDidLoad {
-    self.xa_isTransitionEnable = YES;
-    self.xa_ncObserver = [[XANavigationControllerObserver alloc]initWithNc:self];
-    [self xa_viewDidLoad];
-}
 
 #pragma mark - Alpha
 - (void)xa_changeNavBarAlpha:(CGFloat)navBarAlpha{

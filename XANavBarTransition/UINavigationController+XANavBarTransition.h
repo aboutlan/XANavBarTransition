@@ -26,7 +26,7 @@
 /**
  当前导航控制器的代理对象
  */
-@property (nonatomic, strong, readonly) XANavigationControllerObserver  *xa_ncObserver;
+@property (nonatomic, strong) XANavigationControllerObserver  *xa_ncObserver;
 
 /**
  改变当前导航栏的透明度

@@ -273,7 +273,7 @@
 				TargetAttributes = {
 					3855DAF01F30602200628B4D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2LN2G9AVN9;
+						DevelopmentTeam = EKCRNK7YVN;
 						ProvisioningStyle = Automatic;
 					};
 					3855DB091F30602200628B4D = {
@@ -585,7 +585,7 @@
 			baseConfigurationReference = 677852F469786C810E322034 /* Pods-XANavBarTransitionDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				DEVELOPMENT_TEAM = EKCRNK7YVN;
 				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -602,7 +602,7 @@
 			baseConfigurationReference = 0E3000EB05AB2ED00A62D37D /* Pods-XANavBarTransitionDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2LN2G9AVN9;
+				DEVELOPMENT_TEAM = EKCRNK7YVN;
 				INFOPLIST_FILE = XANavBarTransitionDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
