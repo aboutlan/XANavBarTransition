@@ -57,10 +57,10 @@ See demo for details.
 
 
 ## Article
-- [iOS 记一次导航栏平滑过渡的实现](https://juejin.im/post/5b9c8002f265da0a8f35b27c)
+- [iOS 记一次导航栏平滑过渡的实现](https://aboutlan.github.io/2017/08/02/ios-smooth-transition/)
 
 - [iOS 解决控制器转场的一套方案
-  ](https://juejin.im/post/5b9c83fce51d450ea3631ad8)
+  ](https://aboutlan.github.io/2018/09/15/ios-smooth-transition-plan/)
 
 ## Contact
 
